@@ -1,0 +1,1611 @@
+{
+  "version": "1.2.0.dev2",
+  "mode": "ui-first-default",
+  "tools": [
+    {
+      "name": "fl_ping",
+      "title": "Ping FL Studio",
+      "description": "Check that FL Studio is running and the controller script is loaded.\n\nReturns the controller's reported FL Studio version, the age of the\nlast heartbeat in seconds, and the MIDI port names in use. Call this\nfirst when something seems wrong.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Ping FL Studio",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_get_tempo",
+      "title": "Get tempo (BPM)",
+      "description": "Return the current FL Studio project tempo in beats per minute.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Get tempo (BPM)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_get_play_state",
+      "title": "Get play state",
+      "description": "Return whether FL is currently playing and / or recording.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Get play state",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_get_song_position",
+      "title": "Get song position (beats)",
+      "description": "Return the current playhead position in beats from the song start.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Get song position (beats)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_get_project_state",
+      "title": "Get project state",
+      "description": "Tempo, transport state, pattern/channel/mixer counts.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Get project state",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_get_mixer_state",
+      "title": "Get mixer state",
+      "description": "All mixer tracks (index, name, volume, pan, mute, solo). Names in\nthis overview are truncated; use a single-track read for the full name.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Get mixer state",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_get_channel_state",
+      "title": "Get channel state",
+      "description": "Currently visible Channel Rack group (index, name, volume, pan, mute, solo). Switch GUI filter to All before relying on global indices.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Get channel state",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_take_snapshot",
+      "title": "Take snapshot",
+      "description": "Read current state for a scope (for your own before/after diffing).",
+      "inputSchema": {
+        "properties": {
+          "scope": {
+            "description": "'mixer_track:N' | 'channel:N' | 'mixer_all' | 'channels_all'",
+            "type": "string"
+          }
+        },
+        "required": [
+          "scope"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Take snapshot",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_plugin_list",
+      "title": "List plugins on a mixer track",
+      "description": "List the filled effect slots (0-9) on a mixer track, with plugin names.\n\nWe cannot load NEW plugins (FL API limit) -- this only reports plugins\nalready present in the project.",
+      "inputSchema": {
+        "properties": {
+          "track": {
+            "description": "Mixer track index (0 = Master).",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "track"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "List plugins on a mixer track",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_plugin_get_params",
+      "title": "Get plugin parameters",
+      "description": "Every named parameter of the plugin in this slot: index, name,\nnormalised value (0..1) and FL's display string (e.g. '3.6dB',\n'500Hz'). Returns {\"total\", \"params\":[{\"i\",\"name\",\"v\",\"s\"}, ...]}.",
+      "inputSchema": {
+        "properties": {
+          "track": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "slot": {
+            "description": "Effect slot 0-9; -1 addresses generator on channel index track.",
+            "maximum": 9,
+            "minimum": -1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "track",
+          "slot"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Get plugin parameters",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_plugin_state",
+      "title": "Read bounded live plugin state",
+      "description": "Read actual plugin values/display strings. slot=-1 addresses current Channel Rack FILTER index, not necessarily native FLP global channel: select All through GUI and pass expected_channel for pre/post name guards. Effects use Mixer track/slot. complete=true reads at most4096 parameters within60s on stopped transport, with real single-parameter fallback if a page fails; it is non-atomic. Missing/mismatched values fail, never filled. Not preset identity or full proprietary state.",
+      "inputSchema": {
+        "properties": {
+          "track": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "slot": {
+            "maximum": 9,
+            "minimum": -1,
+            "type": "integer"
+          },
+          "start": {
+            "default": 0,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "complete": {
+            "default": false,
+            "type": "boolean"
+          },
+          "expected_channel": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "track",
+          "slot"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Read bounded live plugin state",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_get_track_level",
+      "title": "Get track level (dB)",
+      "description": "Measure a mixer track's level by sampling meter peaks over a short\nwindow. Requires PLAYBACK -- returns playing=False (avg/peak null) when\nstopped/silent. {track, playing, avg_db, peak_db}.",
+      "inputSchema": {
+        "properties": {
+          "track": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "samples": {
+            "default": 20,
+            "description": "Reads over ~samples*100ms.",
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "track"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Get track level (dB)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_get_routing",
+      "title": "Get mixer track routing",
+      "description": "Which destination tracks this mixer track sends to:\n{track, name, routes_to:[{dst, dst_name, level?}]}.",
+      "inputSchema": {
+        "properties": {
+          "track": {
+            "description": "Mixer track index (0 = Master).",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "track"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Get mixer track routing",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_get_routing_all",
+      "title": "Get full routing matrix",
+      "description": "Routing for every mixer track (paginated under the hood, returned\nwhole): {total, routing:[{i, name, routes_to:[...]}]}.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Get full routing matrix",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_get_channel_routing",
+      "title": "Get channel->mixer routing",
+      "description": "Which mixer track each channel-rack channel is linked to:\n{total, channels:[{channel, name, target_mixer_track, target_name}]}.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Get channel->mixer routing",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_detect_cleanup_candidates",
+      "title": "Detect cleanup candidates (read-only)",
+      "description": "Flag (do NOT touch) empty channels + unused mixer tracks, each with a\nreason. Judgement is computed server-side from cheap controller reads.\nChannel emptiness is a name heuristic; unused-track detection is reliable.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Detect cleanup candidates (read-only)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_analyze_audio",
+      "title": "Analyze audio (tempo/key)",
+      "description": "Estimate tempo + key (+ duration, beats, onsets) of an audio file.\nPure offline analysis -- does NOT touch FL. Key is ESTIMATED.",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "description": "Path to a WAV/MP3 file (MP3 needs ffmpeg on PATH).",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Analyze audio (tempo/key)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_extract_melody",
+      "title": "Extract melody from audio (pyin/CREPE)",
+      "description": "Transcribe a monophonic melody to quantized notes; engine-selectable\n(CREPE = accurate/heavy, pyin = light). Returns ALL notes with confidence\n+ a `kept` flag; bridge_notes holds only the confident notes, ready for\nfl_write_piano_roll_notes. Does NOT write to FL -- review first.",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "description": "Path to a MONOPHONIC source (solo vocal/lead/stem).",
+            "type": "string"
+          },
+          "bpm": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Override BPM for bar quantization; auto-detected if omitted."
+          },
+          "engine": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Pitch engine: 'crepe' (accurate, needs [audio-accurate] extra), 'pyin' (light), or 'auto' (default: crepe if installed). Overrides $FLSTUDIO_MCP_PITCH_ENGINE."
+          },
+          "min_conf": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Confidence gate 0..1 deciding which notes enter bridge_notes (default 0.8 crepe / 0.0 pyin). ALL notes are still returned with voiced_prob + a kept flag."
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Extract melody from audio (pyin/CREPE)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_list_chains",
+      "title": "List genre chains",
+      "description": "List the built-in genre processing-chain recipes (vocal, drum_bus,\nbass, master) and their ordered steps.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "List genre chains",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_list_installed_plugins",
+      "title": "List installed plugins (FL DB on disk)",
+      "description": "Read FL's installed-plugin DATABASE from disk (the .fst shortcuts FL\nwrites for every scanned plugin) -> a de-duped, categorized list of what\nyou OWN. Bypasses the FL API (which only sees LOADED plugins). FL still\ncan't LOAD these -- it's for library-aware suggestions. effects_by_role is\na rough keyword grouping (Claude should apply its own plugin knowledge).\nRead-only (directory listing only).",
+      "inputSchema": {
+        "properties": {
+          "kind": {
+            "default": "all",
+            "description": "'all', 'effects', or 'generators'.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "List installed plugins (FL DB on disk)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_setup_chain",
+      "title": "Set up a genre chain (plan)",
+      "description": "Plan a genre-appropriate processing chain over a track's EXISTING\nplugins. READ-ONLY plan: returns the ordered intent calls (each with the\nmatched plugin + slot) and which steps are MISSING because the needed\nplugin isn't loaded (FL can't load plugins -- add those manually). After\nthe user approves, apply each step by calling its 'apply' tool+args\n(fl_apply_eq_intent / fl_apply_compression_intent / fl_apply_reverb_intent\n-- each logged + rollback-able). e.g. vocal: HP -> comp -> presence ->\nair -> reverb.",
+      "inputSchema": {
+        "properties": {
+          "track": {
+            "description": "Mixer track index.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "chain_type": {
+            "description": "Recipe: 'vocal', 'drum_bus', 'bass', 'master'.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "track",
+          "chain_type"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Set up a genre chain (plan)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_list_presets",
+      "title": "List presets (from disk)",
+      "description": "Read preset NAMES from disk: FL Presets\\ (per-plugin 'Plugin presets',\nplus Channel/Mixer presets) + Serum 2 Presets (.serumpreset). With NO\nfilter -> a SUMMARY (which plugins have presets + counts). With\nplugin_filter -> that plugin's full preset list. Read-only. FL can't LOAD\npresets via the API -- this is for suggestions (you load the named preset,\nthen Claude can tweak it).",
+      "inputSchema": {
+        "properties": {
+          "plugin_filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Plugin to narrow to (e.g. 'Serum', 'Fruity Parametric EQ 2'); omit for a summary."
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "List presets (from disk)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_suggest_preset",
+      "title": "Suggest a preset by description",
+      "description": "Suggest presets from YOUR library matching a description, for a given\nplugin. Reads the plugin's preset NAMES from disk + ranks by name match.\nName-only (can't hear the sound) -- apply your own knowledge of preset\nnaming. FL can't LOAD presets via the API: recommend which to load in the\nplugin manually; AFTER the user loads it you can tweak its params via\nfl_plugin_set_param / fl_apply_*_intent.",
+      "inputSchema": {
+        "properties": {
+          "description": {
+            "description": "The sound you want, e.g. 'vintage bass', 'bright pluck'.",
+            "type": "string"
+          },
+          "plugin": {
+            "description": "Plugin whose presets to search, e.g. 'Serum'.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "description",
+          "plugin"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Suggest a preset by description",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_diagnose_mix",
+      "title": "Diagnose the mix (Mix Doctor)",
+      "description": "Scan the WHOLE mix and report problems + proposed fixes. READ-ONLY.\n\nTransparent threshold rules (clipping, headroom, level imbalance, missing\nhigh-pass, ungrouped tracks, EQ clashes) on a thin paginated snapshot;\nreturns findings (severity + exact evidence) + concrete proposals.\n\nIMPORTANT: this samples peaks over only ~1.2s -- one MOMENT of the song,\nso it can MISS clipping in a drop/chorus that isn't playing right now. For\nfull-song-accurate levels use WATCH mode: fl_mix_watch_start -> play the\nwhole song -> fl_mix_watch_stop. If stopped, level rules are skipped\n(needs_playback). Applies nothing.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Diagnose the mix (Mix Doctor)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_mix_watch_start",
+      "title": "Start full-song peak watch (Mix Doctor)",
+      "description": "Begin a peak-HOLD watch: continuously sample every mixer track's peak,\nkeeping a RUNNING MAX per track, until fl_mix_watch_stop. Tell the user to\nPLAY the whole song (or at least the loudest section / the drop) while this\nruns -- then stop for full-song-accurate level diagnosis. Read-only.",
+      "inputSchema": {
+        "properties": {
+          "interval_ms": {
+            "default": 150,
+            "description": "Poll interval per round in ms (default 150).",
+            "maximum": 1000,
+            "minimum": 50,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Start full-song peak watch (Mix Doctor)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_mix_watch_status",
+      "title": "Peak watch status (Mix Doctor)",
+      "description": "Is a peak watch running, and for how long / how many polls so far?",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Peak watch status (Mix Doctor)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_mix_watch_stop",
+      "title": "Stop peak watch + diagnose (Mix Doctor)",
+      "description": "Stop the peak watch and diagnose on the FULL-SONG running-max peaks\ncaptured across the whole watch (accurate clipping/headroom/imbalance vs\nthe ~1.2s snapshot). Read-only -- proposes fixes, applies nothing.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Stop peak watch + diagnose (Mix Doctor)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_gain_stage",
+      "title": "Gain staging assistant (Mix Doctor)",
+      "description": "Propose per-track fader trims so each track's peak sits in a healthy\nband (~-12..-6 dBFS, aim -9) and the Master keeps -3..-6 dB headroom.\nREAD-ONLY proposals -- apply approved ones via fl_apply_mix_fix (rollback).\n\nUses FULL-SONG peaks from a recent watch (fl_mix_watch_start -> play ->\nfl_mix_watch_stop) when available; else a ~1.2s snapshot (prefer watch).\nFL's fader is POST-chain, so this sets a track's OUTPUT level, not a true\npre-plugin input trim.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Gain staging assistant (Mix Doctor)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_reference_match",
+      "title": "Compare actual reference and mix files",
+      "description": "Compare equal-duration DECODED audio, RMS matched in memory.\nAn actual rendered mix file is required. Never estimates spectrum from\ntrack names or peaks. No audio is modified and no listening is claimed.\nRMS matching is not perceptual loudness/LUFS matching.",
+      "inputSchema": {
+        "properties": {
+          "reference_audio_path": {
+            "type": "string"
+          },
+          "mix_audio_path": {
+            "default": "",
+            "type": "string"
+          },
+          "reference_start": {
+            "default": 0.0,
+            "type": "number"
+          },
+          "mix_start": {
+            "default": 0.0,
+            "type": "number"
+          },
+          "duration": {
+            "default": 8.0,
+            "type": "number"
+          }
+        },
+        "required": [
+          "reference_audio_path"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Compare actual reference and mix files",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_system_health",
+      "description": "Check dependency versions and existing local daemon using bounded reads; never starts or reconfigures FL.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "idempotentHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_project_checkpoint",
+      "description": "Copy an existing saved FLP to a NEW path and verify SHA256. Does not save unsaved FL state or open a project. Existing destinations are never overwritten; same job inputs reuse verified evidence.",
+      "inputSchema": {
+        "properties": {
+          "source": {
+            "type": "string"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "job_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "destination",
+          "job_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_verify_render",
+      "description": "Decode actual audio; reject missing, corrupt, nonfinite, empty, silent or unexpected-duration output. Report actual format/sample peak/RMS/clipping. This does not render or listen.",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "minimum_seconds": {
+            "default": 0.05,
+            "type": "number"
+          },
+          "maximum_seconds": {
+            "default": 3600.0,
+            "type": "number"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "idempotentHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_compare_renders",
+      "description": "Compare decoded audio including all samples; classify exact PCM, numeric difference or format/duration change. Never infer aesthetic quality from numbers.",
+      "inputSchema": {
+        "properties": {
+          "first": {
+            "type": "string"
+          },
+          "second": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "first",
+          "second"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "idempotentHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_workflow_status",
+      "description": "Read persistent step evidence. Interrupted/failed mutations require inspection and a new version; no blind retry or automatic replay.",
+      "inputSchema": {
+        "properties": {
+          "job_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "idempotentHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_inspect_native_project",
+      "description": "Read a saved FL26.1.5 FLP: full note records, instrument state hashes, sample references, Playlist extents and automation. Never opens, rewrites, or claims to inspect unsaved state. Unknown event layouts fail explicitly.",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "idempotentHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_ui_observe",
+      "description": "Observe actual FL windows, UIA controls and screenshots. No bridge or project writes. Returns expiring tokens for UI input.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "idempotentHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_ui_locate_piano",
+      "description": "Automatically measure visible Piano Roll using native anchors, screenshot grid lines and Windows OCR octave/time labels. No GUI input. Unknown grid/language/scale fails with diagnostic images; success requires independent saved-note verification after editing.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "idempotentHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_ui_act",
+      "description": "Real GUI input on an unchanged observed FL window and owned project. UIA invoke/set_value/select require an exact observed selector; raw click/right_click/drag use normalized window fractions. piano_draw/move/resize/delete use piano_note/target and automatically measured grid when piano_grid is omitted. Bar snap must be selected/verified in GUI before piano_snap_bar=true. text_click selects unique actual OCR text, optionally handle=active_popup. activate raises a visible editor/plugin. sytrus_presets_menu/master_menu require tested stock profile. automation_move_value takes automation_edit={channel,point_index,value}: existing visible non-flat purple curve only, no timing edit. Draw inherits FL length/velocity. Single-use journal; input_sent and screenshot change are not musical success. Save NEW checkpoint and verify native/live/audio results. Never writes FLP/MIDI/bridge parameters.",
+      "inputSchema": {
+        "properties": {
+          "token": {
+            "type": "string"
+          },
+          "operation_id": {
+            "type": "string"
+          },
+          "handle": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          },
+          "point": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "target": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "keys": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "selector": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "piano_grid": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "number"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "piano_note": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "integer"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "piano_target": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "integer"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "wheel": {
+            "default": 0,
+            "maximum": 12,
+            "minimum": -12,
+            "type": "integer"
+          },
+          "piano_snap_bar": {
+            "default": false,
+            "type": "boolean"
+          },
+          "automation_edit": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "token",
+          "operation_id",
+          "handle",
+          "action"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_desktop_state",
+      "description": "Read real FL process/window title, enabled state, modal dialogs and geometry. Does not close windows. Dirty-state is unknown.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "idempotentHint": true
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_gui_save_as",
+      "description": "Save current actual FL project to a NEW FLP via UIA; reject title mismatch/overwrite, parse actual saved bytes and establish owned GUI session. Captures unsaved changes without overwriting original.",
+      "inputSchema": {
+        "properties": {
+          "destination": {
+            "type": "string"
+          },
+          "expected_title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "destination",
+          "expected_title"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_gui_open_project",
+      "description": "Preserve current FL state by Save As to NEW path, open existing FLP via UIA, save to another NEW path and compare native semantics. Missing plugin/modal dialogs are NOT dismissed automatically.",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "preserve_current_to": {
+            "type": "string"
+          },
+          "verify_to": {
+            "type": "string"
+          },
+          "expected_title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "preserve_current_to",
+          "verify_to",
+          "expected_title"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_gui_render_wav",
+      "description": "Render actual FL audio to a NEW WAV: UIA file chooser, verified FL26 render form, clear time selection, Cut remainder, bounded completion and full PCM integrity. Unknown window layouts fail; output format is reported from actual audio.",
+      "inputSchema": {
+        "properties": {
+          "destination": {
+            "type": "string"
+          },
+          "expected_title": {
+            "type": "string"
+          },
+          "minimum_seconds": {
+            "exclusiveMinimum": 0,
+            "maximum": 3600,
+            "type": "number"
+          },
+          "maximum_seconds": {
+            "exclusiveMinimum": 0,
+            "maximum": 3600,
+            "type": "number"
+          },
+          "timeout": {
+            "default": 90.0,
+            "exclusiveMinimum": 0,
+            "maximum": 180,
+            "type": "number"
+          }
+        },
+        "required": [
+          "destination",
+          "expected_title",
+          "minimum_seconds",
+          "maximum_seconds"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_playlist_calibrate",
+      "description": "With no arguments, measure native anchors plus OCR ruler/Track labels. Or supply all four explicit screenshot measurements. Requires owned project, bar1/track1, uniform tracks and 4/4. Calibration alone is not musical verification.",
+      "inputSchema": {
+        "properties": {
+          "grid_left": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "first_track_top": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "pixels_per_bar": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "track_height": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "fl_playlist_edit",
+      "description": "Edit an existing Pattern clip through real calibrated FL GUI. Makes a NEW native pre-checkpoint, refuses stale/overlapped/out-of-view state, saves NEW result and verifies clip/source/track/offset plus all other musical state. Failed artifacts retained; no FLP byte mutation.",
+      "inputSchema": {
+        "properties": {
+          "action": {
+            "enum": [
+              "copy",
+              "move",
+              "trim",
+              "delete"
+            ],
+            "type": "string"
+          },
+          "clip_index": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "output_path": {
+            "type": "string"
+          },
+          "position_ticks": {
+            "anyOf": [
+              {
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "track": {
+            "anyOf": [
+              {
+                "maximum": 500,
+                "minimum": 1,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "length_ticks": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "action",
+          "clip_index",
+          "output_path"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false
+      },
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    }
+  ]
+}

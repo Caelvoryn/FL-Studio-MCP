@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.log
+.env*
+state/
+backups/
+*.flp
+*.wav
+*.mp3
+*.fst
+*.fxp
+*.egg-info/

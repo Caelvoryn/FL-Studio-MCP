@@ -14,7 +14,7 @@ def prepare(source, destination):
     files = []
     for directory in ("src", "fl_controller", "tests"):
         files += [p for p in (source / directory).rglob("*") if p.is_file() and "__pycache__" not in p.parts and p.suffix not in (".pyc", ".pyo")]
-    for name in ("pyproject.toml", "LICENSE", "README.md", "requirements-system-tested.txt", "codex-mcp.example.toml",
+    for name in (".gitattributes", "pyproject.toml", "LICENSE", "README.md", "requirements-system-tested.txt", "codex-mcp.example.toml",
                  "docs/实施前审计.md", "docs/inherited_tools.json", "docs/tool_catalog.json", "docs/CAPABILITIES.md",
                  "docs/WORKFLOW.md", "docs/TEST_RESULTS.md", "docs/ARCHITECTURE_CURRENT.md",
                  "docs/UI12_ACCEPTANCE.md", "docs/UI_PROFILES.md", "docs/DEV2_ACCEPTANCE.md", "docs/DEPENDENCIES.json", "docs/SECURITY_REVIEW.md", "docs/DEV2_GAPS.md"):

@@ -17,7 +17,7 @@ def prepare(source, destination):
     for name in ("pyproject.toml", "LICENSE", "README.md", "requirements-system-tested.txt", "codex-mcp.example.toml",
                  "docs/实施前审计.md", "docs/inherited_tools.json", "docs/tool_catalog.json", "docs/CAPABILITIES.md",
                  "docs/WORKFLOW.md", "docs/TEST_RESULTS.md", "docs/ARCHITECTURE_CURRENT.md",
-                 "docs/UI12_ACCEPTANCE.md", "docs/UI_PROFILES.md", "docs/DEV2_ACCEPTANCE.md", "docs/DEPENDENCIES.json", "docs/SECURITY_REVIEW.md"):
+                 "docs/UI12_ACCEPTANCE.md", "docs/UI_PROFILES.md", "docs/DEV2_ACCEPTANCE.md", "docs/DEPENDENCIES.json", "docs/SECURITY_REVIEW.md", "docs/DEV2_GAPS.md"):
         files.append(source / name)
     for name in ("run_server.py", "diagnose.py", "build_acceptance_arrangement.py", "build_workflow_template.py",
                  "verify_mcp_local.py", "Start-Bridge.ps1", "Stop-Bridge.ps1", "prepare_public_release.py"):

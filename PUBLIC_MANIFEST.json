@@ -23,8 +23,13 @@
     },
     {
       "path": "docs/DEV2_ACCEPTANCE.md",
-      "sha256": "ff646c0cc0d5c1745e3516be97c75c288a00f3f622af688d627c5275beea9e9d",
-      "bytes": 6626
+      "sha256": "2b647c8619dc95a90d5e23480c0c52be4db67043d8d4113f55cc51e9be5a4643",
+      "bytes": 6756
+    },
+    {
+      "path": "docs/DEV2_GAPS.md",
+      "sha256": "afa42246b7972cc8ab0c68f5703422b2dcba18d7327e9f0ea28d33a9144c63f0",
+      "bytes": 1831
     },
     {
       "path": "docs/inherited_tools.json",
@@ -108,8 +113,8 @@
     },
     {
       "path": "scripts/prepare_public_release.py",
-      "sha256": "4778d385fdcddc78e86af099ba7ff550b5c2fd375422d53e6b4c5b11dcc28d2c",
-      "bytes": 3367
+      "sha256": "7389040844cc4eea00044b23e622327c18adaf4cb1d2ee1f79d85260c1dc042c",
+      "bytes": 3388
     },
     {
       "path": "scripts/run_server.py",

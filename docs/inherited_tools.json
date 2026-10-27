@@ -1,0 +1,672 @@
+[
+  {
+    "tool": "fl_arrange_new_pattern",
+    "module": "arrange.py",
+    "line": 27,
+    "description": "Create + select + name the next empty pattern. After this, the note\nbridge (fl_write_piano_roll_notes) writes INTO this pattern.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "042d66ef8e45d3d7f783c18b78012d727da27d0658d01e53ca65e3c532cfa70d"
+  },
+  {
+    "tool": "fl_arrange_select_channel",
+    "module": "arrange.py",
+    "line": 35,
+    "description": "Make a channel the active selection so the note bridge\n(fl_write_piano_roll_notes) writes INTO it. Use before writing each\ninstrument's notes in a section (drums -> ch X, bass -> ch Y, ...).",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "fbe595fdc5e4529d844bc8472eb9cc693b04f71c6b014786cf710219a6d7a3b5"
+  },
+  {
+    "tool": "fl_arrange_clone_pattern",
+    "module": "arrange.py",
+    "line": 44,
+    "description": "Clone a pattern (copies its notes) and rename the clone -- e.g. for\nverse -> verse2 variations.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "c1006103c129ae5fe6845d9ec3ba1dbab07669d798e07e41d6c0922319c70b44"
+  },
+  {
+    "tool": "fl_arrange_add_marker",
+    "module": "arrange.py",
+    "line": 54,
+    "description": "Add a named timeline marker at a bar (intro/verse/chorus/drop).",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "4518d5e12f62b542a72518c2a31425df89a50cf83a295581a3be32b9e888f078"
+  },
+  {
+    "tool": "fl_analyze_audio",
+    "module": "audio.py",
+    "line": 286,
+    "description": "Estimate tempo + key (+ duration, beats, onsets) of an audio file.\nPure offline analysis -- does NOT touch FL. Key is ESTIMATED.",
+    "status": "部分支持",
+    "evidence": "第一阶段 evidence/tool_acceptance_matrix.json；仅该输入范围",
+    "readback": false,
+    "source_sha256": "9f10f3f98b210c7f0e92b97b5c3f2c2e82e949309f991b84357ad37d3e2170c7"
+  },
+  {
+    "tool": "fl_extract_melody",
+    "module": "audio.py",
+    "line": 300,
+    "description": "Transcribe a monophonic melody to quantized notes; engine-selectable\n(CREPE = accurate/heavy, pyin = light). Returns ALL notes with confidence\n+ a `kept` flag; bridge_notes holds only the confident notes, ready for\nfl_write_piano_roll_notes. Does NOT write to FL -- review first.",
+    "status": "部分支持",
+    "evidence": "第一阶段 evidence/tool_acceptance_matrix.json；仅该输入范围",
+    "readback": false,
+    "source_sha256": "5c21ffa61763caf7433f0615c14e1e2d295b6cd6731f91baae99a7bf18e78620"
+  },
+  {
+    "tool": "fl_solo_tracks",
+    "module": "bulk.py",
+    "line": 62,
+    "description": "Isolate a group so only it is audible -- mutes every OTHER (non-Master)\ntrack. Use category ('drums', etc.) or explicit tracks. Implemented as\nmute-the-rest (reliable; FL's multi-solo is inconsistent). Reverse with\nfl_clear_mute_solo. One rollback unit.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "774d777a1efffb03f997ae8f24b762aa492736f2f451abb51b2a7baf0ac9dba1"
+  },
+  {
+    "tool": "fl_mute_tracks",
+    "module": "bulk.py",
+    "line": 88,
+    "description": "Mute a group of tracks (leaves the others as they are). Use category or\nexplicit tracks. One rollback unit; reverse with fl_clear_mute_solo.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "2e13fb30694f8130f38da5bc94cf3c054a4e585482d00860082a809d6955a667"
+  },
+  {
+    "tool": "fl_clear_mute_solo",
+    "module": "bulk.py",
+    "line": 110,
+    "description": "Unmute and unsolo every mixer track (reset). The universal undo for the\nbulk solo/mute tools.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "152425c0f31baaef9906fcf43fecc5432d40f33c55574f91e086b1a1086bf0be"
+  },
+  {
+    "tool": "fl_list_chains",
+    "module": "chains.py",
+    "line": 26,
+    "description": "List the built-in genre processing-chain recipes (vocal, drum_bus,\nbass, master) and their ordered steps.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "61720bbe8c202e0e4522aa37f67864efa6d656adc3e7c0971d3050b52a59a6e9"
+  },
+  {
+    "tool": "fl_list_installed_plugins",
+    "module": "chains.py",
+    "line": 32,
+    "description": "Read FL's installed-plugin DATABASE from disk (the .fst shortcuts FL\nwrites for every scanned plugin) -> a de-duped, categorized list of what\nyou OWN. Bypasses the FL API (which only sees LOADED plugins). FL still\ncan't LOAD these -- it's for library-aware suggestions. effects_by_role is\na rough keyword grouping (Claude should apply its own plugin knowledge).\nRead-only (directory listing only).",
+    "status": "部分支持",
+    "evidence": "第一阶段 evidence/tool_acceptance_matrix.json；仅该输入范围",
+    "readback": false,
+    "source_sha256": "30b7300018378c2273c357cec3342b3c5e5798562c681065443f21ed0219f2b9"
+  },
+  {
+    "tool": "fl_setup_chain",
+    "module": "chains.py",
+    "line": 54,
+    "description": "Plan a genre-appropriate processing chain over a track's EXISTING\nplugins. READ-ONLY plan: returns the ordered intent calls (each with the\nmatched plugin + slot) and which steps are MISSING because the needed\nplugin isn't loaded (FL can't load plugins -- add those manually). After\nthe user approves, apply each step by calling its 'apply' tool+args\n(fl_apply_eq_intent / fl_apply_compression_intent / fl_apply_reverb_intent\n-- each logged + rollback-able). e.g. vocal: HP -> comp -> presence ->\nair -> reverb.",
+    "status": "部分支持",
+    "evidence": "第一阶段 evidence/tool_acceptance_matrix.json；仅该输入范围",
+    "readback": false,
+    "source_sha256": "e3aabdfd14331556b52eb8b9f02cefca31bbc62f5778fa2c05bfab52ddf0c5e9"
+  },
+  {
+    "tool": "fl_set_track_color",
+    "module": "color.py",
+    "line": 99,
+    "description": "Set the color of mixer tracks. Pick targets by category ('drums',\n'bass', ...) or an explicit tracks list; choose a color by name or hex.\nAll writes are ONE rollback unit -- fl_rollback_last_change reverts them.\n(Master is never colored.)",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "a8f155d4c92466055b1c33a7f876ca05487ebc9e0b7d40c9579d05bc3be1607a"
+  },
+  {
+    "tool": "fl_set_channel_color",
+    "module": "color.py",
+    "line": 136,
+    "description": "Set the color of channel-rack channels (separate from mixer-track\ncolor). Target by index or name substring. ONE rollback unit --\nfl_rollback_last_change reverts it.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "f4c7cac7d11638d8579d8ebea5a5d2a0109db08207c6bd0b2585456c25a5171b"
+  },
+  {
+    "tool": "fl_write_raga_melody",
+    "module": "compose.py",
+    "line": 45,
+    "description": "Write a MELODY (single-line, sequential notes) into the selected channel\nvia the piano-roll bridge. YOU (Claude) generate the swaras for the named\nraga/root -> MIDI notes (use the proper aarohana/avarohana; respect the\nraga's allowed swaras); this tool only selects the channel + writes. SHOW\nthe user the notes/swaras BEFORE calling. Needs the Piano roll open +\nMCP_Apply armed once this session (see the note-bridge setup).",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "704c265e81cfc7f8f0d3e1fb98171834420341c669ef11bde7a892f8d19b77e6"
+  },
+  {
+    "tool": "fl_write_raga_chords",
+    "module": "compose.py",
+    "line": 62,
+    "description": "Write CHORDS / a progression (stacked notes sharing start times) into\nthe selected channel via the bridge. YOU stack chord tones drawn from the\nraga/scale (give simultaneous notes the SAME time_bars). Tool selects the\nchannel + writes. SHOW the user the chords BEFORE calling.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "bb84aa66e7ace000dbe76a6cf01a122c19792bcdc25bb3812c8a7c89b54f61ce"
+  },
+  {
+    "tool": "fl_export_midi",
+    "module": "export.py",
+    "line": 37,
+    "description": "Write a type-1 multi-track .mid from an arrangement spec. YOU (Claude)\ngenerate the whole arrangement -- multiple named tracks, each with notes\n{pitch, start_bars, length_bars, velocity} across all sections -- and this\nwrites ONE .mid. Bypasses the note-bridge's one-pattern + MCP_Apply limits.\n\nDoes NOT touch FL: IMPORT the file yourself (FL: File > Import > MIDI file,\nor drag it into the playlist). FL won't auto-load instruments -- assign a\nchannel to each imported track. Returns the saved file path.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "d7c893a9ff6e5650eda674a495c6b3f530dae51658c5a5d1904294f27e2e13e8"
+  },
+  {
+    "tool": "fl_diagnose_mix",
+    "module": "mix_doctor.py",
+    "line": 55,
+    "description": "Scan the WHOLE mix and report problems + proposed fixes. READ-ONLY.\n\nTransparent threshold rules (clipping, headroom, level imbalance, missing\nhigh-pass, ungrouped tracks, EQ clashes) on a thin paginated snapshot;\nreturns findings (severity + exact evidence) + concrete proposals.\n\nIMPORTANT: this samples peaks over only ~1.2s -- one MOMENT of the song,\nso it can MISS clipping in a drop/chorus that isn't playing right now. For\nfull-song-accurate levels use WATCH mode: fl_mix_watch_start -> play the\nwhole song -> fl_mix_watch_stop. If stopped, level rules are skipped\n(needs_playback). Applies nothing.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "69ec0241e309fc318d3507e395d85e25b136ac2861d3f53df42062675a757ab5"
+  },
+  {
+    "tool": "fl_apply_mix_fix",
+    "module": "mix_doctor.py",
+    "line": 83,
+    "description": "Apply ONE Mix Doctor fix via the safety layer: snapshot -> write ->\nFRESH readback -> rollback-able with fl_rollback_last_change.\n\nCall this ONLY after the user approves the exact change in conversation\n(Mix Doctor never auto-applies). 'trim_volume' sets a mixer track's fader\nto target_db. For grouping use fl_group_tracks; for EQ use\nfl_apply_eq_intent.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "f49fd2c2067e4d08129a001577934d5ed3e88d777e1b56052d6df161783e7ab5"
+  },
+  {
+    "tool": "fl_mix_watch_start",
+    "module": "mix_doctor.py",
+    "line": 124,
+    "description": "Begin a peak-HOLD watch: continuously sample every mixer track's peak,\nkeeping a RUNNING MAX per track, until fl_mix_watch_stop. Tell the user to\nPLAY the whole song (or at least the loudest section / the drop) while this\nruns -- then stop for full-song-accurate level diagnosis. Read-only.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "0989af387a6413953bab33396c98f24062c505faef2825a8d097a674f97165a8"
+  },
+  {
+    "tool": "fl_mix_watch_status",
+    "module": "mix_doctor.py",
+    "line": 147,
+    "description": "Is a peak watch running, and for how long / how many polls so far?",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "1512c78340449de71fde33f67213875f60b0eb55effd872d1762a181ca6f4c54"
+  },
+  {
+    "tool": "fl_mix_watch_stop",
+    "module": "mix_doctor.py",
+    "line": 152,
+    "description": "Stop the peak watch and diagnose on the FULL-SONG running-max peaks\ncaptured across the whole watch (accurate clipping/headroom/imbalance vs\nthe ~1.2s snapshot). Read-only -- proposes fixes, applies nothing.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "4ae2c3c85346e94942023498ff052d78827021acb85d734fea72624344c73c4e"
+  },
+  {
+    "tool": "fl_gain_stage",
+    "module": "mix_doctor.py",
+    "line": 170,
+    "description": "Propose per-track fader trims so each track's peak sits in a healthy\nband (~-12..-6 dBFS, aim -9) and the Master keeps -3..-6 dB headroom.\nREAD-ONLY proposals -- apply approved ones via fl_apply_mix_fix (rollback).\n\nUses FULL-SONG peaks from a recent watch (fl_mix_watch_start -> play ->\nfl_mix_watch_stop) when available; else a ~1.2s snapshot (prefer watch).\nFL's fader is POST-chain, so this sets a track's OUTPUT level, not a true\npre-plugin input trim.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "2bb055387252ce14a4795eb9b6ad3770e18a4996c3ec14b89edbf48a709704b6"
+  },
+  {
+    "tool": "fl_reference_match",
+    "module": "mix_doctor.py",
+    "line": 205,
+    "description": "Compare equal-duration DECODED audio, RMS matched in memory.\nAn actual rendered mix file is required. Never estimates spectrum from\ntrack names or peaks. No audio is modified and no listening is claimed.\nRMS matching is not perceptual loudness/LUFS matching.",
+    "status": "部分支持",
+    "evidence": "第一阶段 evidence/tool_acceptance_matrix.json；仅该输入范围",
+    "readback": false,
+    "source_sha256": "4c3f133ee46d75ad9e385b77b52eb52bdc0f4b59d068c8a56ef50e6fcd7fbbab"
+  },
+  {
+    "tool": "fl_apply_eq_intent",
+    "module": "mixing.py",
+    "line": 140,
+    "description": "Apply a musical EQ move on a Fruity Parametric EQ 2 using a free band.\nSets type/freq/gain/width as one undo-able group; returns the band used\nand FL's readback strings. Revert with fl_rollback_last_change.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "b499eba62f944fa8dcb01c447f630dd267b395986e4b994b3dd5628f5e6aba78"
+  },
+  {
+    "tool": "fl_apply_reverb_intent",
+    "module": "mixing.py",
+    "line": 217,
+    "description": "Musical reverb moves on a Fruity Reeverb 2 (decay/wet/high-cut), as one\nundo-able group. Returns readback strings. Revert: fl_rollback_last_change.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "7d902e5be701659d5fac195135768f0699aff2f81041ec11d1ed71f966298436"
+  },
+  {
+    "tool": "fl_apply_delay_intent",
+    "module": "mixing.py",
+    "line": 271,
+    "description": "Musical delay moves on a Fruity Delay (time division / feedback / wet /\nfeedback-cut), as one undo-able group. Feedback is clamped <=100% unless\nintensity>0.9 (warns on self-oscillation risk). Returns readback strings.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "64dcb0d6a9f4dacecd1591304aa033c373a1c1fbd94c53ed266818fbcad2f345"
+  },
+  {
+    "tool": "fl_get_track_level",
+    "module": "mixing.py",
+    "line": 334,
+    "description": "Measure a mixer track's level by sampling meter peaks over a short\nwindow. Requires PLAYBACK -- returns playing=False (avg/peak null) when\nstopped/silent. {track, playing, avg_db, peak_db}.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "7032fa620f4f3dff81a9b0156ce839fc0cdc6d35261b1bf5bba437563a427b3e"
+  },
+  {
+    "tool": "fl_apply_compression_intent",
+    "module": "mixing.py",
+    "line": 344,
+    "description": "Compress via Fruity Limiter (COMP section) or FabFilter Pro-C. ALWAYS\nsets ratio AND threshold together; ratio/attack/release/makeup (+ Pro-C\nStyle) per intent, as ONE rollback unit. When level_aware and the track\nis playing, threshold is set relative to the MEASURED peak (a smart\nstarting point, not exact gain-reduction); stopped -> preset fallback +\na note. Returns readback + the measured level / chosen threshold.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "c04348ba2d30c5c9c1dfaf97ec1d12a1cf93358350e5185e0d2fd240450ab053"
+  },
+  {
+    "tool": "fl_get_project_state",
+    "module": "phase1.py",
+    "line": 29,
+    "description": "Tempo, transport state, pattern/channel/mixer counts.",
+    "status": "部分支持",
+    "evidence": "第一阶段 evidence/tool_acceptance_matrix.json；仅该输入范围",
+    "readback": false,
+    "source_sha256": "a0614493a6554e1d2f4b341d889f5062d98f5d10a85e4369d623644520e56148"
+  },
+  {
+    "tool": "fl_get_mixer_state",
+    "module": "phase1.py",
+    "line": 34,
+    "description": "All mixer tracks (index, name, volume, pan, mute, solo). Names in\nthis overview are truncated; use a single-track read for the full name.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "d60a396c442514b7b1547cc0525e3448855d9d120c8bfa50aa68d6a1ad0dfed2"
+  },
+  {
+    "tool": "fl_get_channel_state",
+    "module": "phase1.py",
+    "line": 40,
+    "description": "All channel-rack channels (index, name, volume, pan, mute, solo).",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "2f174b933b29e0f8c5dc51b99b8a254a9558ab49400e3eba4e4385f967622851"
+  },
+  {
+    "tool": "fl_set_mixer_volume",
+    "module": "phase1.py",
+    "line": 46,
+    "description": "Set a mixer track volume. unit='db' uses 0.8=unity (0 dB).",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "5b451b35bef82be81c38179e2f0e61bcdac6c179319106d107f081fd6b12cc83"
+  },
+  {
+    "tool": "fl_set_mixer_pan",
+    "module": "phase1.py",
+    "line": 60,
+    "description": "Set a mixer track's pan position (-1 left .. +1 right).",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "6c964202d6c6d0b5cdca8b526a4af91fc866e948393a5880c356bd3b31b86ff4"
+  },
+  {
+    "tool": "fl_set_mixer_mute",
+    "module": "phase1.py",
+    "line": 72,
+    "description": "Mute or unmute a mixer track (state=True mutes).",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "eaea7c6c8915105f1be86f11257291f6a1a7f092b45ec4299fd5ffb416e54fea"
+  },
+  {
+    "tool": "fl_set_mixer_solo",
+    "module": "phase1.py",
+    "line": 82,
+    "description": "Solo or unsolo a mixer track (state=True solos).",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "cbbc7beed90db61e27990af790b8e27e2a21647e52c4d2dbe502a934826dcd58"
+  },
+  {
+    "tool": "fl_set_mixer_name",
+    "module": "phase1.py",
+    "line": 92,
+    "description": "Rename a mixer track.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "131c6fd9dd68eaab30c715d2997f735011d9b5c04362b7c98ca2317e31a4784d"
+  },
+  {
+    "tool": "fl_set_channel_volume",
+    "module": "phase1.py",
+    "line": 102,
+    "description": "Set a channel-rack channel's volume. unit='db' uses 0.8=unity (0 dB).",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "3f2ffbd4f44f08ca8c3490227fa9486d04318609da2a3233287b9350ef5be063"
+  },
+  {
+    "tool": "fl_set_channel_pan",
+    "module": "phase1.py",
+    "line": 116,
+    "description": "Set a channel-rack channel's pan position (-1 left .. +1 right).",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "abd443480d158cc43b1817b8f00ae11e161a85c6b2f6096567b9e4b376fdc073"
+  },
+  {
+    "tool": "fl_set_channel_mute",
+    "module": "phase1.py",
+    "line": 128,
+    "description": "Mute or unmute a channel-rack channel (state=True mutes).",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "4ffc71913a89ecb787e7328f46193b2276d8f7a5a776e0526341ac2e50110fa2"
+  },
+  {
+    "tool": "fl_set_channel_solo",
+    "module": "phase1.py",
+    "line": 138,
+    "description": "Solo or unsolo a channel-rack channel (state=True solos).",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "f49b9a5539a213be509b2decdcd6b0e59aa574d52f8a5e8bb204d4985d88551a"
+  },
+  {
+    "tool": "fl_take_snapshot",
+    "module": "phase1.py",
+    "line": 149,
+    "description": "Read current state for a scope (for your own before/after diffing).",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "940be64a5ac85de932258f874a54c6e3c57aee1da66c6a1c4b25cc8223e4f555"
+  },
+  {
+    "tool": "fl_rollback_last_change",
+    "module": "phase1.py",
+    "line": 158,
+    "description": "Undo the most recent write by replaying its pre-change snapshot.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "8c11b0ec9fcadc98c2a060498e2f250c59fe3243fa7f75c91825c6a498bc8ded"
+  },
+  {
+    "tool": "fl_set_dry_run",
+    "module": "phase1.py",
+    "line": 165,
+    "description": "When on, write tools return a 'planned' preview without changing FL.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "1e65ad06c7e54e750aa97a1c00160927638a2a714297b1c408b50dba57ac2222"
+  },
+  {
+    "tool": "fl_write_piano_roll_notes",
+    "module": "pianoroll.py",
+    "line": 39,
+    "description": "Write notes into the currently-open FL Piano roll.\n\nEach note: {pitch (MIDI), time_bars, length_bars, velocity 0-1}. Set\nquantize (grid in bars) to snap note starts to a grid before writing.\nSetup: open the Piano roll and run 'MCP_Apply' once from its Scripting\nmenu (so Run last script again targets it). mode='replace' clears first.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "314bd6367942e24e678becf3a5285ed6b4d6ce722e2b55a0f7c3ff7fe7cfd69d"
+  },
+  {
+    "tool": "fl_quantize_pattern",
+    "module": "pianoroll.py",
+    "line": 65,
+    "description": "Quantize the notes ALREADY in the open Piano roll: reads the score,\nsnaps note starts (and optionally lengths) to the grid, rewrites -- via\nthe pyscript bridge, no dialog. Needs the Piano roll open + MCP_Apply\narmed once this session (same setup as note writing).",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "3886404c3ebe337484903a73f3722ff0e66ea61c064d6bdcf93d162f896b2b9f"
+  },
+  {
+    "tool": "fl_plugin_list",
+    "module": "plugin.py",
+    "line": 88,
+    "description": "List the filled effect slots (0-9) on a mixer track, with plugin names.\n\nWe cannot load NEW plugins (FL API limit) -- this only reports plugins\nalready present in the project.",
+    "status": "部分支持",
+    "evidence": "第一阶段 evidence/tool_acceptance_matrix.json；仅该输入范围",
+    "readback": false,
+    "source_sha256": "e984a91a209e7b2e46eb0e1e62fba61fdcdcfc86c6bcfa322f24e07182d12f9f"
+  },
+  {
+    "tool": "fl_plugin_get_params",
+    "module": "plugin.py",
+    "line": 98,
+    "description": "Every named parameter of the plugin in this slot: index, name,\nnormalised value (0..1) and FL's display string (e.g. '3.6dB',\n'500Hz'). Returns {\"total\", \"params\":[{\"i\",\"name\",\"v\",\"s\"}, ...]}.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "5accb317fdb8536a44df926b14e3ea06230a6cc6bbf9f9e1ed0a1f43a2e2afa4"
+  },
+  {
+    "tool": "fl_plugin_set_param",
+    "module": "plugin.py",
+    "line": 109,
+    "description": "Set one plugin parameter (normalised 0..1). ``param`` may be an\nindex or a name; names are resolved from the live param list. The\nchange is logged and undo-able via fl_rollback_last_change. Returns\nbefore/after plus the resolved {index, name}.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "826cec901b54c409732a840f2df5e0f520e9b6f8d246bec50c2a309400a2fc93"
+  },
+  {
+    "tool": "fl_list_presets",
+    "module": "presets.py",
+    "line": 24,
+    "description": "Read preset NAMES from disk: FL Presets\\ (per-plugin 'Plugin presets',\nplus Channel/Mixer presets) + Serum 2 Presets (.serumpreset). With NO\nfilter -> a SUMMARY (which plugins have presets + counts). With\nplugin_filter -> that plugin's full preset list. Read-only. FL can't LOAD\npresets via the API -- this is for suggestions (you load the named preset,\nthen Claude can tweak it).",
+    "status": "部分支持",
+    "evidence": "第一阶段 evidence/tool_acceptance_matrix.json；仅该输入范围",
+    "readback": false,
+    "source_sha256": "d0ce8d326ba872d75326841181fcd9c4a88633750bf3ac6c959748eb833b070a"
+  },
+  {
+    "tool": "fl_suggest_preset",
+    "module": "presets.py",
+    "line": 55,
+    "description": "Suggest presets from YOUR library matching a description, for a given\nplugin. Reads the plugin's preset NAMES from disk + ranks by name match.\nName-only (can't hear the sound) -- apply your own knowledge of preset\nnaming. FL can't LOAD presets via the API: recommend which to load in the\nplugin manually; AFTER the user loads it you can tweak its params via\nfl_plugin_set_param / fl_apply_*_intent.",
+    "status": "部分支持",
+    "evidence": "第一阶段 evidence/tool_acceptance_matrix.json；仅该输入范围",
+    "readback": false,
+    "source_sha256": "8df827d96f1854bd4c39a21c0f033c0ffcd6323b6237e19fb903e05ba8052357"
+  },
+  {
+    "tool": "fl_get_routing",
+    "module": "routing.py",
+    "line": 131,
+    "description": "Which destination tracks this mixer track sends to:\n{track, name, routes_to:[{dst, dst_name, level?}]}.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "cb223001370f7e70ffef00279b1ace45378efcde1c52e2568a72fa35344f514a"
+  },
+  {
+    "tool": "fl_get_routing_all",
+    "module": "routing.py",
+    "line": 139,
+    "description": "Routing for every mixer track (paginated under the hood, returned\nwhole): {total, routing:[{i, name, routes_to:[...]}]}.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "7bdc13c3e28e9646fe2fefebb52f4ce6aac11e7adff838965c12f4f2a5d71e22"
+  },
+  {
+    "tool": "fl_get_channel_routing",
+    "module": "routing.py",
+    "line": 145,
+    "description": "Which mixer track each channel-rack channel is linked to:\n{total, channels:[{channel, name, target_mixer_track, target_name}]}.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "67d6f8831b7da5d020ed1a7f57f996ce7706fc43705525588eb2ea4d9ad043c6"
+  },
+  {
+    "tool": "fl_detect_cleanup_candidates",
+    "module": "routing.py",
+    "line": 151,
+    "description": "Flag (do NOT touch) empty channels + unused mixer tracks, each with a\nreason. Judgement is computed server-side from cheap controller reads.\nChannel emptiness is a name heuristic; unused-track detection is reliable.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "a5be34e6eba794ceae110703870efcd01ce035cbcff0c8ddd51deb944d05b8e8"
+  },
+  {
+    "tool": "fl_set_route",
+    "module": "routing.py",
+    "line": 158,
+    "description": "Enable/disable a send from src -> dst (calls afterRoutingChanged on the\nFL side). Snapshot + readback; undo with fl_rollback_last_change.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "e90428c2cd653f0b15f0c7a0b589ac66b0c48c6f9b39dabf42d6e8452d947f86"
+  },
+  {
+    "tool": "fl_group_tracks",
+    "module": "routing.py",
+    "line": 174,
+    "description": "Group sources into a bus, EXCLUSIVELY: each source -> bus ON and its\ndirect -> Master OFF; bus -> Master ON; optional bus rename. Applied as\nONE rollback unit -- fl_rollback_last_change undoes the whole grouping.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": true,
+    "source_sha256": "637e308a3265fd465254140f6019bef47120d5e995d159cda26fc7ade22d018e"
+  },
+  {
+    "tool": "fl_ping",
+    "module": "transport.py",
+    "line": 30,
+    "description": "Check that FL Studio is running and the controller script is loaded.\n\nReturns the controller's reported FL Studio version, the age of the\nlast heartbeat in seconds, and the MIDI port names in use. Call this\nfirst when something seems wrong.",
+    "status": "部分支持",
+    "evidence": "第一阶段 evidence/tool_acceptance_matrix.json；仅该输入范围",
+    "readback": false,
+    "source_sha256": "50ca018585d68430f5ec29e669a5de839d24be4a7bc1df8bbe1e73125d681c7f"
+  },
+  {
+    "tool": "fl_get_tempo",
+    "module": "transport.py",
+    "line": 78,
+    "description": "Return the current FL Studio project tempo in beats per minute.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "e82a0bd5a7f308f1294b572302542a8f2e02e2267f1ab01b171dd32ae64250fb"
+  },
+  {
+    "tool": "fl_set_tempo",
+    "module": "transport.py",
+    "line": 92,
+    "description": "Set the FL Studio project tempo. Range is 10-999 BPM (FL's own limits).",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "3de67d0069df81ab78bd078d8406194e6f47e99d8a90aad714ca5e000fa47075"
+  },
+  {
+    "tool": "fl_play",
+    "module": "transport.py",
+    "line": 108,
+    "description": "Start playback. Idempotent — calling while already playing is a no-op.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "83eddb69e463e8ddfc52377d366c7160adad47317e5e14fb8dd8fa18908fe820"
+  },
+  {
+    "tool": "fl_stop",
+    "module": "transport.py",
+    "line": 121,
+    "description": "Stop playback. Idempotent.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "649affe8898d96ba4c310c37af2fc0de03d12c6fc6bfb391251784c78691a515"
+  },
+  {
+    "tool": "fl_toggle_play",
+    "module": "transport.py",
+    "line": 134,
+    "description": "Toggle between play and stop, mirroring the spacebar in FL.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "c2c5e376d39e83495bcb482a120affba0d5d6db376569369c70fa41e9a87c6e2"
+  },
+  {
+    "tool": "fl_record",
+    "module": "transport.py",
+    "line": 147,
+    "description": "Toggle FL Studio's record-arm state.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "5ff03e6dac1cbe0b65d61d4328fd0a5e5ea7dfb6dc48816557f848dd74381365"
+  },
+  {
+    "tool": "fl_get_play_state",
+    "module": "transport.py",
+    "line": 159,
+    "description": "Return whether FL is currently playing and / or recording.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "9531883e47000330d43592d10bcd53310b2a4236db9b497fe8f59461cf565ef7"
+  },
+  {
+    "tool": "fl_get_song_position",
+    "module": "transport.py",
+    "line": 171,
+    "description": "Return the current playhead position in beats from the song start.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "f407a68772969dd44c6787e4732eb3ad6de0ff4b3df17e24913dcf85bd5137e9"
+  },
+  {
+    "tool": "fl_set_song_position",
+    "module": "transport.py",
+    "line": 184,
+    "description": "Move the playhead to the given beat position.",
+    "status": "已实现但未完成验证",
+    "evidence": "历史未完成行为验收",
+    "readback": false,
+    "source_sha256": "25499f9d0988a720ccaf69d647e674d68b2afd3e25ea479185a924a81ad60480"
+  }
+]

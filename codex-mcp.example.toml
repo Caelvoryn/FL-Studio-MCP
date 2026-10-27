@@ -1,0 +1,15 @@
+# Example only. Replace these placeholders after installing this checkout.
+# This file is NOT merged into any existing Codex configuration automatically.
+[mcp_servers.fl_studio_candidate]
+command = "C:/YOUR/CHECKOUT/.venv/Scripts/python.exe"
+args = ["C:/YOUR/CHECKOUT/scripts/run_server.py"]
+
+[mcp_servers.fl_studio_candidate.env]
+FLSTUDIO_MCP_TRANSPORT = "tcp"
+FLSTUDIO_MCP_TCP_HOST = "127.0.0.1"
+FLSTUDIO_MCP_TCP_PORT = "9788"
+# Both bridge and MCP server must use the SAME directory for mutation locks.
+FLSTUDIO_MCP_STATE_DIR = "C:/YOUR/PRIVATE/STATE"
+# UI-first is the default: background music writers are hidden.
+# Compatibility only; do NOT enable for GUI acceptance:
+# FLSTUDIO_MCP_ENABLE_LEGACY_WRITES = "1"

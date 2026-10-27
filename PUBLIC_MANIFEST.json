@@ -1,0 +1,439 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "codex-mcp.example.toml",
+      "sha256": "761d8be29818431298a73aa046f04811cb7c4f8c9af128dcba73064c2049fcb8",
+      "bytes": 732
+    },
+    {
+      "path": "docs/ARCHITECTURE_CURRENT.md",
+      "sha256": "e71e8f1e164b633eb610a3f3972033537c0ffbde148fab75350863f7c8e14750",
+      "bytes": 2122
+    },
+    {
+      "path": "docs/CAPABILITIES.md",
+      "sha256": "94b7613067e1687a0bcc4399018b4da19bc1f1b72a8fbf01a7133aa49a6a26a7",
+      "bytes": 2997
+    },
+    {
+      "path": "docs/DEPENDENCIES.json",
+      "sha256": "01c24c162af07c65410f8030412f582e1b64b691698404bb8b7a02e8340eb754",
+      "bytes": 72975
+    },
+    {
+      "path": "docs/DEV2_ACCEPTANCE.md",
+      "sha256": "ff646c0cc0d5c1745e3516be97c75c288a00f3f622af688d627c5275beea9e9d",
+      "bytes": 6626
+    },
+    {
+      "path": "docs/inherited_tools.json",
+      "sha256": "7444fbdaebabaa5caf5af381d8baf93e0cbcf8d4dd2ad7829f53b1442ad9500b",
+      "bytes": 34023
+    },
+    {
+      "path": "docs/SECURITY_REVIEW.md",
+      "sha256": "a372b1d7922e2c6bc676d6252c048ff0432de282d76e3bd9ed40742a7fcdac08",
+      "bytes": 2189
+    },
+    {
+      "path": "docs/TEST_RESULTS.md",
+      "sha256": "6c05f07f33401776935decdfdd17e8b55a0f195655eb5cbc18f176ca62ef75b7",
+      "bytes": 2459
+    },
+    {
+      "path": "docs/tool_catalog.json",
+      "sha256": "735dd438467be8239b33b8e2de28ab5af6eccbbc3e870c6ada855ed5e00016bf",
+      "bytes": 47986
+    },
+    {
+      "path": "docs/UI12_ACCEPTANCE.md",
+      "sha256": "499f7fb167c628d8cb24166283b4934459cec9365bdb800b86e9e8fbbee5243b",
+      "bytes": 5440
+    },
+    {
+      "path": "docs/UI_PROFILES.md",
+      "sha256": "d83dc3710ea4370dd550fa5f14d2c0b1e58dfa6dbb29d8c6dd70c4db934019bc",
+      "bytes": 4176
+    },
+    {
+      "path": "docs/WORKFLOW.md",
+      "sha256": "9ce9ad8dc868eac856255f53a21e3d5d1be862ca3ea06daec187074617edd225",
+      "bytes": 2855
+    },
+    {
+      "path": "docs/\u5b9e\u65bd\u524d\u5ba1\u8ba1.md",
+      "sha256": "cbcd82ff8ef0f91890601cd637df5d9118b2adbb57e25f97549be35a4b04b89b",
+      "bytes": 8321
+    },
+    {
+      "path": "fl_controller/FLStudioMCP/device_FLStudioMCP.py",
+      "sha256": "6294f57869bc4b5229cf1256a7cbed2477ddfb8f402e4c98d81542b15957665b",
+      "bytes": 47532
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "532ad9cb1a9d459ac18c0abcebde3b4d332cae31a29bb02c86382b1ce453a4b1",
+      "bytes": 1091
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "51972d2ba8f8fd0e451f2797ddd73cee2653c1ef623326f47cd16f2f92fce225",
+      "bytes": 2819
+    },
+    {
+      "path": "README.md",
+      "sha256": "15bb9ade46c8c998c2ea05f658afe937ed30c5c6252dfc7a2fe4ec9c67335f58",
+      "bytes": 3513
+    },
+    {
+      "path": "requirements-system-tested.txt",
+      "sha256": "4b36e41306d0923c12b7a48f30349bc9fdd8d5f90665ea073b7e31229529910c",
+      "bytes": 2598
+    },
+    {
+      "path": "scripts/build_acceptance_arrangement.py",
+      "sha256": "b7e66c43b50615cf9364b6f2b7d14540499b09078e46590e4be5a2d5d5a37a55",
+      "bytes": 4546
+    },
+    {
+      "path": "scripts/build_workflow_template.py",
+      "sha256": "53079924ede40e0c607142fa5b755cbd86b7c5542c63f3884e511f913933a51a",
+      "bytes": 5440
+    },
+    {
+      "path": "scripts/diagnose.py",
+      "sha256": "c5a1f5955da923514aa76ab9c96ee0b8eb9b96d82ac08ad6deb42074e7e0258d",
+      "bytes": 610
+    },
+    {
+      "path": "scripts/prepare_public_release.py",
+      "sha256": "4778d385fdcddc78e86af099ba7ff550b5c2fd375422d53e6b4c5b11dcc28d2c",
+      "bytes": 3367
+    },
+    {
+      "path": "scripts/run_server.py",
+      "sha256": "ca8442ef21671bc40cbd6c571caa670991ef828113b71e3921613a1691f705f7",
+      "bytes": 654
+    },
+    {
+      "path": "scripts/Start-Bridge.ps1",
+      "sha256": "9ed10eb6adf4c0c253c812bf3ed12e91d1797ca27101daf4adde62572f44bcc8",
+      "bytes": 2391
+    },
+    {
+      "path": "scripts/Stop-Bridge.ps1",
+      "sha256": "1e81547d0f13bddc9978eae3ed0f7626488d58bcbf2d4de60cf483781c9e917d",
+      "bytes": 949
+    },
+    {
+      "path": "scripts/verify_mcp_local.py",
+      "sha256": "2a9a73cbd8ab1c8ef645c56d55fdf8291fd3aedd2fb4af3b7ce0eefff2d807db",
+      "bytes": 2979
+    },
+    {
+      "path": "src/fl_studio_mcp/__init__.py",
+      "sha256": "4d7a7f5418c664dc83a3c281bc55dc117f52badd68a20ea80c7bbccd9f3e4c59",
+      "bytes": 788
+    },
+    {
+      "path": "src/fl_studio_mcp/connection.py",
+      "sha256": "200d8873e293b8bbbb4ebfa70269e44523864cd5c990dc0091a79db35028cba0",
+      "bytes": 17800
+    },
+    {
+      "path": "src/fl_studio_mcp/daemon.py",
+      "sha256": "95d78a7183dcab2ec4f2f4cd7df75c23b32a612da945e713ad5ec19858e03737",
+      "bytes": 7537
+    },
+    {
+      "path": "src/fl_studio_mcp/desktop.py",
+      "sha256": "25a35d016c163eae2ddd93f8fb83b3efb213fae913eb678c8179a43c815d80a3",
+      "bytes": 26721
+    },
+    {
+      "path": "src/fl_studio_mcp/music/__init__.py",
+      "sha256": "c84b8e9fbab89ffedefad31f36f4cdd149a432bbd94f0afee7eb49ad3c926f89",
+      "bytes": 71
+    },
+    {
+      "path": "src/fl_studio_mcp/music/audio_compare.py",
+      "sha256": "a2974510f749aeb17bdbfd6b083db9afa986e91274de6370cd26ea538dd98e37",
+      "bytes": 3944
+    },
+    {
+      "path": "src/fl_studio_mcp/music/chains.py",
+      "sha256": "c3d0900716e336d29429dcc30629afc089535e915e1cab623df42bfd1d0c4076",
+      "bytes": 3269
+    },
+    {
+      "path": "src/fl_studio_mcp/music/eq_curves.py",
+      "sha256": "e5e5e5842cf9d31b12957387b0e5eb2835a25ddb7aed4e8b5234ff7a5c3f89e4",
+      "bytes": 3262
+    },
+    {
+      "path": "src/fl_studio_mcp/music/levels.py",
+      "sha256": "9e929a1d1f062f00df2268282a2c7fd1d851d3ae5b8b5b774e833fb9f5911946",
+      "bytes": 3153
+    },
+    {
+      "path": "src/fl_studio_mcp/music/limiter_curves.py",
+      "sha256": "14e21249cd0b315990d5910900cc112712d889251f09ee4463820b00f74d1f71",
+      "bytes": 4611
+    },
+    {
+      "path": "src/fl_studio_mcp/music/midi_export.py",
+      "sha256": "4ec598561853bdf92efa0c5d789fdb82df86ec4ffa2a58496b182bd995b55732",
+      "bytes": 3023
+    },
+    {
+      "path": "src/fl_studio_mcp/music/mix_doctor.py",
+      "sha256": "b312a6dca69c85fc865634055fc7cb56c2d9356e5728168469a19b6408362272",
+      "bytes": 30681
+    },
+    {
+      "path": "src/fl_studio_mcp/music/plugin_library.py",
+      "sha256": "bb8b697fd2c770a1211c4b6b853ea85808d47539e8f7da6cd70d9a2d91944cd9",
+      "bytes": 3775
+    },
+    {
+      "path": "src/fl_studio_mcp/music/preset_library.py",
+      "sha256": "e862ee0f2eb05aafbd67eb52567810f53681289acd075b3b5633b9fa7289d8ce",
+      "bytes": 7368
+    },
+    {
+      "path": "src/fl_studio_mcp/music/proc3_curves.py",
+      "sha256": "095490ea7fa65bf85818430ca297d22c4070472a588e72e69e4ec475edda182c",
+      "bytes": 3796
+    },
+    {
+      "path": "src/fl_studio_mcp/music/resource_paths.py",
+      "sha256": "9249294e6f374036e4d6a112f3aed15f00114196da4cd48fcd1dc881f0d27fd5",
+      "bytes": 4130
+    },
+    {
+      "path": "src/fl_studio_mcp/music/reverb_delay_curves.py",
+      "sha256": "186158c9c48279ce71d24e0aab25811bd9469f014b3b8be860f43582b283862b",
+      "bytes": 6126
+    },
+    {
+      "path": "src/fl_studio_mcp/music/surge_library.py",
+      "sha256": "885a9fbca33e85966c6871137c6ef8c9ce484f120f38fee50f0c7ed40577e302",
+      "bytes": 2734
+    },
+    {
+      "path": "src/fl_studio_mcp/native.py",
+      "sha256": "c5ae2a9d9a00cdb21575075cf7bdc31c2a5174df2ffcde3f908659a40d85dd7d",
+      "bytes": 7832
+    },
+    {
+      "path": "src/fl_studio_mcp/ocr_worker.py",
+      "sha256": "135c2453c78d16897694739bbe118c02bb13b46416f7803ce07f2341946c78c3",
+      "bytes": 1534
+    },
+    {
+      "path": "src/fl_studio_mcp/pianoroll.py",
+      "sha256": "aa55279f30a5d68059a197f3ac7ef9b0d08ab5b2761f1090d94dc29f31c06353",
+      "bytes": 3858
+    },
+    {
+      "path": "src/fl_studio_mcp/presets/__init__.py",
+      "sha256": "275ecb9fec7224c5eedb90aa0ed6c07304f581c24b3adda5bb011fbce65f4c5e",
+      "bytes": 59
+    },
+    {
+      "path": "src/fl_studio_mcp/protocol.py",
+      "sha256": "efb95e00ac2a285228e291b0478aaba43e022e908c75a960420e51239af1dfb3",
+      "bytes": 9496
+    },
+    {
+      "path": "src/fl_studio_mcp/pyscript_gen.py",
+      "sha256": "231d553c9055ff30187b91326ebf8603a8ac4b7bdd880cf12c48d6c64aa7b9d0",
+      "bytes": 7225
+    },
+    {
+      "path": "src/fl_studio_mcp/pyscript_trigger.py",
+      "sha256": "70327090aa5d040acd649396ce1a94a1688ffbf63d758a5706612e88325e3635",
+      "bytes": 5307
+    },
+    {
+      "path": "src/fl_studio_mcp/safety.py",
+      "sha256": "cad07aa8362f99d9910750f64e4529e64b3000ca8a7d7b18e1d34c31a948b827",
+      "bytes": 11123
+    },
+    {
+      "path": "src/fl_studio_mcp/server.py",
+      "sha256": "dcfa4e4143f5e3ecac483b4e7a66921babd706694d55784c78a7c0267d30fecd",
+      "bytes": 9570
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/__init__.py",
+      "sha256": "accc0c25e1a6b2c3ddb27927218c17a8029b67243b00c7c31910af4979e10ea2",
+      "bytes": 120
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/arrange.py",
+      "sha256": "dd6c2a541e1d2a37413686bc59adb43753ba439d077e43c527bad4d3da0c3bc5",
+      "bytes": 2816
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/audio.py",
+      "sha256": "7e48613eb56fc23bc48f540b992efa36c4b361911533b28a975e3ab74fb5fc33",
+      "bytes": 15120
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/bulk.py",
+      "sha256": "69eb17a9cc428d9eaf21b74c2a03a55bf6f59d2b2e8a478996ae70d6b4702310",
+      "bytes": 6989
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/chains.py",
+      "sha256": "11bffae0479d2d4486264f72caff724d8af08d2385472b3fd5a56a713503450d",
+      "bytes": 5114
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/color.py",
+      "sha256": "3ad7966558ca0c11931f2d82f94e36ce27923fc56bfc4ae10f97611aca1e8146",
+      "bytes": 7584
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/compose.py",
+      "sha256": "9a0b204c21bb3192037f3f6b5f08a6baef021c2c27caa44726dea170230c4833",
+      "bytes": 4097
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/desktop.py",
+      "sha256": "4e741fc9dd46f0024bc8324ea74987a7bdd457cb754d96e9a715df5d1b13c9ce",
+      "bytes": 8645
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/export.py",
+      "sha256": "c75bde71023e150b5555a496d7d378f802d99970c8181cc2504cf87627c054ce",
+      "bytes": 3453
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/mix_doctor.py",
+      "sha256": "e89ae82fa6a227ddb8bc509a70700f561267d13e1a4ba28cbe5abf4f52e5560f",
+      "bytes": 12929
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/mixing.py",
+      "sha256": "b78f9dffe061678b8e379bc2ca572010e657d274e1e068881c66011b2b1a7477",
+      "bytes": 22580
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/phase1.py",
+      "sha256": "a9a4e665a264c7d2e25b93fe3202d389a83377817773ddf74809580950f92e69",
+      "bytes": 9542
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/pianoroll.py",
+      "sha256": "b05bf9a8696dd350ae662bc73fc9921c2acc73827704e94261799f942a370f82",
+      "bytes": 3452
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/plugin.py",
+      "sha256": "8c62112a44d27db8f66f4cf1728ac0bbb490dc467d5cfb73b678c838b516ca1d",
+      "bytes": 13019
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/presets.py",
+      "sha256": "fa599beda0aad900049748c3f3cb30bd1411cf6c9e95fc18d6777aa85acd427b",
+      "bytes": 4828
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/resources.py",
+      "sha256": "8d9ebc017221e008884cde9676fbdb70d7544e2ccf7aa6a4fab55388d4c189aa",
+      "bytes": 3352
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/routing.py",
+      "sha256": "cfcdbd046955c9f062bf5df227bfb617600c0755e30f52a6c9cc54dc9f8c175b",
+      "bytes": 9704
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/transport.py",
+      "sha256": "a2651db5d101c6df663bafb845d04c0ff7c04132ae11ada88c4e25355a023360",
+      "bytes": 7136
+    },
+    {
+      "path": "src/fl_studio_mcp/tools/workflow.py",
+      "sha256": "6320c76d09cc5aa9b0da496845faad4591e14f3e1c874e8043130ac0c1d41b9e",
+      "bytes": 5457
+    },
+    {
+      "path": "src/fl_studio_mcp/ui_first.py",
+      "sha256": "baa71323954f55add4c4329d5e2e93d82058442ffec8bdb90159219dbe5c1d34",
+      "bytes": 23275
+    },
+    {
+      "path": "src/fl_studio_mcp/utils/__init__.py",
+      "sha256": "94f692da85219ca32fc679586ec7661c0248e5e0b4f0e466d09e9b6b5bced922",
+      "bytes": 64
+    },
+    {
+      "path": "src/fl_studio_mcp/vision.py",
+      "sha256": "3f22720333c962ec0f2766d855bd07bc4ed9d6d77f2376edd5b8c1cc50db4aac",
+      "bytes": 19919
+    },
+    {
+      "path": "src/fl_studio_mcp/workflow.py",
+      "sha256": "978f43f29ba0fb8769f1d647cbf06308cc5daeed8df53b8536ec4db175d6c0e1",
+      "bytes": 11781
+    },
+    {
+      "path": "tests/test_controller_api_probe.py",
+      "sha256": "46869c0f4b949bd9d908e9e30aecc25007aeb3e211ac6fef94e096f770473add",
+      "bytes": 6876
+    },
+    {
+      "path": "tests/test_dev2_desktop.py",
+      "sha256": "f4db244b884dbac484d947c5fe4f5d7e49de0beff97ea056a6ce644be0d1e275",
+      "bytes": 6419
+    },
+    {
+      "path": "tests/test_plugin_snapshot.py",
+      "sha256": "93ebd1399161f00066856b8875ba67c4f5e68120964780461b69c52d0e19af9f",
+      "bytes": 3520
+    },
+    {
+      "path": "tests/test_ui_first.py",
+      "sha256": "9f9756dd52aba26899230f55c7f315716d54e9d7d3c3edc4860638346ef62125",
+      "bytes": 5531
+    },
+    {
+      "path": "tests/test_upgrade_audio.py",
+      "sha256": "f6f316427d87a1f60f29a6a11c5b261886be2f8bc8d3b3012e6c82bdae07e554",
+      "bytes": 2552
+    },
+    {
+      "path": "tests/test_upgrade_resources.py",
+      "sha256": "d1591659fb0bd9db71951a30575b47bb1d5c8937bfd3866d2dbd8c75767d7abc",
+      "bytes": 2911
+    },
+    {
+      "path": "tests/test_upgrade_surge.py",
+      "sha256": "5b26faef400c62ec2768ab690ede083a110ea41147926597bde5775785abcea6",
+      "bytes": 1329
+    },
+    {
+      "path": "tests/test_verified_workflow.py",
+      "sha256": "2eee9badb5b472dc46dd26ba8cc34be74358666ae69bfe1622373f3e32b57deb",
+      "bytes": 10047
+    },
+    {
+      "path": "tests/test_vision.py",
+      "sha256": "4b8050d5442de330bbb77356ebb9dbbf2fe51b9690286d996ecfad26f256117b",
+      "bytes": 4735
+    }
+  ],
+  "excluded": [
+    "development_git_history",
+    "runtime_configuration",
+    "personal_paths",
+    "logs",
+    "backups",
+    "FLP/WAV",
+    "commercial_presets"
+  ]
+}

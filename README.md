@@ -1,5 +1,9 @@
 # FL Studio MCP 1.2.0.dev2 — UI-first development candidate
 
+**Latest development checkpoint:** [direct-control foundation acceptance](docs/FOUNDATION_ACCEPTANCE.md)
+records real BPM/channel/Mixer edits, guarded sends, Pattern creation/cloning, native persistence
+and WAV tests.164 regression tests pass; channel/Score/Playlist/automation CRUD remain incomplete.
+
 **`codex/pianoteq-direct` development branch:** real FL-hosted Pianoteq9 parameter control,
 named presets through explicit no-image UIA fallback, editable MIDI and native save/reopen/WAV
 acceptance are documented in [Pianoteq host acceptance](docs/PIANOTEQ_HOST_ACCEPTANCE.md).

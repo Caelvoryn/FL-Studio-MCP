@@ -1,5 +1,8 @@
 # Pianoteq9 — FL-host acceptance, 2026-10-28
 
+Later checkpoint: [direct-control foundation acceptance](FOUNDATION_ACCEPTANCE.md),164 tests.
+The141-test registry/counts below describe this earlier Pianoteq checkpoint.
+
 This supersedes the initial “host instance missing” status in the historical
 [first candidate report](../PIANOTEQ_SUPPORT.md). Independent development branch
 `codex/pianoteq-direct`, based on `92372d1`. No main merge or Release.

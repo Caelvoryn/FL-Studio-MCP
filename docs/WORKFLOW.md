@@ -1,5 +1,8 @@
 # Observe → act → verify → recover
 
+Latest structured host workflow and actual foundation results: [FOUNDATION_ACCEPTANCE.md](FOUNDATION_ACCEPTANCE.md).
+Saved Playlist data is never labeled live state; Pattern clone indices can shift.
+
 For the opt-in `codex/pianoteq-direct` branch, use the [verified Pianoteq host workflow](PIANOTEQ_HOST_ACCEPTANCE.md):
 direct structured host reads/writes first, named accessibility controls and keyboard/UIA file operations
 only as explicit fallbacks. That tested workflow takes no screenshots and sends no mouse operations.

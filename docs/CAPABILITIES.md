@@ -1,5 +1,8 @@
 # 1.2 UI-first capability matrix
 
+**Latest branch matrix:** [direct-control foundation](FOUNDATION_ACCEPTANCE.md), including
+four real-tested tools and all remaining channel/notes/Playlist/automation restrictions.
+
 **Direct-control development branch update:** [Pianoteq host acceptance](PIANOTEQ_HOST_ACCEPTANCE.md)
 records verified host parameter control and explicit no-image UIA preset/file fallbacks.
 The UI-first tables below remain historical; other VSTs do not inherit the Pianoteq UIA profile.

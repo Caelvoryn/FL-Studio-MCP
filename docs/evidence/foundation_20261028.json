@@ -1,0 +1,1336 @@
+{
+  "schema": 1,
+  "date": "2026-10-28",
+  "scope": "Partial direct-host engineering foundation; not complete automatic arrangement",
+  "baseline_commit": "a9ff312",
+  "runtime": {
+    "ping": {
+      "fl_version": "Producer Edition v26.1.5 [build 5618]",
+      "protocol_version": 2,
+      "build": "probe-v16",
+      "ts": 1793199351.8239367
+    },
+    "project": {
+      "fl_version": "Producer Edition v26.1.5 [build 5618]",
+      "tempo_bpm": 140.0,
+      "playing": false,
+      "recording": false,
+      "pattern_number": 1,
+      "pattern_count": 1,
+      "channel_count": 2,
+      "mixer_track_count": 18
+    },
+    "channels_api": {
+      "total": 54,
+      "names": [
+        "channelCount",
+        "channelNumber",
+        "closeGraphEditor",
+        "deselectAll",
+        "fillEachNSteps",
+        "focusEditor",
+        "getActivityLevel",
+        "getChannelColor",
+        "getChannelIndex",
+        "getChannelMidiInPort",
+        "getChannelName",
+        "getChannelPan",
+        "getChannelPitch",
+        "getChannelType",
+        "getChannelVolume",
+        "getCurrentStepParam",
+        "getGridBit",
+        "getGridBitWithLoop",
+        "getRecEventId",
+        "getStepParam",
+        "getSwing",
+        "getTargetFxTrack",
+        "incEventValue",
+        "isChannelMuted",
+        "isChannelSelected",
+        "isChannelSolo",
+        "isGraphEditorVisible",
+        "isGridBitAssigned",
+        "isHighLighted",
+        "midiNoteOn",
+        "muteChannel",
+        "processRECEvent",
+        "quickQuantize",
+        "rerollLoopStarterLoop",
+        "rerollLoopStarterSample",
+        "rerollLoopStarterSteps",
+        "selectAll",
+        "selectChannel",
+        "selectOneChannel",
+        "selectedChannel",
+        "setChannelColor",
+        "setChannelName",
+        "setChannelPan",
+        "setChannelPitch",
+        "setChannelVolume",
+        "setGridBit",
+        "setStepParameterByIndex",
+        "setSwing",
+        "setTargetFxTrack",
+        "showCSForm",
+        "showEditor",
+        "showGraphEditor",
+        "soloChannel",
+        "updateGraphEditor"
+      ]
+    },
+    "mixer_api": {
+      "total": 75,
+      "names": [
+        "afterRoutingChanged",
+        "armTrack",
+        "automateEvent",
+        "deselectAll",
+        "enableTrack",
+        "enableTrackSlots",
+        "focusEditor",
+        "getActiveEffectIndex",
+        "getAutoSmoothEventValue",
+        "getCurrentTempo",
+        "getEqBandCount",
+        "getEqBandwidth",
+        "getEqFrequency",
+        "getEqGain",
+        "getEventIDName",
+        "getEventIDValueString",
+        "getEventValue",
+        "getLastPeakVol",
+        "getPluginMixLevel",
+        "getPluginMuteState",
+        "getRecPPS",
+        "getRouteSendActive",
+        "getRouteToLevel",
+        "getSlotColor",
+        "getSongStepPos",
+        "getSongTickPos",
+        "getTrackColor",
+        "getTrackCount",
+        "getTrackDockSide",
+        "getTrackInfo",
+        "getTrackName",
+        "getTrackPan",
+        "getTrackPeaks",
+        "getTrackPluginId",
+        "getTrackRecordingFileName",
+        "getTrackStereoSep",
+        "getTrackVolume",
+        "isTrackArmed",
+        "isTrackAutomationEnabled",
+        "isTrackEnabled",
+        "isTrackMuteLock",
+        "isTrackMuted",
+        "isTrackPluginValid",
+        "isTrackRevPolarity",
+        "isTrackSelected",
+        "isTrackSlotsEnabled",
+        "isTrackSolo",
+        "isTrackSwapChannels",
+        "linkChannelToTrack",
+        "linkTrackToChannel",
+        "muteTrack",
+        "remoteFindEventValue",
+        "revTrackPolarity",
+        "selectAll",
+        "selectTrack",
+        "setActiveTrack",
+        "setCurrentTempo",
+        "setEqBandwidth",
+        "setEqFrequency",
+        "setEqGain",
+        "setPluginMixLevel",
+        "setPluginMuteState",
+        "setRouteTo",
+        "setRouteToLevel",
+        "setSlotColor",
+        "setTrackColor",
+        "setTrackName",
+        "setTrackNumber",
+        "setTrackPan",
+        "setTrackStereoSep",
+        "setTrackVolume",
+        "soloTrack",
+        "swapTrackChannels",
+        "trackCount",
+        "trackNumber"
+      ]
+    },
+    "routing": {
+      "total": 18,
+      "routing": [
+        {
+          "i": 0,
+          "name": "主",
+          "routes_to": []
+        },
+        {
+          "i": 1,
+          "name": "插入 1",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "name": "插入 2",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "name": "插入 3",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "name": "插入 4",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "name": "插入 5",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        {
+          "i": 6,
+          "name": "插入 6",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        {
+          "i": 7,
+          "name": "插入 7",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        {
+          "i": 8,
+          "name": "插入 8",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        {
+          "i": 9,
+          "name": "插入 9",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        {
+          "i": 10,
+          "name": "插入 10",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        {
+          "i": 11,
+          "name": "插入 11",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        {
+          "i": 12,
+          "name": "插入 12",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        {
+          "i": 13,
+          "name": "插入 13",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        {
+          "i": 14,
+          "name": "插入 14",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        {
+          "i": 15,
+          "name": "插入 15",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        {
+          "i": 16,
+          "name": "插入 16",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        {
+          "i": 17,
+          "name": "",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "tests": {
+    "tests": "164",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "13.189"
+  },
+  "foundation_operations": [
+    {
+      "tool": "fl_foundation_batch",
+      "input": {
+        "edits": [
+          {
+            "kind": "tempo",
+            "expected_value": 140.0,
+            "value": 112
+          },
+          {
+            "kind": "channel_volume",
+            "index": 1,
+            "expected_name": "Pianoteq 9",
+            "expected_value": 0.7812,
+            "value": 0.6
+          },
+          {
+            "kind": "channel_pan",
+            "index": 1,
+            "expected_name": "Pianoteq 9",
+            "expected_value": 0.0,
+            "value": -0.1
+          },
+          {
+            "kind": "mixer_volume",
+            "index": 1,
+            "expected_name": "插入 1",
+            "expected_value": 0.8,
+            "value": 0.7
+          },
+          {
+            "kind": "mixer_pan",
+            "index": 1,
+            "expected_name": "插入 1",
+            "expected_value": 0.0,
+            "value": 0.1
+          }
+        ]
+      },
+      "output": {
+        "ok": true,
+        "verified": true,
+        "atomic": false,
+        "execution_kind": "direct_host_API",
+        "changes": [
+          {
+            "edit": {
+              "kind": "tempo",
+              "expected_value": 140.0,
+              "value": 112
+            },
+            "before": {
+              "bpm": 140.0,
+              "raw": 140000
+            },
+            "write_attempted": true,
+            "verified": true,
+            "after": {
+              "bpm": 112.0,
+              "raw": 112000
+            }
+          },
+          {
+            "edit": {
+              "kind": "channel_volume",
+              "index": 1,
+              "expected_name": "Pianoteq 9",
+              "expected_value": 0.7812,
+              "value": 0.6
+            },
+            "before": {
+              "i": 1,
+              "name": "Pianoteq 9",
+              "pan": 0.0,
+              "mute": false,
+              "solo": false,
+              "target_fx_track": 0,
+              "color": {
+                "int": 6055274,
+                "hex": "#5C656A",
+                "r": 92,
+                "g": 101,
+                "b": 106
+              },
+              "vol_norm": 0.7812,
+              "vol_db": -0.21
+            },
+            "write_attempted": true,
+            "verified": true,
+            "after": {
+              "i": 1,
+              "name": "Pianoteq 9",
+              "pan": 0.0,
+              "mute": false,
+              "solo": false,
+              "target_fx_track": 0,
+              "color": {
+                "int": 6055274,
+                "hex": "#5C656A",
+                "r": 92,
+                "g": 101,
+                "b": 106
+              },
+              "vol_norm": 0.6,
+              "vol_db": -2.5
+            }
+          },
+          {
+            "edit": {
+              "kind": "channel_pan",
+              "index": 1,
+              "expected_name": "Pianoteq 9",
+              "expected_value": 0.0,
+              "value": -0.1
+            },
+            "before": {
+              "i": 1,
+              "name": "Pianoteq 9",
+              "pan": 0.0,
+              "mute": false,
+              "solo": false,
+              "target_fx_track": 0,
+              "color": {
+                "int": 6055274,
+                "hex": "#5C656A",
+                "r": 92,
+                "g": 101,
+                "b": 106
+              },
+              "vol_norm": 0.6,
+              "vol_db": -2.5
+            },
+            "write_attempted": true,
+            "verified": true,
+            "after": {
+              "i": 1,
+              "name": "Pianoteq 9",
+              "pan": -0.1,
+              "mute": false,
+              "solo": false,
+              "target_fx_track": 0,
+              "color": {
+                "int": 6055274,
+                "hex": "#5C656A",
+                "r": 92,
+                "g": 101,
+                "b": 106
+              },
+              "vol_norm": 0.6,
+              "vol_db": -2.5
+            }
+          },
+          {
+            "edit": {
+              "kind": "mixer_volume",
+              "index": 1,
+              "expected_name": "插入 1",
+              "expected_value": 0.8,
+              "value": 0.7
+            },
+            "before": {
+              "i": 1,
+              "name": "插入 1",
+              "pan": 0.0,
+              "mute": false,
+              "solo": false,
+              "color": {
+                "int": 6515825,
+                "hex": "#636C71",
+                "r": 99,
+                "g": 108,
+                "b": 113
+              },
+              "vol_norm": 0.8,
+              "vol_db": -0.0
+            },
+            "write_attempted": true,
+            "verified": true,
+            "after": {
+              "i": 1,
+              "name": "插入 1",
+              "pan": 0.0,
+              "mute": false,
+              "solo": false,
+              "color": {
+                "int": 6515825,
+                "hex": "#636C71",
+                "r": 99,
+                "g": 108,
+                "b": 113
+              },
+              "vol_norm": 0.7,
+              "vol_db": -1.16
+            }
+          },
+          {
+            "edit": {
+              "kind": "mixer_pan",
+              "index": 1,
+              "expected_name": "插入 1",
+              "expected_value": 0.0,
+              "value": 0.1
+            },
+            "before": {
+              "i": 1,
+              "name": "插入 1",
+              "pan": 0.0,
+              "mute": false,
+              "solo": false,
+              "color": {
+                "int": 6515825,
+                "hex": "#636C71",
+                "r": 99,
+                "g": 108,
+                "b": 113
+              },
+              "vol_norm": 0.7,
+              "vol_db": -1.16
+            },
+            "write_attempted": true,
+            "verified": true,
+            "after": {
+              "i": 1,
+              "name": "插入 1",
+              "pan": 0.1,
+              "mute": false,
+              "solo": false,
+              "color": {
+                "int": 6515825,
+                "hex": "#636C71",
+                "r": 99,
+                "g": 108,
+                "b": 113
+              },
+              "vol_norm": 0.7,
+              "vol_db": -1.16
+            }
+          }
+        ],
+        "persistence_verified": false,
+        "request_id": "47b0ae3ccbff419d84b7379bf7172f16"
+      }
+    },
+    {
+      "tool": "fl_foundation_batch",
+      "input": {
+        "edits": [
+          {
+            "kind": "mixer_name",
+            "index": 1,
+            "expected_name": "插入 1",
+            "expected_value": "插入 1",
+            "value": "Foundation Bus"
+          }
+        ]
+      },
+      "output": {
+        "ok": true,
+        "verified": true,
+        "atomic": false,
+        "execution_kind": "direct_host_API",
+        "changes": [
+          {
+            "edit": {
+              "kind": "mixer_name",
+              "index": 1,
+              "expected_name": "插入 1",
+              "expected_value": "插入 1",
+              "value": "Foundation Bus"
+            },
+            "before": {
+              "i": 1,
+              "name": "插入 1",
+              "pan": 0.1,
+              "mute": false,
+              "solo": false,
+              "color": {
+                "int": 6515825,
+                "hex": "#636C71",
+                "r": 99,
+                "g": 108,
+                "b": 113
+              },
+              "vol_norm": 0.7,
+              "vol_db": -1.16
+            },
+            "write_attempted": true,
+            "verified": true,
+            "after": {
+              "i": 1,
+              "name": "Foundation Bus",
+              "pan": 0.1,
+              "mute": false,
+              "solo": false,
+              "color": {
+                "int": 6515825,
+                "hex": "#636C71",
+                "r": 99,
+                "g": 108,
+                "b": 113
+              },
+              "vol_norm": 0.7,
+              "vol_db": -1.16
+            }
+          }
+        ],
+        "persistence_verified": false,
+        "request_id": "db285ddb202a4bfbb41060e1af7bfeab"
+      }
+    },
+    {
+      "tool": "fl_foundation_route",
+      "input": {
+        "src": 1,
+        "dst": 2,
+        "expected_source_name": "Foundation Bus",
+        "expected_destination_name": "插入 2",
+        "enabled": true,
+        "expected_enabled": false
+      },
+      "output": {
+        "ok": true,
+        "verified": true,
+        "execution_kind": "direct_host_API",
+        "before": {
+          "track": 1,
+          "name": "Foundation Bus",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        "after": {
+          "track": 1,
+          "name": "Foundation Bus",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            },
+            {
+              "dst": 2,
+              "dst_name": "插入 2"
+            }
+          ]
+        },
+        "persistence_verified": false,
+        "request_id": "088108085d564c44bd038c7a6818dde0"
+      }
+    },
+    {
+      "tool": "fl_foundation_route",
+      "input": {
+        "src": 2,
+        "dst": 1,
+        "enabled": true,
+        "expected_enabled": false,
+        "expected_source_name": "插入 2",
+        "expected_destination_name": "Foundation Bus"
+      },
+      "output": {
+        "ok": false,
+        "error": {
+          "code": "ROUTING_FEEDBACK",
+          "message": "Route would create feedback"
+        },
+        "write_attempted": false,
+        "before": null,
+        "recovery": "Read actual route before retry; no automatic replay",
+        "verified": false,
+        "status": "execution_unverified",
+        "request_id": "6fc79f0f6754418ea8a5aaa4e02d9988"
+      }
+    },
+    {
+      "tool": "fl_foundation_route",
+      "input": {
+        "src": 1,
+        "dst": 2,
+        "expected_source_name": "Foundation Bus",
+        "expected_destination_name": "插入 2",
+        "enabled": false,
+        "expected_enabled": true
+      },
+      "output": {
+        "ok": true,
+        "verified": true,
+        "execution_kind": "direct_host_API",
+        "before": {
+          "track": 1,
+          "name": "Foundation Bus",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            },
+            {
+              "dst": 2,
+              "dst_name": "插入 2"
+            }
+          ]
+        },
+        "after": {
+          "track": 1,
+          "name": "Foundation Bus",
+          "routes_to": [
+            {
+              "dst": 0,
+              "dst_name": "主"
+            }
+          ]
+        },
+        "persistence_verified": false,
+        "request_id": "509b8ebc9e82499e9a42d896609aeb31"
+      }
+    },
+    {
+      "tool": "fl_foundation_route",
+      "input": {
+        "src": 1,
+        "dst": 0,
+        "enabled": false,
+        "expected_enabled": true,
+        "expected_source_name": "Foundation Bus",
+        "expected_destination_name": "主"
+      },
+      "output": {
+        "ok": false,
+        "error": {
+          "code": "ROUTING_DISCONNECT",
+          "message": "Disabling would remove every path to Master"
+        },
+        "write_attempted": false,
+        "before": null,
+        "recovery": "Read actual route before retry; no automatic replay",
+        "verified": false,
+        "status": "execution_unverified",
+        "request_id": "59211d9ea1d34a7ab7fe136ee7979e37"
+      }
+    },
+    {
+      "tool": "fl_foundation_pattern",
+      "input": {
+        "action": "clone",
+        "name": "Foundation Clone",
+        "source": 1,
+        "expected_count": 1
+      },
+      "output": {
+        "ok": true,
+        "verified": true,
+        "execution_kind": "direct_host_API",
+        "acknowledgement": {
+          "ok": true,
+          "src": 1,
+          "new_index": 2,
+          "new_name": "Foundation Clone",
+          "count_before": 1,
+          "count_after": 2
+        },
+        "before": {
+          "total": 1,
+          "patterns": [
+            {
+              "pattern": 1,
+              "name": "样式 1"
+            }
+          ]
+        },
+        "after": {
+          "total": 2,
+          "patterns": [
+            {
+              "pattern": 1,
+              "name": "样式 1"
+            },
+            {
+              "pattern": 2,
+              "name": "Foundation Clone"
+            }
+          ]
+        },
+        "selected_pattern": 2,
+        "notes_verified": false,
+        "limitation": "Count/name checked, not note content; no Playlist edits",
+        "request_id": "c2825a21f9324bfaba111027e5ec8933"
+      }
+    },
+    {
+      "tool": "fl_foundation_pattern",
+      "input": {
+        "action": "new",
+        "name": "Empty Test",
+        "expected_count": 2
+      },
+      "output": {
+        "ok": true,
+        "verified": true,
+        "execution_kind": "direct_host_API",
+        "acknowledgement": {
+          "ok": true,
+          "index": 3,
+          "name": "Empty Test",
+          "count": 3,
+          "selected": 3
+        },
+        "before": {
+          "total": 2,
+          "patterns": [
+            {
+              "pattern": 1,
+              "name": "样式 1"
+            },
+            {
+              "pattern": 2,
+              "name": "Foundation Clone"
+            }
+          ]
+        },
+        "after": {
+          "total": 3,
+          "patterns": [
+            {
+              "pattern": 1,
+              "name": "样式 1"
+            },
+            {
+              "pattern": 2,
+              "name": "Foundation Clone"
+            },
+            {
+              "pattern": 3,
+              "name": "Empty Test"
+            }
+          ]
+        },
+        "selected_pattern": 3,
+        "notes_verified": false,
+        "limitation": "Count/name checked, not note content; no Playlist edits",
+        "request_id": "385d750eb36e44ab98177cc9f2b4686a"
+      }
+    },
+    {
+      "tool": "fl_foundation_pattern",
+      "input": {
+        "action": "clone",
+        "name": "Render Test",
+        "source": 1,
+        "expected_count": 3
+      },
+      "output": {
+        "ok": true,
+        "verified": true,
+        "execution_kind": "direct_host_API",
+        "acknowledgement": {
+          "ok": true,
+          "src": 1,
+          "new_index": 2,
+          "new_name": "Render Test",
+          "count_before": 3,
+          "count_after": 4
+        },
+        "before": {
+          "total": 3,
+          "patterns": [
+            {
+              "pattern": 1,
+              "name": "样式 1"
+            },
+            {
+              "pattern": 2,
+              "name": "Foundation Clone"
+            },
+            {
+              "pattern": 3,
+              "name": "Empty Test"
+            }
+          ]
+        },
+        "after": {
+          "total": 4,
+          "patterns": [
+            {
+              "pattern": 1,
+              "name": "样式 1"
+            },
+            {
+              "pattern": 2,
+              "name": "Render Test"
+            },
+            {
+              "pattern": 3,
+              "name": "Foundation Clone"
+            },
+            {
+              "pattern": 4,
+              "name": "Empty Test"
+            }
+          ]
+        },
+        "selected_pattern": 2,
+        "notes_verified": false,
+        "limitation": "Count/name checked, not note content; no Playlist edits",
+        "request_id": "e0cdcc9dcd9d480eb9bb1f368d2f2aad"
+      }
+    }
+  ],
+  "bounds_acceptance": [
+    {
+      "input": {
+        "expected_title": "05_Reopened_Resaved.flp - FL Studio 2026",
+        "edits": [
+          {
+            "kind": "channel_pan",
+            "index": 999,
+            "expected_name": "Pianoteq 9",
+            "expected_value": -0.1,
+            "value": -0.15
+          }
+        ]
+      },
+      "output": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_TARGET",
+          "message": "Index outside current live host count; native item reader not called",
+          "index": 999,
+          "count": 2
+        },
+        "changes": [],
+        "atomic": false,
+        "recovery": "Inspect actual state before retry; no automatic replay/rollback",
+        "verified": false,
+        "status": "execution_unverified",
+        "request_id": "e67d1b580ade4942900b349b91fa8930"
+      }
+    },
+    {
+      "input": {
+        "expected_title": "05_Reopened_Resaved.flp - FL Studio 2026",
+        "edits": [
+          {
+            "kind": "channel_pan",
+            "index": 1,
+            "expected_name": "Pianoteq 9",
+            "expected_value": -0.1,
+            "value": -0.15
+          }
+        ]
+      },
+      "output": {
+        "ok": true,
+        "verified": true,
+        "atomic": false,
+        "execution_kind": "direct_host_API",
+        "changes": [
+          {
+            "edit": {
+              "kind": "channel_pan",
+              "index": 1,
+              "expected_name": "Pianoteq 9",
+              "expected_value": -0.1,
+              "value": -0.15
+            },
+            "before": {
+              "i": 1,
+              "name": "Pianoteq 9",
+              "pan": -0.1,
+              "mute": false,
+              "solo": false,
+              "target_fx_track": 0,
+              "color": {
+                "int": 6055274,
+                "hex": "#5C656A",
+                "r": 92,
+                "g": 101,
+                "b": 106
+              },
+              "vol_norm": 0.6,
+              "vol_db": -2.5
+            },
+            "write_attempted": true,
+            "verified": true,
+            "after": {
+              "i": 1,
+              "name": "Pianoteq 9",
+              "pan": -0.15,
+              "mute": false,
+              "solo": false,
+              "target_fx_track": 0,
+              "color": {
+                "int": 6055274,
+                "hex": "#5C656A",
+                "r": 92,
+                "g": 101,
+                "b": 106
+              },
+              "vol_norm": 0.6,
+              "vol_db": -2.5
+            }
+          }
+        ],
+        "persistence_verified": false,
+        "request_id": "0c714393328a4777b5a20e9554ff0654"
+      }
+    },
+    {
+      "input": {
+        "expected_title": "05_Reopened_Resaved.flp - FL Studio 2026",
+        "edits": [
+          {
+            "kind": "channel_pan",
+            "index": 1,
+            "expected_name": "Pianoteq 9",
+            "expected_value": -0.15,
+            "value": -0.1
+          }
+        ]
+      },
+      "output": {
+        "ok": true,
+        "verified": true,
+        "atomic": false,
+        "execution_kind": "direct_host_API",
+        "changes": [
+          {
+            "edit": {
+              "kind": "channel_pan",
+              "index": 1,
+              "expected_name": "Pianoteq 9",
+              "expected_value": -0.15,
+              "value": -0.1
+            },
+            "before": {
+              "i": 1,
+              "name": "Pianoteq 9",
+              "pan": -0.15,
+              "mute": false,
+              "solo": false,
+              "target_fx_track": 0,
+              "color": {
+                "int": 6055274,
+                "hex": "#5C656A",
+                "r": 92,
+                "g": 101,
+                "b": 106
+              },
+              "vol_norm": 0.6,
+              "vol_db": -2.5
+            },
+            "write_attempted": true,
+            "verified": true,
+            "after": {
+              "i": 1,
+              "name": "Pianoteq 9",
+              "pan": -0.1,
+              "mute": false,
+              "solo": false,
+              "target_fx_track": 0,
+              "color": {
+                "int": 6055274,
+                "hex": "#5C656A",
+                "r": 92,
+                "g": 101,
+                "b": 106
+              },
+              "vol_norm": 0.6,
+              "vol_db": -2.5
+            }
+          }
+        ],
+        "persistence_verified": false,
+        "request_id": "f738139d75604da0889611607c1f56e2"
+      }
+    }
+  ],
+  "bridge_gaps": {
+    "channel_set_name": {
+      "error": "Unknown command: channel_set_name"
+    },
+    "channel_set_target_fx": {
+      "error": "Unknown command: channel_set_target_fx"
+    },
+    "plugin_load": {
+      "error": "Unknown command: plugin_load"
+    },
+    "playlist_add_clip": {
+      "error": "Unknown command: playlist_add_clip"
+    },
+    "automation_create_clip": {
+      "error": "Unknown command: automation_create_clip"
+    },
+    "score_get": {
+      "error": "Unknown command: score_get"
+    },
+    "playlist_api": {
+      "total": 42,
+      "names": [
+        "deselectAll",
+        "getDisplayZone",
+        "getLiveBlockColor",
+        "getLiveBlockStatus",
+        "getLiveLoopMode",
+        "getLivePosSnap",
+        "getLiveStatus",
+        "getLiveTrigSnap",
+        "getLiveTriggerMode",
+        "getPerformanceModeState",
+        "getSongStartTickPos",
+        "getTrackActivityLevel",
+        "getTrackActivityLevelVis",
+        "getTrackColor",
+        "getTrackName",
+        "getVisTimeBar",
+        "getVisTimeStep",
+        "getVisTimeTick",
+        "incLiveLoopMode",
+        "incLivePosSnap",
+        "incLiveTrigMode",
+        "incLiveTrigSnap",
+        "isTrackMuteLock",
+        "isTrackMuted",
+        "isTrackSelected",
+        "isTrackSolo",
+        "liveBlockNumToTime",
+        "liveDisplayZone",
+        "liveTimeToBlockNum",
+        "lockDisplayZone",
+        "muteTrack",
+        "muteTrackLock",
+        "refreshLiveClips",
+        "scrollTo",
+        "selectAll",
+        "selectTool",
+        "selectTrack",
+        "setTrackColor",
+        "setTrackName",
+        "soloTrack",
+        "trackCount",
+        "triggerLiveClip"
+      ]
+    },
+    "arrangement_api": {
+      "total": 12,
+      "names": [
+        "addAutoTimeMarker",
+        "currentTime",
+        "currentTimeHint",
+        "getMarkerName",
+        "jumpToMarker",
+        "liveSelection",
+        "liveSelectionStart",
+        "selectionClear",
+        "selectionEnd",
+        "selectionIsActive",
+        "selectionSet",
+        "selectionStart"
+      ]
+    }
+  },
+  "audio_comparison": {
+    "ok": true,
+    "classification": "numeric_difference",
+    "max_absolute_difference": 0.000213623046875,
+    "difference_rms": 1.2918491425887719e-05,
+    "first": {
+      "ok": true,
+      "verified": true,
+      "sha256": "56a684a8f8478aea94a4d48bf77b3eb14ce76177b33c7ee2de02a87fec3b072b",
+      "frames": 283500,
+      "sample_rate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 6.428571428571429,
+      "sample_peak_dbfs": -18.265627671614414,
+      "rms_dbfs": -36.429197528258904,
+      "clipped_samples": 0,
+      "silent_frame_fraction": 0.14896296296296296,
+      "subjective_listening": "not_performed",
+      "true_peak": "not_measured",
+      "lufs": "not_measured"
+    },
+    "second": {
+      "ok": true,
+      "verified": true,
+      "sha256": "5e47d54cfb11df127099b70e8501aa33a05e95500f5b24c21dc5996c9af1f0e2",
+      "frames": 283500,
+      "sample_rate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 6.428571428571429,
+      "sample_peak_dbfs": -18.269970616523924,
+      "rms_dbfs": -36.42962350647729,
+      "clipped_samples": 0,
+      "silent_frame_fraction": 0.148984126984127,
+      "subjective_listening": "not_performed",
+      "true_peak": "not_measured",
+      "lufs": "not_measured"
+    },
+    "limitation": "Numeric difference alone cannot establish perceptual or musical structure change"
+  },
+  "silence": [
+    {
+      "name": "01_Foundation.wav",
+      "silence_threshold": 1e-05,
+      "silent_intervals_at_least_20ms": [
+        {
+          "start_seconds": 5.6092063492063495,
+          "end_seconds": 6.428571428571429
+        }
+      ]
+    },
+    {
+      "name": "02_Foundation_Reopened.wav",
+      "silence_threshold": 1e-05,
+      "silent_intervals_at_least_20ms": [
+        {
+          "start_seconds": 5.6092063492063495,
+          "end_seconds": 6.428571428571429
+        }
+      ]
+    }
+  ],
+  "native_resave_notes_equal": true,
+  "pattern_count": 4,
+  "note_count_across_patterns": 36,
+  "preset_after_reopen": {
+    "name": "Steinway B Warm",
+    "modified": true,
+    "raw_label": "Current preset: Steinway B Warm (modified)",
+    "source": "hosted plugin UI Automation Name property",
+    "plugin_window": 1114698
+  },
+  "protection": {
+    "formal_unchanged": true,
+    "controller_sha256": "d4ce0b0c383002b943e0884a4fb149686962ae41f2f7157d9102d6ae6dc246dc",
+    "default_config_modified": false
+  },
+  "artifacts": [
+    {
+      "name": "01_Baseline.flp",
+      "bytes": 101153,
+      "sha256": "9738ecac7be74c643df3b2a19d82c3162bd323c97a029cdebe2db333a6a72c40"
+    },
+    {
+      "name": "02_Foundation_Edited.flp",
+      "bytes": 102111,
+      "sha256": "e5de77eedc7a8dfeaa43f36909751127b73c96659db200d2575bbfc951d8406e"
+    },
+    {
+      "name": "03_Preservation.flp",
+      "bytes": 102111,
+      "sha256": "552c59b68b40cff32c8081b9678fed33f02202bc285a4b0c0e9b44f2a421008f"
+    },
+    {
+      "name": "04_Reopened.flp",
+      "bytes": 102111,
+      "sha256": "e5de77eedc7a8dfeaa43f36909751127b73c96659db200d2575bbfc951d8406e"
+    },
+    {
+      "name": "05_Reopened_Resaved.flp",
+      "bytes": 102111,
+      "sha256": "5cba7f938111d6950e82f29f2ca251810bff21d38b6ca2063d8d8c9327439e13"
+    },
+    {
+      "name": "01_Foundation.wav",
+      "bytes": 1134184,
+      "sha256": "56a684a8f8478aea94a4d48bf77b3eb14ce76177b33c7ee2de02a87fec3b072b"
+    },
+    {
+      "name": "02_Foundation_Reopened.wav",
+      "bytes": 1134184,
+      "sha256": "5e47d54cfb11df127099b70e8501aa33a05e95500f5b24c21dc5996c9af1f0e2"
+    }
+  ],
+  "limitations": [
+    "Saved Playlist/automation is not live state",
+    "No channel CRUD or channel-to-Mixer assignment writer in installed bridge",
+    "No complete score/Playlist/automation editing interface implemented",
+    "No new FX insertion or VST instantiation API",
+    "Save/open/export remain explicit keyboard/UIA fallbacks; no images/mouse",
+    "PCM not bit-identical; subjective listening not performed"
+  ]
+}

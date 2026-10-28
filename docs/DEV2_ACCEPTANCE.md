@@ -1,5 +1,8 @@
 # 1.2.0.dev2 — bounded UI-first candidate
 
+Latest direct-control branch results: [foundation acceptance](FOUNDATION_ACCEPTANCE.md).
+The historical UI-first checks below are preserved and are not the full current branch matrix.
+
 **Later development-branch acceptance:** [Pianoteq host acceptance](PIANOTEQ_HOST_ACCEPTANCE.md).
 It adds real host parameter writes and named no-image accessibility fallbacks; this UI-first
 baseline report is retained unchanged below and does not describe the new branch's full capability.

@@ -1,5 +1,9 @@
 # 1.2.0.dev2 — bounded UI-first candidate
 
+**Later development-branch acceptance:** [Pianoteq host acceptance](PIANOTEQ_HOST_ACCEPTANCE.md).
+It adds real host parameter writes and named no-image accessibility fallbacks; this UI-first
+baseline report is retained unchanged below and does not describe the new branch's full capability.
+
 Current-version matrix; archived dev1 documents remain historical. Tested Windows/Python3.12/FL26.1.5 build5618,1920×1080,96DPI. Not universal coordinate-free automation. Musical changes below were real GUI input through stdio MCP; native and bridge access were read-only verification.
 
 | Module | Status | Evidence / limits |

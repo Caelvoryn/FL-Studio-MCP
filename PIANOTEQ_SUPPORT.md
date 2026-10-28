@@ -1,5 +1,9 @@
 # Pianoteq Direct-Control candidate — 2026-10-28
 
+**Historical first checkpoint.** Later real FL-host tests, fixes,141-test regression and
+current limits are in [Pianoteq host acceptance](docs/PIANOTEQ_HOST_ACCEPTANCE.md).
+The “host instance missing” sections below describe only the initial92372d1 checkpoint.
+
 **Experimental, partial support. FL-hosted Pianoteq acceptance is NOT complete.**
 Independent branch: `codex/pianoteq-direct`, based on `39288e8`.
 No default MCP configuration, installed controller, plugin binary, or formal FLP was changed.

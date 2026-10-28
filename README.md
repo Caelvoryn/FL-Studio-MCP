@@ -1,5 +1,11 @@
 # FL Studio MCP 1.2.0.dev2 — UI-first development candidate
 
+**`codex/pianoteq-direct` development branch:** real FL-hosted Pianoteq9 parameter control,
+named presets through explicit no-image UIA fallback, editable MIDI and native save/reopen/WAV
+acceptance are documented in [Pianoteq host acceptance](docs/PIANOTEQ_HOST_ACCEPTANCE.md).
+Direct VST writes are opt-in; the stable UI-first implementation/default configuration is preserved.
+Preset/file fallbacks are not internal FL APIs. Repeated WAV PCM is not bit-identical.
+
 **Current matrix: [dev2 acceptance and limits](docs/DEV2_ACCEPTANCE.md).** Older dev1 reports are retained as history. Native/visual/OCR automatic grid measurement covers tested Piano Roll and Playlist layouts. This is not universal coordinate-free automation.
 
 **Security release gate remains open:** tested dependencies have3 deduplicated known advisories; see [security review](docs/SECURITY_REVIEW.md). Local GUI/audio acceptance does not imply a clean security audit. Do not use as a production or public-network deployment.

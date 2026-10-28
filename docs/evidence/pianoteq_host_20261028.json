@@ -1,0 +1,527 @@
+{
+  "schema": 1,
+  "date": "2026-10-28",
+  "scope": "Actual FL Studio-hosted Pianoteq9, not standalone",
+  "environment": {
+    "fl_version": "26.1.5.5618",
+    "pianoteq_version": "9.1.2/20260210",
+    "plugin_format": "VST3 x64",
+    "vendor": "Modartt"
+  },
+  "tests": {
+    "tests": "141",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "13.746"
+  },
+  "discovery": {
+    "ok": true,
+    "instances": [
+      {
+        "track": 1,
+        "slot": -1,
+        "channel": "Pianoteq 9",
+        "plugin": "Pianoteq 9",
+        "total_parameters": 4240
+      }
+    ],
+    "read_errors": [
+      {
+        "track": 0,
+        "error": "no plugin at track 0 slot -1"
+      }
+    ],
+    "next_start": null,
+    "scope": "Current Channel Rack filter; generators only",
+    "scanned": 2
+  },
+  "actual_batch": {
+    "ok": true,
+    "verified": true,
+    "atomic": false,
+    "host_scope": "FL Studio",
+    "changes": [
+      {
+        "param": 3,
+        "name": "Velocity Offset",
+        "before": {
+          "track": 1,
+          "slot": -1,
+          "param": 3,
+          "name": "Velocity Offset",
+          "v": 0.5,
+          "s": "0 "
+        },
+        "requested": 0.53,
+        "write_attempted": true,
+        "verified": true,
+        "after": {
+          "track": 1,
+          "slot": -1,
+          "param": 3,
+          "name": "Velocity Offset",
+          "v": 0.53,
+          "s": "0 "
+        }
+      },
+      {
+        "param": 31,
+        "name": "Hammer Hardness",
+        "before": {
+          "track": 1,
+          "slot": -1,
+          "param": 31,
+          "name": "Hammer Hardness",
+          "v": 0.5,
+          "s": "0 "
+        },
+        "requested": 0.46,
+        "write_attempted": true,
+        "verified": true,
+        "after": {
+          "track": 1,
+          "slot": -1,
+          "param": 31,
+          "name": "Hammer Hardness",
+          "v": 0.46,
+          "s": "-0.08 "
+        }
+      },
+      {
+        "param": 55,
+        "name": "Sympathetic Resonance",
+        "before": {
+          "track": 1,
+          "slot": -1,
+          "param": 55,
+          "name": "Sympathetic Resonance",
+          "v": 0.5,
+          "s": "1.00 "
+        },
+        "requested": 0.55,
+        "write_attempted": true,
+        "verified": true,
+        "after": {
+          "track": 1,
+          "slot": -1,
+          "param": 55,
+          "name": "Sympathetic Resonance",
+          "v": 0.55,
+          "s": "1.25 "
+        }
+      },
+      {
+        "param": 201,
+        "name": "Reverb Mix",
+        "before": {
+          "track": 1,
+          "slot": -1,
+          "param": 201,
+          "name": "Reverb Mix",
+          "v": 0.54,
+          "s": "+4.0 dB"
+        },
+        "requested": 0.35,
+        "write_attempted": true,
+        "verified": true,
+        "after": {
+          "track": 1,
+          "slot": -1,
+          "param": 201,
+          "name": "Reverb Mix",
+          "v": 0.35,
+          "s": "+4.0 dB"
+        }
+      }
+    ],
+    "preset_switch_verified": false,
+    "persistence_verified": false,
+    "request_id": "6c52eb065041439198d2652010c1b0ba"
+  },
+  "parameters_after_first_reopen": [
+    {
+      "track": 1,
+      "slot": -1,
+      "param": 3,
+      "name": "Velocity Offset",
+      "v": 0.53,
+      "s": "+0.06 "
+    },
+    {
+      "track": 1,
+      "slot": -1,
+      "param": 31,
+      "name": "Hammer Hardness",
+      "v": 0.46,
+      "s": "-0.08 "
+    },
+    {
+      "track": 1,
+      "slot": -1,
+      "param": 55,
+      "name": "Sympathetic Resonance",
+      "v": 0.55,
+      "s": "1.25 "
+    },
+    {
+      "track": 1,
+      "slot": -1,
+      "param": 201,
+      "name": "Reverb Mix",
+      "v": 0.35,
+      "s": "-15.0 dB"
+    }
+  ],
+  "preset_operations": [
+    {
+      "ok": true,
+      "verified": true,
+      "before": {
+        "name": "Steinway B Warm",
+        "modified": false,
+        "raw_label": "Current preset: Steinway B Warm",
+        "source": "hosted plugin UI Automation Name property",
+        "plugin_window": 526966
+      },
+      "after": {
+        "name": "Steinway B Bright",
+        "modified": false,
+        "raw_label": "Current preset: Steinway B Bright",
+        "source": "hosted plugin UI Automation Name property",
+        "plugin_window": 526966
+      },
+      "execution_kind": "UIA_InvokePattern_fallback",
+      "preset_name_verified": true,
+      "model_menu_path": [
+        "Grand Steinway B"
+      ],
+      "model_name_verified": false,
+      "persistence_verified": false,
+      "screenshots": 0,
+      "mouse_operations": 0,
+      "limitation": "Actual preset label verified; model menu path selected, separate internal model field not exposed. Not a host parameter/Program Change operation.",
+      "request_id": "8009abdfed2e41ac825fb4a94bf24b66"
+    },
+    {
+      "ok": false,
+      "error": {
+        "code": "GUI_TIMEOUT",
+        "message": "Timed out waiting for named preset menu item"
+      },
+      "verified": false,
+      "status": "execution_unverified",
+      "request_id": "80de48e9a77a4c25845408b8fcde2829"
+    },
+    {
+      "ok": false,
+      "error": {
+        "code": "ACCESSIBILITY_LAYOUT",
+        "message": "No unique current-preset accessibility label"
+      },
+      "verified": false,
+      "status": "execution_unverified",
+      "request_id": "557d99e219494d61ab49564d0bd131bb"
+    },
+    {
+      "ok": false,
+      "error": {
+        "code": "GUI_TIMEOUT",
+        "message": "Timed out waiting for named preset menu item",
+        "accessible_menu_items": [
+          "C. Graf",
+          "C. Graf 415",
+          "C. Graf 415 Player",
+          "C. Graf 415 Binaural",
+          "C. Graf 415 Recording",
+          "C. Graf 392",
+          "Graf Jazz Piano AU"
+        ],
+        "recovery": "Do not retry blindly; inspect/dismiss the identified popup and read current preset"
+      },
+      "verified": false,
+      "status": "execution_unverified",
+      "request_id": "23134043fba54931803ef80e5404b543"
+    },
+    {
+      "ok": true,
+      "verified": true,
+      "before": {
+        "name": "NY Steinway D Classical",
+        "modified": false,
+        "raw_label": "Current preset: NY Steinway D Classical",
+        "source": "hosted plugin UI Automation Name property",
+        "plugin_window": 1247644
+      },
+      "after": {
+        "name": "Steinway B Warm",
+        "modified": false,
+        "raw_label": "Current preset: Steinway B Warm",
+        "source": "hosted plugin UI Automation Name property",
+        "plugin_window": 1247644
+      },
+      "execution_kind": "UIA_InvokePattern_fallback",
+      "preset_name_verified": true,
+      "model_menu_path": [
+        "Grand Steinway B"
+      ],
+      "model_name_verified": false,
+      "persistence_verified": false,
+      "screenshots": 0,
+      "mouse_operations": 0,
+      "limitation": "Actual preset label verified; model menu path selected, separate internal model field not exposed. Not a host parameter/Program Change operation.",
+      "request_id": "e68af04bcf254fdfacc20add2c19aa05"
+    }
+  ],
+  "final_preset": {
+    "name": "Steinway B Warm",
+    "modified": true,
+    "raw_label": "Current preset: Steinway B Warm (modified)",
+    "source": "hosted plugin UI Automation Name property",
+    "plugin_window": 1247820
+  },
+  "native_resave": {
+    "native_notes_equal": true,
+    "bpm_equal": true,
+    "playlist_equal": true,
+    "plugin_state_hashes_equal": true,
+    "notes_count": 12,
+    "formal_unchanged": true
+  },
+  "audio": {
+    "same_session": {
+      "ok": true,
+      "classification": "numeric_difference",
+      "max_absolute_difference": 0.000518798828125,
+      "difference_rms": 2.753715513541593e-05,
+      "first": {
+        "ok": true,
+        "verified": true,
+        "sha256": "e6206873c07233a4d2101f09738139ee3b0dcbfbfd01063364c906792e01e939",
+        "frames": 226800,
+        "sample_rate": 44100,
+        "channels": 2,
+        "subtype": "PCM_16",
+        "duration_seconds": 5.142857142857143,
+        "sample_peak_dbfs": -13.532016884449252,
+        "rms_dbfs": -31.109763478190594,
+        "clipped_samples": 0,
+        "silent_frame_fraction": 0.08328483245149912,
+        "subjective_listening": "not_performed",
+        "true_peak": "not_measured",
+        "lufs": "not_measured"
+      },
+      "second": {
+        "ok": true,
+        "verified": true,
+        "sha256": "0ff555bc2c47ee39f4902b051a62634b54cebafd1818c9f5e906f03aa506a90b",
+        "frames": 226800,
+        "sample_rate": 44100,
+        "channels": 2,
+        "subtype": "PCM_16",
+        "duration_seconds": 5.142857142857143,
+        "sample_peak_dbfs": -13.532016884449252,
+        "rms_dbfs": -31.109909916863167,
+        "clipped_samples": 0,
+        "silent_frame_fraction": 0.0832716049382716,
+        "subjective_listening": "not_performed",
+        "true_peak": "not_measured",
+        "lufs": "not_measured"
+      },
+      "limitation": "Numeric difference alone cannot establish perceptual or musical structure change"
+    },
+    "reopened": {
+      "ok": true,
+      "classification": "numeric_difference",
+      "max_absolute_difference": 0.00042724609375,
+      "difference_rms": 2.6711202887934652e-05,
+      "first": {
+        "ok": true,
+        "verified": true,
+        "sha256": "e6206873c07233a4d2101f09738139ee3b0dcbfbfd01063364c906792e01e939",
+        "frames": 226800,
+        "sample_rate": 44100,
+        "channels": 2,
+        "subtype": "PCM_16",
+        "duration_seconds": 5.142857142857143,
+        "sample_peak_dbfs": -13.532016884449252,
+        "rms_dbfs": -31.109763478190594,
+        "clipped_samples": 0,
+        "silent_frame_fraction": 0.08328483245149912,
+        "subjective_listening": "not_performed",
+        "true_peak": "not_measured",
+        "lufs": "not_measured"
+      },
+      "second": {
+        "ok": true,
+        "verified": true,
+        "sha256": "55d3283514cd4e312526fc11c045dab36b2b57bfbff8bfff42df1b59240c8b53",
+        "frames": 226800,
+        "sample_rate": 44100,
+        "channels": 2,
+        "subtype": "PCM_16",
+        "duration_seconds": 5.142857142857143,
+        "sample_peak_dbfs": -13.532016884449252,
+        "rms_dbfs": -31.110092577559474,
+        "clipped_samples": 0,
+        "silent_frame_fraction": 0.0832716049382716,
+        "subjective_listening": "not_performed",
+        "true_peak": "not_measured",
+        "lufs": "not_measured"
+      },
+      "limitation": "Numeric difference alone cannot establish perceptual or musical structure change"
+    },
+    "Bright_vs_adjusted_Warm": {
+      "ok": true,
+      "classification": "numeric_difference",
+      "max_absolute_difference": 0.3052978515625,
+      "difference_rms": 0.0387361977852494,
+      "first": {
+        "ok": true,
+        "verified": true,
+        "sha256": "63816ce9331ca3e4caef9dadf0d34a3c53aaa51dc7eccab19c57a76d1edac7ae",
+        "frames": 226800,
+        "sample_rate": 44100,
+        "channels": 2,
+        "subtype": "PCM_16",
+        "duration_seconds": 5.142857142857143,
+        "sample_peak_dbfs": -13.68696740916717,
+        "rms_dbfs": -29.39671970524492,
+        "clipped_samples": 0,
+        "silent_frame_fraction": 0.03849647266313933,
+        "subjective_listening": "not_performed",
+        "true_peak": "not_measured",
+        "lufs": "not_measured"
+      },
+      "second": {
+        "ok": true,
+        "verified": true,
+        "sha256": "e6206873c07233a4d2101f09738139ee3b0dcbfbfd01063364c906792e01e939",
+        "frames": 226800,
+        "sample_rate": 44100,
+        "channels": 2,
+        "subtype": "PCM_16",
+        "duration_seconds": 5.142857142857143,
+        "sample_peak_dbfs": -13.532016884449252,
+        "rms_dbfs": -31.109763478190594,
+        "clipped_samples": 0,
+        "silent_frame_fraction": 0.08328483245149912,
+        "subjective_listening": "not_performed",
+        "true_peak": "not_measured",
+        "lufs": "not_measured"
+      },
+      "limitation": "Numeric difference alone cannot establish perceptual or musical structure change"
+    },
+    "reopened_file_copy_exact": true,
+    "native_notes_equal": true,
+    "notes_count": 12,
+    "actual_audio_host": "FL Studio"
+  },
+  "artifacts": [
+    {
+      "name": "00_Session_Preservation.flp",
+      "sha256": "31ca627bba191d21d5c64a13733c1ad29200fd250d1d0121830634de40c97dc6",
+      "bytes": 760369
+    },
+    {
+      "name": "01_Empty.flp",
+      "sha256": "ae67bc831525c0650de212b1e614d9dc541ead54af72a6eb413482d9413685d4",
+      "bytes": 46361
+    },
+    {
+      "name": "02_Pianoteq_Parameter_Template.flp",
+      "sha256": "90b518f64c4a28078464ac602112f539d6f2dd2437a43460047e0d1222febc5d",
+      "bytes": 98209
+    },
+    {
+      "name": "03_Pianoteq_MIDI.flp",
+      "sha256": "9f6e5e55f38e2b2b2b8d889aa30fe17b793e7f6b73f3643ee4abaf91cf7e8cb3",
+      "bytes": 98503
+    },
+    {
+      "name": "04_Before_Reopen.flp",
+      "sha256": "a6baa162f1ebfaf347a24fadb63bcabd3f9b182cb0f4897fb27e1ef7ba015359",
+      "bytes": 98503
+    },
+    {
+      "name": "05_Preservation.flp",
+      "sha256": "dd49feb30f6ff822c07b35cc79d1bd765cee731604c6ee561d5c59c8ce1e6c20",
+      "bytes": 98503
+    },
+    {
+      "name": "06_Reopened.flp",
+      "sha256": "a6baa162f1ebfaf347a24fadb63bcabd3f9b182cb0f4897fb27e1ef7ba015359",
+      "bytes": 98503
+    },
+    {
+      "name": "07_Steinway_B_Bright.flp",
+      "sha256": "b23391550fb7267f4ec435b801e5a24b0543acedf5786b0db7edb56a2e4239b8",
+      "bytes": 81127
+    },
+    {
+      "name": "08_Steinway_B_Warm_Adjusted.flp",
+      "sha256": "8eb64d7d94b99cfe99a1deba7c10b4afd6f035f36c375ac90ec38d02a1ea9536",
+      "bytes": 101153
+    },
+    {
+      "name": "09_Warm_Preservation.flp",
+      "sha256": "9553c86e90c4e22b3ac618305d8e56305c7f40e0f0cd1f60c73d4d225140aad3",
+      "bytes": 101153
+    },
+    {
+      "name": "10_Warm_Reopened.flp",
+      "sha256": "8eb64d7d94b99cfe99a1deba7c10b4afd6f035f36c375ac90ec38d02a1ea9536",
+      "bytes": 101153
+    },
+    {
+      "name": "11_Warm_Reopened_Resaved.flp",
+      "sha256": "a5a7ee22683c140d80392ad6185126c35d7f0aef380e629e68a669729aa0ca48",
+      "bytes": 101153
+    },
+    {
+      "name": "01_Host_Parameters.wav",
+      "sha256": "4e2fb6fd9c30bd0a3face2b9bc2c67fd44db95efb64e537493658c3f89ebf5f9",
+      "bytes": 907384
+    },
+    {
+      "name": "02_Host_Reopened.wav",
+      "sha256": "acfe8044e6e894084edb7dcf391d5e1d2a469297f5a34200bd3c920c7d8e719c",
+      "bytes": 907384
+    },
+    {
+      "name": "03_Steinway_B_Bright.wav",
+      "sha256": "63816ce9331ca3e4caef9dadf0d34a3c53aaa51dc7eccab19c57a76d1edac7ae",
+      "bytes": 907384
+    },
+    {
+      "name": "04_Warm_Adjusted.wav",
+      "sha256": "e6206873c07233a4d2101f09738139ee3b0dcbfbfd01063364c906792e01e939",
+      "bytes": 907384
+    },
+    {
+      "name": "05_Warm_SameSession_Repeat.wav",
+      "sha256": "0ff555bc2c47ee39f4902b051a62634b54cebafd1818c9f5e906f03aa506a90b",
+      "bytes": 907384
+    },
+    {
+      "name": "06_Warm_Reopened.wav",
+      "sha256": "55d3283514cd4e312526fc11c045dab36b2b57bfbff8bfff42df1b59240c8b53",
+      "bytes": 907384
+    }
+  ],
+  "guarantees": {
+    "screenshots": 0,
+    "mouse_operations": 0,
+    "installed_controller_sha256": "d4ce0b0c383002b943e0884a4fb149686962ae41f2f7157d9102d6ae6dc246dc",
+    "formal_file_unchanged": true,
+    "default_mcp_config_changed": false
+  },
+  "limitations": [
+    "Plugin loading was keyboard-picker setup, not host instantiation API",
+    "Preset selection is UIA fallback, not host parameter/Program Change",
+    "Preset name verified; separate internal model field not exposed",
+    "No exact PCM repeatability: same-session and reopened exports both differ",
+    "Render settings inherited; actual PCM16/44100Hz checked, not configured",
+    "Subjective listening not performed; other vendor accessibility profiles not implemented"
+  ]
+}

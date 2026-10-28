@@ -1,0 +1,105 @@
+"""Explicit keyboard/UIA fallback for host file operations. Never captures images.
+
+Not an internal FL save/render API. Inherits only window/dialog discovery from
+the stable UI adapter; does not call its mouse-based save/open/export methods.
+"""
+import ctypes
+from ctypes import wintypes
+from pathlib import Path
+
+from .desktop import FLDesktop, wait_for
+from .native import inspect
+from .workflow import WorkflowError, atomic_json, audio_integrity, copy_exclusive, digest, state_dir
+
+
+class HostFiles(FLDesktop):
+    def _keys(self, keys, target=None):
+        from .pyscript_trigger import force_focus
+        from pywinauto.keyboard import send_keys
+        target = self.main if target is None else target
+        if not target.is_visible() or target.process_id() != self.pid:
+            raise WorkflowError('FOCUS_LOST', 'No keys sent to an unverified target')
+        # FL editor panes can become the foreground HWND even though Windows
+        # refuses SetForegroundWindow(child). Activate the top-level host first.
+        activation = self.main if target.class_name() == 'TEventEditForm' else target
+        if not force_focus(activation.handle):
+            raise WorkflowError('FOCUS_LOST', 'No keys sent: top-level activation failed')
+        if target is not activation:
+            target.set_focus()
+        user32 = ctypes.windll.user32
+        user32.GetForegroundWindow.restype = wintypes.HWND
+        pid = wintypes.DWORD()
+        user32.GetWindowThreadProcessId(user32.GetForegroundWindow(), ctypes.byref(pid))
+        if pid.value != self.pid:
+            raise WorkflowError('FOCUS_LOST', 'Foreground belongs to another process; no keys sent')
+        send_keys(keys)
+
+    def _playlist_keys(self, keys, expected_title):
+        self.focus(expected_title)
+        if self.dialogs():
+            raise WorkflowError('GUI_BLOCKED', 'Existing modal dialog; no automatic dismissal')
+        playlist = self.playlist()  # require an already visible, identified editor
+        playlist.set_focus()
+        self._keys(keys, playlist)
+
+    def _own(self, path):
+        atomic_json(state_dir()/'host-file-session.json', dict(path=str(path), sha256=digest(path),
+            title=self.main.window_text(), process_id=self.pid))
+
+    def _require_owned(self, expected_title):
+        import json
+        path = state_dir()/'host-file-session.json'
+        if not path.exists():
+            raise WorkflowError('NO_OWNED_SESSION', 'First Save As to a new independent FLP using this adapter')
+        session = json.loads(path.read_text(encoding='utf8'))
+        if session['process_id'] != self.pid or session['title'] != expected_title or self.main.window_text() != expected_title or digest(session['path']) != session['sha256']:
+            raise WorkflowError('SESSION_CHANGED', 'Owned saved project identity differs')
+        return session
+
+    def save_as_no_image(self, destination, expected_title):
+        path = Path(destination).resolve()
+        if path.suffix.lower() != '.flp' or path.exists():
+            raise WorkflowError('OVERWRITE_REFUSED', 'A new .flp destination is required')
+        path.parent.mkdir(parents=True, exist_ok=True)
+        self._playlist_keys('^+s', expected_title)
+        self.file_dialog(path)  # UIA ValuePattern/InvokePattern and file-type guard
+        wait_for(lambda: path.is_file() and self.main.is_enabled() and path.name.lower() in self.main.window_text().lower(), description='native FL Save As')
+        saved = inspect(path)
+        self._own(path)
+        return dict(ok=True, verified=True, execution_kind='keyboard_UIA_fallback', path=str(path),
+                    title=self.main.window_text(), saved_state=saved, screenshots=0, mouse_operations=0)
+
+    def reopen_copy(self, source, destination, preserve_current_to, expected_title):
+        source, destination, preserve = map(lambda p: Path(p).resolve(), (source,destination,preserve_current_to))
+        inspect(source)
+        if len({source,destination,preserve}) != 3 or any(p.suffix.lower() != '.flp' for p in (source,destination,preserve)) or destination.exists() or preserve.exists():
+            raise WorkflowError('OVERWRITE_REFUSED', 'Source and two fresh distinct FLP paths required')
+        self._require_owned(expected_title)
+        preservation = self.save_as_no_image(preserve, expected_title)
+        copied = copy_exclusive(source,destination)
+        self._playlist_keys('^o',preservation['title'])
+        self.file_dialog(destination)
+        wait_for(lambda: self.main.is_enabled() and destination.name.lower() in self.main.window_text().lower(), timeout=30, description='opened independent FLP copy')
+        self._own(destination)
+        return dict(ok=True, verified=True, execution_kind='keyboard_UIA_fallback', path=str(destination),
+            title=self.main.window_text(), preserved=preservation['path'], source_copy=copied,
+            limitation='Window/file identity verified; independently reread plugin values to verify persistence',
+            screenshots=0,mouse_operations=0)
+
+    def export_wav_no_image(self,destination,expected_title,minimum_seconds=.05,maximum_seconds=3600):
+        path=Path(destination).resolve()
+        if path.suffix.lower()!='.wav' or path.exists():
+            raise WorkflowError('OVERWRITE_REFUSED','A fresh WAV destination is required')
+        self._require_owned(expected_title)
+        path.parent.mkdir(parents=True,exist_ok=True)
+        self._playlist_keys('^r',expected_title)
+        self.file_dialog(path)
+        def render_form():
+            forms=[w for w in self.win32.windows(process=self.pid,class_name='TWAVRenderForm') if w.is_visible()]
+            if len(forms)==1 and path.name.lower() in forms[0].window_text().lower():return forms[0]
+        form=wait_for(render_form,description='correct FL WAV render form')
+        self._keys('{ENTER}',form)  # verified native default Start action; no blind repeated Enter
+        wait_for(lambda: path.is_file() and not form.is_visible() and self.main.is_enabled(),timeout=120,description='FL render completion')
+        result=audio_integrity(path,minimum_seconds,maximum_seconds)
+        return dict(**result,execution_kind='keyboard_UIA_fallback',screenshots=0,mouse_operations=0,
+            limitation='Existing render settings inherited; actual audio format/duration reported, settings not configured. No subjective listening.')

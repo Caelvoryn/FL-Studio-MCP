@@ -88,7 +88,7 @@ def test_large_sparse_page_not_false_complete_snapshot():
     assert result['preset_identity'] is None
 
 
-@pytest.mark.parametrize('mode,expected', [('default',47),('direct',48),('legacy',87)])
+@pytest.mark.parametrize('mode,expected', [('default',47),('direct',50),('legacy',89)])
 def test_registry_write_opt_in(monkeypatch,mode,expected):
     import asyncio
     from fastmcp import Client
@@ -102,5 +102,7 @@ def test_registry_write_opt_in(monkeypatch,mode,expected):
             names={t.name for t in await client.list_tools()}
             assert len(names)==expected
             assert ('fl_vst_batch_parameters' in names)==(mode!='default')
+            assert ('fl_host_project_file' in names)==(mode!='default')
+            assert ('fl_vst_accessible_preset' in names)==(mode!='default')
             assert ('fl_plugin_set_param' in names)==(mode=='legacy')
     asyncio.run(verify())

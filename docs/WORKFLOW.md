@@ -1,5 +1,9 @@
 # Observe → act → verify → recover
 
+For the opt-in `codex/pianoteq-direct` branch, use the [verified Pianoteq host workflow](PIANOTEQ_HOST_ACCEPTANCE.md):
+direct structured host reads/writes first, named accessibility controls and keyboard/UIA file operations
+only as explicit fallbacks. That tested workflow takes no screenshots and sends no mouse operations.
+
 1. Inspect actual FL title/windows/modals. GUI Save As to a NEW test path establishes ownership and preserves current work.
 2. `fl_ui_observe`: inspect image/UIA tree; identify actual editor, zoom, scroll, grid, tool and target. Tokens expire in 180 seconds. Images alone are not semantic recognition.
 3. Prefer exact observed UIA selectors. Self-drawn targets use visually confirmed normalized window coordinates or explicit Piano Roll tick/pitch calibration. Never reuse old geometry blindly.

@@ -1,0 +1,590 @@
+{
+  "schema": 1,
+  "date": "2026-10-28",
+  "baseline_commit": "3f66f24",
+  "full16bar_song_passed": false,
+  "new_stage3_flps": [],
+  "new_stage3_wavs": [],
+  "desktop": {
+    "foreground_process": "lockapp.exe",
+    "screenshots": 0,
+    "gate_result": {
+      "ok": false,
+      "error": {
+        "code": "DESKTOP_LOCKED",
+        "message": "Windows is locked; no GUI input sent. Unlock normally to resume. No automated unlocking attempted."
+      }
+    }
+  },
+  "actual_mcp_attempts": [
+    {
+      "tool": "fl_host_project_file",
+      "output": {
+        "ok": false,
+        "error": {
+          "code": "FOCUS_LOST",
+          "message": "Could not verify FL foreground; no keys sent"
+        },
+        "verified": false,
+        "status": "execution_unverified",
+        "request_id": "1e76a589a3784b8186f94772527a08d1"
+      }
+    },
+    {
+      "tool": "fl_host_project_file",
+      "output": {
+        "ok": false,
+        "error": {
+          "code": "FOCUS_LOST",
+          "message": "Could not verify FL foreground; no keys sent"
+        },
+        "verified": false,
+        "status": "execution_unverified",
+        "request_id": "eb9fe6feeb87454aabcef8c02dc597c8"
+      }
+    },
+    {
+      "tool": "fl_host_project_file",
+      "output": {
+        "ok": false,
+        "error": {
+          "code": "DESKTOP_LOCKED",
+          "message": "Windows is locked; no GUI input sent. Unlock normally to resume. No automated unlocking attempted."
+        },
+        "verified": false,
+        "status": "execution_unverified",
+        "request_id": "185af1366d474bfd846e43c3d4c4a09f"
+      }
+    }
+  ],
+  "live_readback": {
+    "state": {
+      "ok": true,
+      "verified": true,
+      "atomic": false,
+      "source": "live FL MIDI bridge",
+      "project": {
+        "fl_version": "Producer Edition v26.1.5 [build 5618]",
+        "tempo_bpm": 112.0,
+        "playing": false,
+        "recording": false,
+        "pattern_number": 2,
+        "pattern_count": 4,
+        "channel_count": 2,
+        "mixer_track_count": 18
+      },
+      "channels": {
+        "total": 2,
+        "channels": [
+          {
+            "i": 0,
+            "name": "Sampler",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.7812,
+            "vol_db": -0.21
+          },
+          {
+            "i": 1,
+            "name": "Pianoteq 9",
+            "pan": -0.1,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.6,
+            "vol_db": -2.5
+          }
+        ]
+      },
+      "channel_routing": {
+        "total": 2,
+        "channels": [
+          {
+            "channel": 0,
+            "name": "Sampler",
+            "target_mixer_track": 0,
+            "target_name": "主"
+          },
+          {
+            "channel": 1,
+            "name": "Pianoteq 9",
+            "target_mixer_track": 0,
+            "target_name": "主"
+          }
+        ]
+      },
+      "patterns": {
+        "total": 4,
+        "patterns": [
+          {
+            "pattern": 1,
+            "name": "样式 1"
+          },
+          {
+            "pattern": 2,
+            "name": "Render Test"
+          },
+          {
+            "pattern": 3,
+            "name": "Foundation Clone"
+          },
+          {
+            "pattern": 4,
+            "name": "Empty Test"
+          }
+        ]
+      },
+      "mixer": {
+        "total": 18,
+        "tracks": [
+          {
+            "i": 0,
+            "name": "主",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          },
+          {
+            "i": 1,
+            "name": "Foundation Bus",
+            "pan": 0.1,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.7,
+            "vol_db": -1.16
+          },
+          {
+            "i": 2,
+            "name": "插入 2",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          },
+          {
+            "i": 3,
+            "name": "插入 3",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          },
+          {
+            "i": 4,
+            "name": "插入 4",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          },
+          {
+            "i": 5,
+            "name": "插入 5",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          },
+          {
+            "i": 6,
+            "name": "插入 6",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          },
+          {
+            "i": 7,
+            "name": "插入 7",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          },
+          {
+            "i": 8,
+            "name": "插入 8",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          },
+          {
+            "i": 9,
+            "name": "插入 9",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          },
+          {
+            "i": 10,
+            "name": "插入 10",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          },
+          {
+            "i": 11,
+            "name": "插入 11",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          },
+          {
+            "i": 12,
+            "name": "插入 12",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          },
+          {
+            "i": 13,
+            "name": "插入 13",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          },
+          {
+            "i": 14,
+            "name": "插入 14",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          },
+          {
+            "i": 15,
+            "name": "插入 15",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          },
+          {
+            "i": 16,
+            "name": "插入 16",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          },
+          {
+            "i": 17,
+            "name": "",
+            "pan": 0.0,
+            "mute": false,
+            "solo": false,
+            "vol_norm": 0.8,
+            "vol_db": -0.0
+          }
+        ]
+      },
+      "mixer_routing": {
+        "total": 18,
+        "routing": [
+          {
+            "i": 0,
+            "name": "主",
+            "routes_to": []
+          },
+          {
+            "i": 1,
+            "name": "Foundation Bus",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          },
+          {
+            "i": 2,
+            "name": "插入 2",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          },
+          {
+            "i": 3,
+            "name": "插入 3",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          },
+          {
+            "i": 4,
+            "name": "插入 4",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          },
+          {
+            "i": 5,
+            "name": "插入 5",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          },
+          {
+            "i": 6,
+            "name": "插入 6",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          },
+          {
+            "i": 7,
+            "name": "插入 7",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          },
+          {
+            "i": 8,
+            "name": "插入 8",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          },
+          {
+            "i": 9,
+            "name": "插入 9",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          },
+          {
+            "i": 10,
+            "name": "插入 10",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          },
+          {
+            "i": 11,
+            "name": "插入 11",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          },
+          {
+            "i": 12,
+            "name": "插入 12",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          },
+          {
+            "i": 13,
+            "name": "插入 13",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          },
+          {
+            "i": 14,
+            "name": "插入 14",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          },
+          {
+            "i": 15,
+            "name": "插入 15",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          },
+          {
+            "i": 16,
+            "name": "插入 16",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          },
+          {
+            "i": 17,
+            "name": "",
+            "routes_to": [
+              {
+                "dst": 0,
+                "dst_name": "主"
+              }
+            ]
+          }
+        ]
+      },
+      "playlist": {
+        "source": "not available from current live bridge",
+        "verified": false
+      },
+      "automation": {
+        "source": "not available from current live bridge",
+        "verified": false
+      }
+    },
+    "plugin_page": {
+      "ok": true,
+      "host_scope": "FL Studio",
+      "readback": {
+        "track": 1,
+        "slot": -1,
+        "plugin": "Pianoteq 9",
+        "total": 4240,
+        "start": 0,
+        "next_start": 10,
+        "params": [
+          {
+            "i": 0,
+            "name": "Condition",
+            "v": 0.0,
+            "s": "0 "
+          },
+          {
+            "i": 1,
+            "name": "Dynamics",
+            "v": 0.4141,
+            "s": "42 dB"
+          },
+          {
+            "i": 2,
+            "name": "Volume",
+            "v": 0.7273,
+            "s": "0 dB"
+          },
+          {
+            "i": 3,
+            "name": "Velocity Offset",
+            "v": 0.53,
+            "s": "+0.06 "
+          },
+          {
+            "i": 4,
+            "name": "Post Effect Gain",
+            "v": 0.4625,
+            "s": "-0.9 dB"
+          },
+          {
+            "i": 5,
+            "name": "Morphing",
+            "v": 0.0,
+            "s": "0 %"
+          },
+          {
+            "i": 6,
+            "name": "Equalizer Switch",
+            "v": 1.0,
+            "s": "On "
+          },
+          {
+            "i": 7,
+            "name": "Aftertouch",
+            "v": 0.0,
+            "s": "0 "
+          },
+          {
+            "i": 8,
+            "name": "Diapason",
+            "v": 0.5,
+            "s": "440.0 Hz"
+          },
+          {
+            "i": 9,
+            "name": "Sustain Pedal",
+            "v": 0.0,
+            "s": "0 "
+          }
+        ]
+      },
+      "preset_identity": null,
+      "limitation": "Named parameters only; page may be sparse. Not full plugin state or preset identity."
+    }
+  },
+  "tests": {
+    "tests": "187",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "13.383"
+  },
+  "protected": {
+    "previous_test_file_unchanged": true,
+    "formal_file_unchanged": true
+  },
+  "prototype_host_acceptance": false,
+  "prototype_default_enabled": false,
+  "remaining_blockers": [
+    "Locked Windows desktop",
+    "Playlist clip placement",
+    "Instrument routing and effects insertion",
+    "Dynamic automation writing"
+  ],
+  "subjective_listening": "not_performed"
+}

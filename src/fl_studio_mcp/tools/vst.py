@@ -111,6 +111,53 @@ def batch_parameters(bridge, track, slot, expected_plugin, changes, expected_cha
 def register(mcp):
     ro = dict(readOnlyHint=True, idempotentHint=True, openWorldHint=True)
 
+    @mcp.tool(annotations=dict(readOnlyHint=False,destructiveHint=False,idempotentHint=False))
+    def fl_vst_keyboard_load(search:str,expected_plugin:str,expected_channel:str,expected_title:str)->dict:
+        """Explicit native F8 picker KEYBOARD FALLBACK, not internal VST instantiation API.
+        No screenshots/mouse. Requires owned saved test session, stopped transport, no existing
+        matching channel. Accepts plain ASCII search only. Verifies exactly one added channel,
+        existing indices/names unchanged, actual plugin name and real parameter page. Variant
+        (VST2/3) not established by name; save FLP and inspect actual plugin path separately.
+        No blind retry; only Pianoteq loading has current real acceptance for this tool."""
+        try:
+            import re
+            from ..host_io import HostFiles
+            from ..desktop import wait_for
+            if not re.fullmatch(r'[A-Za-z0-9 _.-]{1,48}',search) or not expected_plugin or not expected_channel:
+                _fail('INVALID_ARGUMENT','Plain ASCII picker search and exact expected names required')
+            host=HostFiles();host._require_owned(expected_title)
+            bridge=get_bridge()
+            if bridge.call('get_play_state').get('playing') is not False:_fail('TRANSPORT_ACTIVE','Stop transport')
+            before=fetch_all_pages(bridge,'channel_list','channels')['channels']
+            if len(before)>32 or any(c['name']==expected_channel for c in before):
+                _fail('AMBIGUOUS_LOAD','At most32 existing channels and no duplicate expected channel')
+            host.focus(expected_title)
+            host._keys('{F8}')
+            def picker():
+                windows=[w for w in host.win32.windows(process=host.pid,class_name='TPlugListForm') if w.is_visible()]
+                return windows[0] if len(windows)==1 else None
+            window=wait_for(picker,description='native FL plugin picker')
+            # Validate characters above: send_keys metacharacters are never accepted.
+            host._keys(search+'{ENTER}',window)
+            def loaded():
+                after=fetch_all_pages(bridge,'channel_list','channels')['channels']
+                if len(after)==len(before):return None
+                if len(after)!=len(before)+1 or [(c['i'],c['name']) for c in before]!=[(c['i'],c['name']) for c in after[:len(before)]]:
+                    _fail('CHANNEL_TOPOLOGY_CHANGED','Unexpected channel topology after picker load',actual=after)
+                new=after[-1]
+                if new['name']!=expected_channel:_fail('WRONG_PLUGIN_LOADED','Added channel name differs',actual=new)
+                page=bridge.call('plugin_get_params',dict(track=new['i'],slot=-1,start=0))
+                if page['plugin']!=expected_plugin:_fail('WRONG_PLUGIN_LOADED','Actual hosted plugin differs',actual=page)
+                return dict(channel=new,plugin=page['plugin'],parameter_count=page['total'])
+            result=wait_for(loaded,timeout=30,description='actual added hosted plugin')
+            return dict(ok=True,verified=True,execution_kind='native_picker_keyboard_fallback',readback=result,
+                        binary_variant_verified=False,screenshots=0,mouse_operations=0)
+        except (WorkflowError,FLBridgeError) as exc:
+            return exc.result() if isinstance(exc,WorkflowError) else WorkflowError('PLUGIN_LOAD_UNVERIFIED',str(exc)).result()
+        except Exception as exc:
+            return WorkflowError('PLUGIN_LOAD_UNVERIFIED',str(exc),exception_type=type(exc).__name__,
+                                 recovery='Inspect actual channels before retry; no automatic replay').result()
+
     @mcp.tool(annotations=ro)
     def fl_vst_find_generators(plugin_contains: str = "Pianoteq", start: int = 0, limit: int = 16) -> dict:
         """Discover actual loaded generators, including renamed channels. Bounded scan of CURRENT

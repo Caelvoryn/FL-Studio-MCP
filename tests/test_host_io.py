@@ -55,3 +55,12 @@ def test_no_image_or_mouse_calls_in_new_layer():
     import fl_studio_mcp.accessible_presets as presets
     source=inspect.getsource(files)+inspect.getsource(presets)
     assert 'pyautogui' not in source and '.click(' not in source and '.screenshot(' not in source
+
+
+@pytest.mark.parametrize('process',['lockapp.exe','logonui.exe'])
+def test_locked_desktop_stops_before_activation_or_keys(monkeypatch,process):
+    import fl_studio_mcp.host_io as module
+    monkeypatch.setattr(module,'_foreground_process_name',lambda:process)
+    obj=HostFiles.__new__(HostFiles)  # no windows initialized: any access would fail
+    with pytest.raises(WorkflowError,match='Windows is locked'):obj.focus('title')
+    with pytest.raises(WorkflowError,match='Windows is locked'):obj._keys('{ENTER}')

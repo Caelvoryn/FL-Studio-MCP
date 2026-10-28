@@ -12,8 +12,39 @@ from .native import inspect
 from .workflow import WorkflowError, atomic_json, audio_integrity, copy_exclusive, digest, state_dir
 
 
+def _foreground_process_name():
+    """Process metadata only; never screenshots or inspection of authentication controls."""
+    import ntpath
+    user32,kernel32=ctypes.windll.user32,ctypes.windll.kernel32
+    user32.GetForegroundWindow.restype=wintypes.HWND
+    user32.GetWindowThreadProcessId.argtypes=[wintypes.HWND,ctypes.POINTER(wintypes.DWORD)]
+    pid=wintypes.DWORD()
+    user32.GetWindowThreadProcessId(user32.GetForegroundWindow(),ctypes.byref(pid))
+    kernel32.OpenProcess.argtypes=[wintypes.DWORD,wintypes.BOOL,wintypes.DWORD]
+    kernel32.OpenProcess.restype=wintypes.HANDLE
+    handle=kernel32.OpenProcess(0x1000,False,pid.value)  # query limited information only
+    if not handle:return None
+    try:
+        kernel32.QueryFullProcessImageNameW.argtypes=[wintypes.HANDLE,wintypes.DWORD,wintypes.LPWSTR,ctypes.POINTER(wintypes.DWORD)]
+        size=wintypes.DWORD(32768);buffer=ctypes.create_unicode_buffer(size.value)
+        return ntpath.basename(buffer.value).lower() if kernel32.QueryFullProcessImageNameW(handle,0,buffer,ctypes.byref(size)) else None
+    finally:
+        kernel32.CloseHandle.argtypes=[wintypes.HANDLE]
+        kernel32.CloseHandle(handle)
+
+
+def require_interactive_desktop():
+    if _foreground_process_name() in {'lockapp.exe','logonui.exe'}:
+        raise WorkflowError('DESKTOP_LOCKED','Windows is locked; no GUI input sent. Unlock normally to resume. No automated unlocking attempted.')
+
+
 class HostFiles(FLDesktop):
+    def focus(self,expected_title=None):
+        require_interactive_desktop()
+        return super().focus(expected_title)
+
     def _keys(self, keys, target=None):
+        require_interactive_desktop()
         from .pyscript_trigger import force_focus
         from pywinauto.keyboard import send_keys
         target = self.main if target is None else target

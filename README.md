@@ -1,5 +1,9 @@
 # FL Studio MCP 1.2.0.dev2 — UI-first development candidate
 
+**Stage3 status: [full-arrangement acceptance is blocked](docs/STAGE3_ACCEPTANCE.md).**
+Windows was locked; no new16-bar FLP/WAV was created. New picker/basic-note prototypes
+are separately gated and have no real host acceptance yet. Ordinary tool registries are unchanged.
+
 **Latest development checkpoint:** [direct-control foundation acceptance](docs/FOUNDATION_ACCEPTANCE.md)
 records real BPM/channel/Mixer edits, guarded sends, Pattern creation/cloning, native persistence
 and WAV tests.164 regression tests pass; channel/Score/Playlist/automation CRUD remain incomplete.

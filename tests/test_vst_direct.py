@@ -88,15 +88,17 @@ def test_large_sparse_page_not_false_complete_snapshot():
     assert result['preset_identity'] is None
 
 
-@pytest.mark.parametrize('mode,expected', [('default',48),('direct',54),('legacy',93)])
+@pytest.mark.parametrize('mode,expected', [('default',48),('direct',54),('legacy',93),('score_probe',56),('legacy_probe',95)])
 def test_registry_write_opt_in(monkeypatch,mode,expected):
     import asyncio
     from fastmcp import Client
     from fl_studio_mcp.server import build_server
     monkeypatch.delenv('FLSTUDIO_MCP_ENABLE_LEGACY_WRITES',raising=False)
     monkeypatch.delenv('FLSTUDIO_MCP_ENABLE_DIRECT_VST_WRITES',raising=False)
-    if mode=='direct':monkeypatch.setenv('FLSTUDIO_MCP_ENABLE_DIRECT_VST_WRITES','1')
-    if mode=='legacy':monkeypatch.setenv('FLSTUDIO_MCP_ENABLE_LEGACY_WRITES','1')
+    monkeypatch.delenv('FLSTUDIO_MCP_ENABLE_EXPERIMENTAL_SCORE_IO',raising=False)
+    if mode in ('direct','score_probe'):monkeypatch.setenv('FLSTUDIO_MCP_ENABLE_DIRECT_VST_WRITES','1')
+    if mode in ('legacy','legacy_probe'):monkeypatch.setenv('FLSTUDIO_MCP_ENABLE_LEGACY_WRITES','1')
+    if mode in ('score_probe','legacy_probe'):monkeypatch.setenv('FLSTUDIO_MCP_ENABLE_EXPERIMENTAL_SCORE_IO','1')
     async def verify():
         async with Client(build_server()) as client:
             names={t.name for t in await client.list_tools()}
@@ -107,5 +109,7 @@ def test_registry_write_opt_in(monkeypatch,mode,expected):
             assert ('fl_foundation_batch' in names)==(mode!='default')
             assert ('fl_foundation_route' in names)==(mode!='default')
             assert ('fl_foundation_pattern' in names)==(mode!='default')
-            assert ('fl_plugin_set_param' in names)==(mode=='legacy')
+            assert ('fl_score_replace_basic' in names)==(mode in ('score_probe','legacy_probe'))
+            assert ('fl_vst_keyboard_load' in names)==(mode in ('score_probe','legacy_probe'))
+            assert ('fl_plugin_set_param' in names)==(mode in ('legacy','legacy_probe'))
     asyncio.run(verify())

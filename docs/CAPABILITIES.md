@@ -1,5 +1,8 @@
 # 1.2 UI-first capability matrix
 
+Latest stage3 status: [blocked full-arrangement acceptance](STAGE3_ACCEPTANCE.md).
+Experimental score/picker source is not a verified capability and is hidden by default.
+
 **Latest branch matrix:** [direct-control foundation](FOUNDATION_ACCEPTANCE.md), including
 four real-tested tools and all remaining channel/notes/Playlist/automation restrictions.
 

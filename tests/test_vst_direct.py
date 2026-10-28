@@ -88,7 +88,7 @@ def test_large_sparse_page_not_false_complete_snapshot():
     assert result['preset_identity'] is None
 
 
-@pytest.mark.parametrize('mode,expected', [('default',48),('direct',54),('legacy',93),('score_probe',56),('legacy_probe',95)])
+@pytest.mark.parametrize('mode,expected', [('default',48),('direct',57),('legacy',96),('score_probe',57),('legacy_probe',96)])
 def test_registry_write_opt_in(monkeypatch,mode,expected):
     import asyncio
     from fastmcp import Client
@@ -109,7 +109,8 @@ def test_registry_write_opt_in(monkeypatch,mode,expected):
             assert ('fl_foundation_batch' in names)==(mode!='default')
             assert ('fl_foundation_route' in names)==(mode!='default')
             assert ('fl_foundation_pattern' in names)==(mode!='default')
-            assert ('fl_score_replace_basic' in names)==(mode in ('score_probe','legacy_probe'))
-            assert ('fl_vst_keyboard_load' in names)==(mode in ('score_probe','legacy_probe'))
+            assert ('fl_score_replace_basic' in names)==(mode!='default')
+            assert ('fl_vst_keyboard_load' in names)==(mode!='default')
+            assert ('fl_vst_assign_free_mixer' in names)==(mode!='default')
             assert ('fl_plugin_set_param' in names)==(mode in ('legacy','legacy_probe'))
     asyncio.run(verify())

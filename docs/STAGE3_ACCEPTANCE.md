@@ -1,5 +1,8 @@
 # Stage3: full16-bar arrangement acceptance — BLOCKED
 
+Historical locked-desktop result. Unlock continuation and actual partial acceptance are recorded
+in [2026-10-29 acceptance](STAGE3_20261029_ACCEPTANCE.md); current limitations differ below.
+
 Date2026-10-28, branch`codex/pianoteq-direct`, baseline`3f66f24`.
 
 **No complete16-bar electronic composition was produced or accepted. No new stage3

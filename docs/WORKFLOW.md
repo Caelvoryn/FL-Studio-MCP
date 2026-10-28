@@ -1,5 +1,18 @@
 # Observe → act → verify → recover
 
+Latest: [coordinate-free prerequisite workflow](STAGE3_20261029_ACCEPTANCE.md).
+Use one basic-note instrument per Pattern, exact expected notes/parameters and fresh checkpoint
+paths. Same-Pattern imported-note risks refuse before musical input. Native picker search uses
+Unicode text to bypass IME, while shortcuts use virtual keys. No blind load retry on timeout;
+read actual channels/slots first. Save/reopen waits for bridge readiness. Parameter persistence,
+native state and PCM are separate checks; repeated PCM was not exact in the current probes.
+Direct opt-in has57 tools, legacy96, unchanged default48. No default configuration is rewritten.
+
+Historical correction: earlier absolute zero-pointer claims were too strong because pywinauto
+Win32 `set_focus` can move the cursor. The current HostFiles layer uses native focus verification
+and avoids that method. Three explicit picker diagnostic images were used on2026-10-29;
+accepted new operations themselves do not capture images or use canvas coordinates.
+
 Latest structured host workflow and actual foundation results: [FOUNDATION_ACCEPTANCE.md](FOUNDATION_ACCEPTANCE.md).
 Saved Playlist data is never labeled live state; Pattern clone indices can shift.
 

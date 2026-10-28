@@ -1,8 +1,11 @@
 # FL Studio MCP 1.2.0.dev2 — UI-first development candidate
 
-**Stage3 status: [full-arrangement acceptance is blocked](docs/STAGE3_ACCEPTANCE.md).**
-Windows was locked; no new16-bar FLP/WAV was created. New picker/basic-note prototypes
-are separately gated and have no real host acceptance yet. Ordinary tool registries are unchanged.
+**Latest checkpoint: [coordinate-free prerequisite acceptance, 2026-10-29](docs/STAGE3_20261029_ACCEPTANCE.md).**
+After unlock, real stdio MCP loaded Pianoteq9/Sylenth1, imported basic notes into separate
+Patterns, assigned free Mixer tracks, inserted EQ/Compressor/Reeverb and verified saved/reopened
+state and actual WAVs.194 offline tests pass. Full16-bar arrangement remains **incomplete**:
+Playlist placement and automation in this direct-first workflow are not accepted. PCM repeats
+differ. The [locked-desktop report](docs/STAGE3_ACCEPTANCE.md) is historical.
 
 **Latest development checkpoint:** [direct-control foundation acceptance](docs/FOUNDATION_ACCEPTANCE.md)
 records real BPM/channel/Mixer edits, guarded sends, Pattern creation/cloning, native persistence
@@ -20,7 +23,11 @@ Preset/file fallbacks are not internal FL APIs. Repeated WAV PCM is not bit-iden
 
 Windows / Python 3.12 / FL Studio 26.1.5 build 5618. Based on rosasynthesiz/flstudio-mcp; MIT retained. **Development preview, not universal desktop automation.** No running MCP configuration/controller is replaced.
 
-Core tested edits use actual GUI input. Prefer UIA where controls exist; self-drawn Piano Roll, Playlist, Sytrus and Mixer use screenshot-confirmed window-relative targets. FLP parsing and read-only bridge calls verify results, not perform musical edits.
+The preserved UI-first workflow uses GUI input and calibrated canvas targets. The opt-in direct
+branch instead prefers structured official host operations; missing loading/file/score operations
+use explicitly labeled keyboard/UIA fallbacks. New accepted operations use no coordinates.
+Three diagnostic screenshots identified IME interference during development; they are not needed
+by the accepted picker path. Neither architecture is universal control of all FL features.
 
 Default mode hides legacy background music writers. Explicit `FLSTUDIO_MCP_ENABLE_LEGACY_WRITES=1` exposes compatibility tools; never describe those writes as GUI actions.
 

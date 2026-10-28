@@ -53,3 +53,23 @@ def test_other_musical_state_changes_are_not_accepted(changed):
     before=dict(plugin_state_hashes=['actual'],mixer_event_hashes=['actual'],playlist=[],automation=[])
     after=dict(before);after[changed]=['changed']
     assert not all(state_invariants(before,after).values())
+
+
+def test_import_marker_on_other_channel_refuses_before_any_input(tmp_path):
+    from types import SimpleNamespace
+    from fl_studio_mcp.score_io import replace_basic
+    n=dict(note(),channel=1,raw_record_hex='0000000000400100600000003c0000007800008040508080')
+    state={'patterns':{1:{'notes':[n]}}}
+    calls=[]
+    host=SimpleNamespace(_require_owned=lambda t:None,
+        save_as_no_image=lambda *a:dict(saved_state=state,path='checkpoint',title='new title'))
+    def call(cmd,args=None):
+        calls.append(cmd)
+        if cmd=='get_project_state':return dict(playing=False,recording=False,pattern_number=1,channel_count=3)
+        if cmd=='channel_get':return dict(name='Synth')
+        pytest.fail('No mutation allowed')
+    with pytest.raises(WorkflowError,match='exact preservation'):
+        replace_basic(host,SimpleNamespace(call=call),2,'Synth',1,[],[note()],
+            tmp_path/'new.mid',tmp_path/'before.flp',tmp_path/'after.flp','title')
+    assert not (tmp_path/'new.mid').exists()
+    assert calls==['get_project_state','channel_get']

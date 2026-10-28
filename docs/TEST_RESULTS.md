@@ -1,5 +1,11 @@
 # 1.2 UI-first test results — 2026-10-27
 
+Latest continuation2026-10-29: **194 passed**,5 warnings,14.66s (Python3.12/FastMCP2.14.7).
+Real stdio/native/audio evidence is separate: [acceptance](STAGE3_20261029_ACCEPTANCE.md).
+New regression covers IME-safe text, no activation Alt in active picker, delayed loading without
+resending, stale routing, selected-Mixer requirements and imported-note interference refusal.
+These are not194 real FL tests. Original results below remain historical.
+
 - Independent new Python 3.12 environment installed from pinned requirements, editable candidate installed with --no-deps, pip check clean.
 - Full offline regression: **73 passed**, five dependency deprecation warnings. Legacy writer compatibility enabled only for inherited tests; default policy has its own explicit test.
 - Default UI-first guard tests: **13 passed**, two dependency deprecation warnings. These 13 are included in the 73, not additional independent coverage.

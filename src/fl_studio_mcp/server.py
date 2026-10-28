@@ -119,15 +119,13 @@ def build_server() -> FastMCP:
         decorator = register_tool(*args, **kwargs)
         readonly = (kwargs.get("annotations") or {}).get("readOnlyHint", False)
         def attach(fn):
-            # Unaccepted prototypes must not appear in the normal direct/legacy
-            # registries merely because their source has been implemented.
-            if fn.__name__ in {"fl_score_replace_basic", "fl_vst_keyboard_load"} and os.environ.get("FLSTUDIO_MCP_ENABLE_EXPERIMENTAL_SCORE_IO") != "1":
-                return fn
+            # These bounded keyboard/native-import fallbacks have independent
+            # 2026-10-29 host acceptance. Direct writers remain explicitly opt-in.
             # UI-first is the candidate default. Keep original implementations
             # intact, but require explicit opt-in to expose background writers.
             gui_write = fn.__name__.startswith(("fl_ui_", "fl_gui_", "fl_playlist_"))
             backup = fn.__name__ == "fl_project_checkpoint"
-            direct_vst = fn.__name__ in {"fl_vst_batch_parameters", "fl_vst_keyboard_load", "fl_host_project_file", "fl_vst_accessible_preset", "fl_foundation_batch", "fl_foundation_pattern", "fl_foundation_route", "fl_score_replace_basic"} and os.environ.get("FLSTUDIO_MCP_ENABLE_DIRECT_VST_WRITES") == "1"
+            direct_vst = fn.__name__ in {"fl_vst_batch_parameters", "fl_vst_keyboard_load", "fl_vst_assign_free_mixer", "fl_host_project_file", "fl_vst_accessible_preset", "fl_foundation_batch", "fl_foundation_pattern", "fl_foundation_route", "fl_score_replace_basic"} and os.environ.get("FLSTUDIO_MCP_ENABLE_DIRECT_VST_WRITES") == "1"
             if not readonly and not gui_write and not backup and not direct_vst and os.environ.get("FLSTUDIO_MCP_ENABLE_LEGACY_WRITES") != "1":
                 return fn
             if readonly or fn.__name__ == "fl_project_checkpoint":

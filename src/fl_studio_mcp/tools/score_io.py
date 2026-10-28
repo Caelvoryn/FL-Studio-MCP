@@ -10,7 +10,9 @@ def register(mcp):
         """Replace known basic score through real FL MIDI importer using keyboard/UIA, no screenshots/mouse.
         Notes/expected_notes use pitch,time_ticks,length_ticks,velocity_raw integers. Supports chords.
         Fresh native before/after FLPs independently verify exact target notes and unchanged other note
-        records. Requires owned test session and selected Pattern. Advanced note properties are refused;
+        records. Separate-Pattern multi-instrument workflow tested. Imported notes on OTHER channels
+        in the same Pattern cause a preflight refusal because FL can clear their import marker.
+        Requires owned test session and selected Pattern. Advanced note properties are refused;
         empty desired score clears the basic score without importing an empty MIDI. A failed postcheck
         means possible partial live edits: inspect
         preserved checkpoints, never retry blindly. NOT a direct Piano Roll scripting API."""

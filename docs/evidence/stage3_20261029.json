@@ -1,0 +1,762 @@
+{
+  "schema": 1,
+  "date": "2026-10-29",
+  "baseline_commit": "4d1d267",
+  "full_arrangement_accepted": false,
+  "scope": "Coordinate-free prerequisite probes, not complete16-bar music",
+  "runtime": {
+    "fl_version": "Producer Edition v26.1.5 [build 5618]",
+    "tempo_bpm": 128.0,
+    "playing": false,
+    "recording": false,
+    "pattern_number": 2,
+    "pattern_count": 2,
+    "channel_count": 4,
+    "mixer_track_count": 18
+  },
+  "regression_tests": 194,
+  "stdio_receipts": 73,
+  "note_acceptance": {
+    "pianoteq_create_update_clear_restore": [
+      12,
+      14,
+      0,
+      14
+    ],
+    "separate_pattern_exact_other_notes": true,
+    "final_pattern_note_counts": {
+      "1": 14,
+      "2": 4
+    },
+    "final_resave_notes_exact": true,
+    "same_pattern_marker_guard": "IMPORT_NORMALIZES_OTHER_NOTES"
+  },
+  "generator_load": {
+    "ok": true,
+    "verified": true,
+    "execution_kind": "native_picker_keyboard_fallback",
+    "readback": {
+      "channel": {
+        "i": 3,
+        "name": "Sylenth1",
+        "pan": 0.0,
+        "mute": false,
+        "solo": false,
+        "vol_norm": 0.7812,
+        "vol_db": -0.21
+      },
+      "plugin": "Sylenth1",
+      "parameter_count": 4240
+    },
+    "binary_variant_verified": false,
+    "screenshots": 0,
+    "mouse_operations": 0,
+    "request_id": "4aee44a74748464aabb8b238e6b0c804"
+  },
+  "effects": {
+    "ok": true,
+    "loads": [
+      {
+        "ok": true,
+        "verified": true,
+        "execution_kind": "native_picker_keyboard_fallback",
+        "readback": {
+          "track": 2,
+          "slot": 1,
+          "plugin": "Fruity Compressor",
+          "parameter_page": {
+            "track": 2,
+            "slot": 1,
+            "plugin": "Fruity Compressor",
+            "total": 6,
+            "start": 0,
+            "next_start": null,
+            "params": [
+              {
+                "i": 0,
+                "name": "闃堝€?",
+                "v": 1.0,
+                "s": "0.0 dB"
+              },
+              {
+                "i": 1,
+                "name": "姣旂巼",
+                "v": 0.0203,
+                "s": "1.0 : 1"
+              },
+              {
+                "i": 2,
+                "name": "澧炵泭",
+                "v": 0.5,
+                "s": "0.0 dB"
+              },
+              {
+                "i": 3,
+                "name": "璧烽煶",
+                "v": 0.0375,
+                "s": "15.0 ms"
+              },
+              {
+                "i": 4,
+                "name": "閲婇煶",
+                "v": 0.0498,
+                "s": "200 ms"
+              },
+              {
+                "i": 5,
+                "name": "绫诲瀷",
+                "v": 0.0,
+                "s": "硬"
+              }
+            ]
+          }
+        },
+        "screenshots": 0,
+        "mouse_operations": 0,
+        "persistence_verified": false,
+        "request_id": "009b410bed634836a5653ff72c43d0d6"
+      },
+      {
+        "ok": true,
+        "verified": true,
+        "execution_kind": "native_picker_keyboard_fallback",
+        "readback": {
+          "track": 2,
+          "slot": 2,
+          "plugin": "Fruity Reeverb 2",
+          "parameter_page": {
+            "track": 2,
+            "slot": 2,
+            "plugin": "Fruity Reeverb 2",
+            "total": 15,
+            "start": 0,
+            "next_start": 8,
+            "params": [
+              {
+                "i": 0,
+                "name": "浣庡垏",
+                "v": 0.0188,
+                "s": "75Hz"
+              },
+              {
+                "i": 1,
+                "name": "楂樺垏",
+                "v": 0.162,
+                "s": "4.0kHz"
+              },
+              {
+                "i": 2,
+                "name": "棰勫欢杩?",
+                "v": 0.0,
+                "s": "0ms"
+              },
+              {
+                "i": 3,
+                "name": "鎴块棿澶у皬",
+                "v": 0.4949,
+                "s": "50"
+              },
+              {
+                "i": 4,
+                "name": "鏁ｅ皠搴?",
+                "v": 1.0,
+                "s": "100"
+              },
+              {
+                "i": 5,
+                "name": "琛板噺鏃堕棿",
+                "v": 0.0704,
+                "s": "1.5sec"
+              },
+              {
+                "i": 6,
+                "name": "楂橀樆灏?",
+                "v": 0.162,
+                "s": "4.0kHz"
+              },
+              {
+                "i": 7,
+                "name": "浣庨煶涔樻暟",
+                "v": 0.2857,
+                "s": "100%"
+              }
+            ]
+          }
+        },
+        "screenshots": 0,
+        "mouse_operations": 0,
+        "persistence_verified": false,
+        "request_id": "f0718f64651c4c0f9f39d5a19597694f"
+      }
+    ],
+    "pages_after_reopen": [
+      {
+        "ok": true,
+        "host_scope": "FL Studio",
+        "readback": {
+          "track": 2,
+          "slot": 0,
+          "plugin": "Fruity parametric EQ 2",
+          "total": 36,
+          "start": 0,
+          "next_start": 7,
+          "params": [
+            {
+              "i": 0,
+              "name": "棰戞 1 鐢靛钩",
+              "v": 0.45,
+              "s": "-1.8dB"
+            },
+            {
+              "i": 1,
+              "name": "棰戞 2 鐢靛钩",
+              "v": 0.5,
+              "s": "0.0dB"
+            },
+            {
+              "i": 2,
+              "name": "棰戞 3 鐢靛钩",
+              "v": 0.5,
+              "s": "0.0dB"
+            },
+            {
+              "i": 3,
+              "name": "棰戞 4 鐢靛钩",
+              "v": 0.5,
+              "s": "0.0dB"
+            },
+            {
+              "i": 4,
+              "name": "棰戞 5 鐢靛钩",
+              "v": 0.5,
+              "s": "0.0dB"
+            },
+            {
+              "i": 5,
+              "name": "棰戞 6 鐢靛钩",
+              "v": 0.5,
+              "s": "0.0dB"
+            },
+            {
+              "i": 6,
+              "name": "棰戞 7 鐢靛钩",
+              "v": 0.5,
+              "s": "0.0dB"
+            }
+          ]
+        },
+        "preset_identity": null,
+        "limitation": "Named parameters only; page may be sparse. Not full plugin state or preset identity."
+      },
+      {
+        "ok": true,
+        "host_scope": "FL Studio",
+        "readback": {
+          "track": 2,
+          "slot": 1,
+          "plugin": "Fruity Compressor",
+          "total": 6,
+          "start": 0,
+          "next_start": null,
+          "params": [
+            {
+              "i": 0,
+              "name": "闃堝€?",
+              "v": 1.0,
+              "s": "0.0 dB"
+            },
+            {
+              "i": 1,
+              "name": "姣旂巼",
+              "v": 0.0203,
+              "s": "1.0 : 1"
+            },
+            {
+              "i": 2,
+              "name": "澧炵泭",
+              "v": 0.5,
+              "s": "0.0 dB"
+            },
+            {
+              "i": 3,
+              "name": "璧烽煶",
+              "v": 0.0375,
+              "s": "15.0 ms"
+            },
+            {
+              "i": 4,
+              "name": "閲婇煶",
+              "v": 0.0498,
+              "s": "200 ms"
+            },
+            {
+              "i": 5,
+              "name": "绫诲瀷",
+              "v": 0.0,
+              "s": "硬"
+            }
+          ]
+        },
+        "preset_identity": null,
+        "limitation": "Named parameters only; page may be sparse. Not full plugin state or preset identity."
+      },
+      {
+        "ok": true,
+        "host_scope": "FL Studio",
+        "readback": {
+          "track": 2,
+          "slot": 2,
+          "plugin": "Fruity Reeverb 2",
+          "total": 15,
+          "start": 0,
+          "next_start": 8,
+          "params": [
+            {
+              "i": 0,
+              "name": "浣庡垏",
+              "v": 0.0188,
+              "s": "75Hz"
+            },
+            {
+              "i": 1,
+              "name": "楂樺垏",
+              "v": 0.162,
+              "s": "4.0kHz"
+            },
+            {
+              "i": 2,
+              "name": "棰勫欢杩?",
+              "v": 0.0,
+              "s": "0ms"
+            },
+            {
+              "i": 3,
+              "name": "鎴块棿澶у皬",
+              "v": 0.4949,
+              "s": "50"
+            },
+            {
+              "i": 4,
+              "name": "鏁ｅ皠搴?",
+              "v": 1.0,
+              "s": "100"
+            },
+            {
+              "i": 5,
+              "name": "琛板噺鏃堕棿",
+              "v": 0.0704,
+              "s": "1.5sec"
+            },
+            {
+              "i": 6,
+              "name": "楂橀樆灏?",
+              "v": 0.162,
+              "s": "4.0kHz"
+            },
+            {
+              "i": 7,
+              "name": "浣庨煶涔樻暟",
+              "v": 0.2857,
+              "s": "100%"
+            }
+          ]
+        },
+        "preset_identity": null,
+        "limitation": "Named parameters only; page may be sparse. Not full plugin state or preset identity."
+      }
+    ],
+    "project": "${PROJECT_DIR}\\31_FX_Reopened.flp"
+  },
+  "audio": {
+    "piano": {
+      "ok": true,
+      "classification": "numeric_difference",
+      "max_absolute_difference": 0.00537109375,
+      "difference_rms": 5.9436838694211416e-05,
+      "first": {
+        "ok": true,
+        "verified": true,
+        "sha256": "35c6a3fd23c22adab5fa889fe84d7c221c66bf97a1f2234acf90efc63aa7b033",
+        "frames": 413438,
+        "sample_rate": 44100,
+        "channels": 2,
+        "subtype": "PCM_16",
+        "duration_seconds": 9.37501133786848,
+        "sample_peak_dbfs": -9.833253103397425,
+        "rms_dbfs": -29.724530196551527,
+        "clipped_samples": 0,
+        "silent_frame_fraction": 0.0011900212365578394,
+        "subjective_listening": "not_performed",
+        "true_peak": "not_measured",
+        "lufs": "not_measured"
+      },
+      "second": {
+        "ok": true,
+        "verified": true,
+        "sha256": "3e4d1831a4cac51d664c66da58338dce37d6e6992a5a79b2f706f173b75910d3",
+        "frames": 413438,
+        "sample_rate": 44100,
+        "channels": 2,
+        "subtype": "PCM_16",
+        "duration_seconds": 9.37501133786848,
+        "sample_peak_dbfs": -9.83407543614484,
+        "rms_dbfs": -29.725350083043764,
+        "clipped_samples": 0,
+        "silent_frame_fraction": 0.001202114948311476,
+        "subjective_listening": "not_performed",
+        "true_peak": "not_measured",
+        "lufs": "not_measured"
+      },
+      "limitation": "Numeric difference alone cannot establish perceptual or musical structure change"
+    },
+    "sylenth": {
+      "ok": true,
+      "classification": "numeric_difference",
+      "max_absolute_difference": 0.5479736328125,
+      "difference_rms": 0.09387501064519783,
+      "first": {
+        "ok": true,
+        "verified": true,
+        "sha256": "71b2049d23f962597f2792fb224e65a7cdbfcd4a8db69286a73fbc69a8ff694f",
+        "frames": 165375,
+        "sample_rate": 44100,
+        "channels": 2,
+        "subtype": "PCM_16",
+        "duration_seconds": 3.75,
+        "sample_peak_dbfs": -6.339705991756045,
+        "rms_dbfs": -21.132466274275167,
+        "clipped_samples": 0,
+        "silent_frame_fraction": 0.0004232804232804233,
+        "subjective_listening": "not_performed",
+        "true_peak": "not_measured",
+        "lufs": "not_measured"
+      },
+      "second": {
+        "ok": true,
+        "verified": true,
+        "sha256": "439bc46a72a7949181ed02cf16de6c65e4e34b4cd10c5f719dc40fddffafdc53",
+        "frames": 165375,
+        "sample_rate": 44100,
+        "channels": 2,
+        "subtype": "PCM_16",
+        "duration_seconds": 3.75,
+        "sample_peak_dbfs": -5.86507777315996,
+        "rms_dbfs": -19.966682278719603,
+        "clipped_samples": 0,
+        "silent_frame_fraction": 0.00038095238095238096,
+        "subjective_listening": "not_performed",
+        "true_peak": "not_measured",
+        "lufs": "not_measured"
+      },
+      "limitation": "Numeric difference alone cannot establish perceptual or musical structure change"
+    },
+    "sylenth_fx": {
+      "ok": true,
+      "classification": "numeric_difference",
+      "max_absolute_difference": 0.687957763671875,
+      "difference_rms": 0.09517202274435428,
+      "first": {
+        "ok": true,
+        "verified": true,
+        "sha256": "55b8577f026c2e7df86a53b5cc9376dbb8b51a56c390f25ba4d350e4fe8a6dd8",
+        "frames": 165375,
+        "sample_rate": 44100,
+        "channels": 2,
+        "subtype": "PCM_16",
+        "duration_seconds": 3.75,
+        "sample_peak_dbfs": -4.675153355975609,
+        "rms_dbfs": -19.69793159910336,
+        "clipped_samples": 0,
+        "silent_frame_fraction": 6.651549508692366e-05,
+        "subjective_listening": "not_performed",
+        "true_peak": "not_measured",
+        "lufs": "not_measured"
+      },
+      "second": {
+        "ok": true,
+        "verified": true,
+        "sha256": "782cd97f5976e3a8d2216e9bd7fc031b727145f9215270b990b0eaf1bb0782f7",
+        "frames": 165375,
+        "sample_rate": 44100,
+        "channels": 2,
+        "subtype": "PCM_16",
+        "duration_seconds": 3.75,
+        "sample_peak_dbfs": -5.637401565614034,
+        "rms_dbfs": -20.839383714744997,
+        "clipped_samples": 0,
+        "silent_frame_fraction": 5.4421768707482996e-05,
+        "subjective_listening": "not_performed",
+        "true_peak": "not_measured",
+        "lufs": "not_measured"
+      },
+      "limitation": "Numeric difference alone cannot establish perceptual or musical structure change"
+    }
+  },
+  "protected": {
+    "formal_skyline_unchanged": true,
+    "installed_controller_unchanged": true,
+    "controller_sha256": "d4ce0b0c383002b943e0884a4fb149686962ae41f2f7157d9102d6ae6dc246dc",
+    "default_config_written": false
+  },
+  "limitations": [
+    "Playlist placement not completed in this direct-first workflow",
+    "Automation creation not completed in this workflow",
+    "Same-pattern imported-note preservation refuses known-risk imports",
+    "Render settings inherited, not configured",
+    "PCM repeats differ; no subjective listening",
+    "3 explicit diagnostic screenshots for picker IME investigation; no mouse/canvas actions in accepted new operations",
+    "Prior no-pointer claim was too strong: old pywinauto set_focus may move the cursor; fixed in current HostFiles"
+  ],
+  "artifacts": [
+    {
+      "name": "00_Previous_Session.flp",
+      "sha256": "8c81cb4428c0cd7c0d125d013329823477feeb3e30ee3e2fe7d640552b18931a",
+      "bytes": 102111
+    },
+    {
+      "name": "01_PreBlank_Preservation.flp",
+      "sha256": "08b116cfac9b127e0c701078f2f21cc672287441cbde8e7ce676cd5bb36fefbb",
+      "bytes": 102111
+    },
+    {
+      "name": "02_Blank.flp",
+      "sha256": "ae67bc831525c0650de212b1e614d9dc541ead54af72a6eb413482d9413685d4",
+      "bytes": 46361
+    },
+    {
+      "name": "02b_Blank_FocusFixed.flp",
+      "sha256": "ae67bc831525c0650de212b1e614d9dc541ead54af72a6eb413482d9413685d4",
+      "bytes": 46361
+    },
+    {
+      "name": "02c_Blank_LoadWait.flp",
+      "sha256": "ae67bc831525c0650de212b1e614d9dc541ead54af72a6eb413482d9413685d4",
+      "bytes": 46361
+    },
+    {
+      "name": "03_Loaded.flp",
+      "sha256": "bcd44d061b9d45a8862e89f5c1d03cfeed8cc3878fa6758b7247cdaa9e5d75c8",
+      "bytes": 98209
+    },
+    {
+      "name": "03a_Previous_Loaded.flp",
+      "sha256": "ae4c7148f5ceb801708620a639a32ee0ad8a08fee0498b56c1cef07e280ebca8",
+      "bytes": 98209
+    },
+    {
+      "name": "03b_Load_Preservation.flp",
+      "sha256": "b9080f1f1314fd02d814f85d47ccb7e75d9c2a1707e17e3b0e1c276f41c76aff",
+      "bytes": 98209
+    },
+    {
+      "name": "03c_Load_Pending_Copy.flp",
+      "sha256": "9ab2fa219be82dd36b7e672400a0b2282717bca7fbb90cfa7e0155a0072e3a3a",
+      "bytes": 98209
+    },
+    {
+      "name": "03d_Load_Pending_Preservation.flp",
+      "sha256": "333423699aa84f6cae46db67379e62271247bc033bd3acbe2bea1530ca2cf3db",
+      "bytes": 98209
+    },
+    {
+      "name": "04a_Before.flp",
+      "sha256": "3d20d38ef6c7bec047d66862476a1a07d6d4475a3ed78588ce3986c4657911c1",
+      "bytes": 80833
+    },
+    {
+      "name": "04b_After.flp",
+      "sha256": "7c8745e8b4caf9eb81b63b6221b428395a44bca7aa7cb99751c70ccf0977fecb",
+      "bytes": 81127
+    },
+    {
+      "name": "05a_Before.flp",
+      "sha256": "852f472a2c181357049db0a7ceee1d97a999430893890c2a824892abc247568d",
+      "bytes": 81127
+    },
+    {
+      "name": "05b_After.flp",
+      "sha256": "bc62e6f7427e4b5e179840334fdbd4974f23fb2026473343f0e5463aa23e67df",
+      "bytes": 81175
+    },
+    {
+      "name": "06a_Before.flp",
+      "sha256": "1ba7a44dc93498fbe227ba47f57c23027cab00826e00c24a9664e6f9fc84b596",
+      "bytes": 81175
+    },
+    {
+      "name": "06b_After.flp",
+      "sha256": "af4b478a31acaf42cad8b22ba87773e6cff1f2dda49f791be36e17e7424b8f33",
+      "bytes": 80833
+    },
+    {
+      "name": "07a_Before.flp",
+      "sha256": "094090198f21002d7375a712c6eec5d4e964be0dfba12c5376880eb5763f0e32",
+      "bytes": 80833
+    },
+    {
+      "name": "07b_After.flp",
+      "sha256": "267eb02d2f25dae1365ebdbdc73e394337f6678b03e38c374f1e614e201121d7",
+      "bytes": 81175
+    },
+    {
+      "name": "08_Preservation.flp",
+      "sha256": "c0a1714f77e86ace4f0ad72379a8f6b72abb20bcfc009491c74a632ca43ce1d2",
+      "bytes": 81175
+    },
+    {
+      "name": "09_Reopened.flp",
+      "sha256": "267eb02d2f25dae1365ebdbdc73e394337f6678b03e38c374f1e614e201121d7",
+      "bytes": 81175
+    },
+    {
+      "name": "10_Reopened_Resaved.flp",
+      "sha256": "6484eac5f7bf6c97afeaaacea816e7ea564da72061264268231d6a34126cdf14",
+      "bytes": 81175
+    },
+    {
+      "name": "11_BridgeReady_Reopened.flp",
+      "sha256": "6484eac5f7bf6c97afeaaacea816e7ea564da72061264268231d6a34126cdf14",
+      "bytes": 81175
+    },
+    {
+      "name": "12_Readiness_Preservation.flp",
+      "sha256": "1c9a3fdfbe1b51a553d740b3ea2a60f9454608d6461ad644faf8490d30bc3a67",
+      "bytes": 81175
+    },
+    {
+      "name": "13_Final_Resaved.flp",
+      "sha256": "96dfe25cf76823d58ac6a43e46516ad3fc5cab3df5270f83cb60d66109261b66",
+      "bytes": 81175
+    },
+    {
+      "name": "14_Assigned.flp",
+      "sha256": "a6b3329362cda15c958bc747dbca856b29ca52c32f48b82546dbb7a496746f57",
+      "bytes": 81204
+    },
+    {
+      "name": "15_Assignment_Reopened.flp",
+      "sha256": "a6b3329362cda15c958bc747dbca856b29ca52c32f48b82546dbb7a496746f57",
+      "bytes": 81204
+    },
+    {
+      "name": "16_Assignment_Preservation.flp",
+      "sha256": "111d7bf0babd2c8b81094c3464d98d409b43577dfa1387ab646a664ef77a5d8e",
+      "bytes": 81204
+    },
+    {
+      "name": "17_Final_Assigned_Resaved.flp",
+      "sha256": "808a8c2c5b4305f8a579eeffb0de4951340b0fc36546ed85bee291e39a1d5851",
+      "bytes": 81204
+    },
+    {
+      "name": "18_Sytrus_Loaded.flp",
+      "sha256": "00e5557af5c22b46883064b19022c4154eeee20150f04d1e2fe0a5375090ad25",
+      "bytes": 83306
+    },
+    {
+      "name": "19a_Piano_Before.flp",
+      "sha256": "8b67bbb812c0ce8e291f6eee4d4e7f7b1a1d1e69daa4d0777beb518e89172541",
+      "bytes": 83306
+    },
+    {
+      "name": "19b_Piano_After.flp",
+      "sha256": "322e1114dd631bbb5b6da090f3d6f1c89d95f82887e744ef6925c9e847dde10d",
+      "bytes": 83306
+    },
+    {
+      "name": "20a_Synth_Before.flp",
+      "sha256": "4abaafca94e9636ad5b4e6e663599815e84becb660fcb27c18d031972632acb6",
+      "bytes": 83306
+    },
+    {
+      "name": "20b_Synth_After.flp",
+      "sha256": "b59f52887cbf87572e1110ae7ac5648d892545508d0bfa6a2bcde85ca0c663fc",
+      "bytes": 83402
+    },
+    {
+      "name": "22_Restored_Before_Synth.flp",
+      "sha256": "4abaafca94e9636ad5b4e6e663599815e84becb660fcb27c18d031972632acb6",
+      "bytes": 83306
+    },
+    {
+      "name": "23_Preserved_Failed_Synth.flp",
+      "sha256": "5d70adc614459b10441de9d20e7cd98ea3a0dd678c77e4d29653834eec923981",
+      "bytes": 83402
+    },
+    {
+      "name": "24_Sylenth_Loaded.flp",
+      "sha256": "4291b14560f6a2c22445ab938e09001b30e45ef37e47cefd414ebfcb6357a21f",
+      "bytes": 217020
+    },
+    {
+      "name": "25a_Separate_Pattern_Before.flp",
+      "sha256": "73a5e4d67a49db97d48d5a20bf8a1c96f4549fbef7b76136edb842962825b06e",
+      "bytes": 217128
+    },
+    {
+      "name": "25b_Separate_Pattern_After.flp",
+      "sha256": "68e87ce70e90509f42574943145cc9deaab1c8955d1b4eab8088035bf7eed276",
+      "bytes": 217229
+    },
+    {
+      "name": "26_Separate_Synth_Assigned.flp",
+      "sha256": "931f6f06c6bc7e44da6f03a5076f2bdf617e1659004a80738f35cb32844d0bb2",
+      "bytes": 217254
+    },
+    {
+      "name": "27_Synth_Reopened.flp",
+      "sha256": "931f6f06c6bc7e44da6f03a5076f2bdf617e1659004a80738f35cb32844d0bb2",
+      "bytes": 217254
+    },
+    {
+      "name": "28_Synth_Preservation.flp",
+      "sha256": "2a1d3726e892bbe1bf710b51165a7623c7ad430d409b5d07cac8fce76a4ceeb1",
+      "bytes": 217254
+    },
+    {
+      "name": "29_Synth_EQ_Loaded.flp",
+      "sha256": "38fcbfc4fc216c798a2bf3398e181bce89603119d03a23dc4e196d7eedf7dc42",
+      "bytes": 217773
+    },
+    {
+      "name": "30_FX_Chain_Adjusted.flp",
+      "sha256": "bfa193ae698b6a1420ff06fc0a50904388174173a0b08332dc20191d41a7f00a",
+      "bytes": 218085
+    },
+    {
+      "name": "31_FX_Reopened.flp",
+      "sha256": "bfa193ae698b6a1420ff06fc0a50904388174173a0b08332dc20191d41a7f00a",
+      "bytes": 218085
+    },
+    {
+      "name": "32_FX_Preservation.flp",
+      "sha256": "3b0c1e82f20fb66bf1544177db04ba7c7226b4dc2122c9e59b883ba696612ad9",
+      "bytes": 218085
+    },
+    {
+      "name": "33_Guard_Checkpoint.flp",
+      "sha256": "e0947214b0df3875b76b85b3cbfb39d185d81f7759f27ee218de0de2e296effb",
+      "bytes": 218085
+    },
+    {
+      "name": "35_Final_Technical_Probe.flp",
+      "sha256": "bc5c0ea6c5b48617fa2c2daf18cc54aede13ed0918b1914bdd128c31f11dc060",
+      "bytes": 218085
+    },
+    {
+      "name": "36_Final_Technical_Reopened.flp",
+      "sha256": "bc5c0ea6c5b48617fa2c2daf18cc54aede13ed0918b1914bdd128c31f11dc060",
+      "bytes": 218085
+    },
+    {
+      "name": "37_Final_Preservation.flp",
+      "sha256": "a9c8d1c8b19ff4bfe4e7468969ad2bdfdd31bab212fe7d73a711210f9c24c880",
+      "bytes": 218085
+    },
+    {
+      "name": "38_Final_Resaved.flp",
+      "sha256": "6e32907210cf9446a134436ba43df446308335d74836fee261631640b46a5a65",
+      "bytes": 218085
+    }
+  ]
+}

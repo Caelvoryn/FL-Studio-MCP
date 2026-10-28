@@ -55,6 +55,9 @@ def test_no_image_or_mouse_calls_in_new_layer():
     import fl_studio_mcp.accessible_presets as presets
     source=inspect.getsource(files)+inspect.getsource(presets)
     assert 'pyautogui' not in source and '.click(' not in source and '.screenshot(' not in source
+    import ast
+    forbidden={'set_focus','click_input','move_mouse_input','drag_mouse_input','screenshot','click'}
+    assert not [n for n in ast.walk(ast.parse(source)) if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and n.func.attr in forbidden]
 
 
 @pytest.mark.parametrize('process',['lockapp.exe','logonui.exe'])
@@ -64,3 +67,24 @@ def test_locked_desktop_stops_before_activation_or_keys(monkeypatch,process):
     obj=HostFiles.__new__(HostFiles)  # no windows initialized: any access would fail
     with pytest.raises(WorkflowError,match='Windows is locked'):obj.focus('title')
     with pytest.raises(WorkflowError,match='Windows is locked'):obj._keys('{ENTER}')
+
+
+@pytest.mark.parametrize('unicode_text',[False,True])
+def test_active_picker_does_not_receive_activation_alt(monkeypatch,unicode_text):
+    import ctypes
+    import fl_studio_mcp.host_io as module
+    import fl_studio_mcp.pyscript_trigger as trigger
+    import pywinauto.keyboard as keyboard
+    class Fn:
+        def __init__(self,fn):self.fn=fn
+        def __call__(self,*args):return self.fn(*args)
+    def pid(handle,output):ctypes.cast(output,ctypes.POINTER(ctypes.c_ulong)).contents.value=7
+    u=SimpleNamespace(GetForegroundWindow=Fn(lambda:2),GetWindowThreadProcessId=Fn(pid))
+    monkeypatch.setattr(module.ctypes,'windll',SimpleNamespace(user32=u))
+    monkeypatch.setattr(module,'require_interactive_desktop',lambda:None)
+    monkeypatch.setattr(trigger,'force_focus',lambda *a:pytest.fail('Do not tap Alt into active picker'))
+    sent=[];monkeypatch.setattr(keyboard,'send_keys',lambda keys,**kw:sent.append((keys,kw)))
+    obj=HostFiles.__new__(HostFiles);obj.pid=7;obj.main=object()
+    popup=SimpleNamespace(handle=2,is_visible=lambda:True,process_id=lambda:7,class_name=lambda:'TPlugListForm')
+    obj._keys('Pianoteq',popup,unicode_text=unicode_text)
+    assert len(sent)==1 and sent[0][1]['with_spaces'] and sent[0][1]['vk_packet']==unicode_text

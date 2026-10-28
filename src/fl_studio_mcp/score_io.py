@@ -85,8 +85,30 @@ def replace_basic(host,bridge,channel,expected_channel,pattern,expected_notes,no
     state=saved['saved_state']
     if basic_score(state,pattern,channel)!=expected_notes:
         raise WorkflowError('STALE_SCORE','Actual fresh native score differs; only checkpoint was saved, no note edits')
+    # Real multi-channel acceptance observed FL's importer clear byte19 bit7
+    # on other channels' imported notes. Keep the exact-record contract: do not
+    # silently normalize that flag or label a musical-only comparison success.
+    if notes and any(bytes.fromhex(n['raw_record_hex'])[19] & 128
+                     for n in untouched(state,pattern,channel).get(pattern,[])):
+        raise WorkflowError('IMPORT_NORMALIZES_OTHER_NOTES',
+            'Native MIDI importer can clear other imported-note markers; exact preservation cannot be guaranteed. No note edits sent.',
+            before_checkpoint=saved['path'],title=saved['title'])
     midi=write_midi(midi_path,notes,state['ppq'])
-    guard();bridge.call('channel_select',{'channel':channel});bridge.call('ensure_piano_roll')
+    guard();bridge.call('channel_select',{'channel':channel})
+    host.focus(saved['title'])
+    # Close an old editor first: selecting a Rack row alone need not retarget it.
+    # WM_CLOSE is the standard window close action, not process-memory access.
+    import ctypes
+    from ctypes import wintypes
+    u=ctypes.windll.user32
+    u.PostMessageW.argtypes=[wintypes.HWND,wintypes.UINT,wintypes.WPARAM,wintypes.LPARAM]
+    u.IsWindowVisible.argtypes=[wintypes.HWND]
+    old=[w for w in host.main.descendants() if w.class_name()=='TEventEditForm' and w.is_visible()
+         and w.window_text().startswith(('钢琴卷帘','Piano roll'))]
+    for w in old:
+        u.PostMessageW(w.handle,0x0010,0,0)
+        wait_for(lambda:not u.IsWindowVisible(w.handle),description='previous Piano Roll closed')
+    host._keys('{F7}',host.channel_rack())
     def piano():
         candidates=[w for w in host.main.descendants() if w.class_name()=='TEventEditForm' and w.is_visible()
                     and w.window_text().startswith(('钢琴卷帘','Piano roll'))]

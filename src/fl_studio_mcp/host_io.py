@@ -43,7 +43,28 @@ class HostFiles(FLDesktop):
         require_interactive_desktop()
         return super().focus(expected_title)
 
-    def _keys(self, keys, target=None):
+    def focus_control(self,target):
+        """Native thread focus; pywinauto Win32 set_focus may move the pointer."""
+        user32,kernel32=ctypes.windll.user32,ctypes.windll.kernel32
+        user32.SetFocus.argtypes=[wintypes.HWND];user32.SetFocus.restype=wintypes.HWND
+        user32.GetWindowThreadProcessId.argtypes=[wintypes.HWND,ctypes.POINTER(wintypes.DWORD)]
+        thread=user32.GetWindowThreadProcessId(target.handle,None)
+        current=kernel32.GetCurrentThreadId()
+        user32.AttachThreadInput.argtypes=[wintypes.DWORD,wintypes.DWORD,wintypes.BOOL]
+        attached=current!=thread and bool(user32.AttachThreadInput(current,thread,True))
+        try:user32.SetFocus(target.handle)
+        finally:
+            if attached:user32.AttachThreadInput(current,thread,False)
+        class GuiThreadInfo(ctypes.Structure):
+            _fields_=[('cbSize',wintypes.DWORD),('flags',wintypes.DWORD)]+[(n,wintypes.HWND) for n in
+                ('hwndActive','hwndFocus','hwndCapture','hwndMenuOwner','hwndMoveSize','hwndCaret')]+[('rcCaret',wintypes.RECT)]
+        info=GuiThreadInfo();info.cbSize=ctypes.sizeof(info)
+        user32.GetGUIThreadInfo.argtypes=[wintypes.DWORD,ctypes.POINTER(GuiThreadInfo)]
+        user32.IsChild.argtypes=[wintypes.HWND,wintypes.HWND]
+        if not user32.GetGUIThreadInfo(thread,ctypes.byref(info)) or not (info.hwndFocus==target.handle or user32.IsChild(target.handle,info.hwndFocus)):
+            raise WorkflowError('FOCUS_LOST','Native editor focus could not be verified; no keys sent')
+
+    def _keys(self, keys, target=None, *, unicode_text=False):
         require_interactive_desktop()
         from .pyscript_trigger import force_focus
         from pywinauto.keyboard import send_keys
@@ -52,26 +73,45 @@ class HostFiles(FLDesktop):
             raise WorkflowError('FOCUS_LOST', 'No keys sent to an unverified target')
         # FL editor panes can become the foreground HWND even though Windows
         # refuses SetForegroundWindow(child). Activate the top-level host first.
-        activation = self.main if target.class_name() == 'TEventEditForm' else target
-        if not force_focus(activation.handle):
-            raise WorkflowError('FOCUS_LOST', 'No keys sent: top-level activation failed')
+        activation = self.main if target.class_name() in {'TEventEditForm','TStepSeqForm','TFXForm'} else target
+        user32=ctypes.windll.user32
+        user32.GetForegroundWindow.restype=wintypes.HWND
+        pid=wintypes.DWORD()
+        user32.GetWindowThreadProcessId(user32.GetForegroundWindow(),ctypes.byref(pid))
+        if pid.value!=self.pid:
+            if not force_focus(activation.handle):
+                raise WorkflowError('FOCUS_LOST','No keys sent: host activation failed')
+        elif activation is not self.main and user32.GetForegroundWindow()!=activation.handle:
+            # Never tap Alt while a popup is open: it can dismiss the picker.
+            user32.SetForegroundWindow(activation.handle)
         if target is not activation:
-            target.set_focus()
+            self.focus_control(target)
         user32 = ctypes.windll.user32
         user32.GetForegroundWindow.restype = wintypes.HWND
         pid = wintypes.DWORD()
         user32.GetWindowThreadProcessId(user32.GetForegroundWindow(), ctypes.byref(pid))
         if pid.value != self.pid:
             raise WorkflowError('FOCUS_LOST', 'Foreground belongs to another process; no keys sent')
-        send_keys(keys)
+        if activation is not self.main and user32.GetForegroundWindow()!=activation.handle:
+            raise WorkflowError('FOCUS_LOST','Expected native popup is not foreground; no keys sent')
+        # Text must bypass the active IME; physical letter keys can compose
+        # Chinese words instead of the requested plugin name. Shortcuts retain VKs.
+        send_keys(keys,vk_packet=unicode_text,with_spaces=True)
 
     def _playlist_keys(self, keys, expected_title):
         self.focus(expected_title)
         if self.dialogs():
             raise WorkflowError('GUI_BLOCKED', 'Existing modal dialog; no automatic dismissal')
         playlist = self.playlist()  # require an already visible, identified editor
-        playlist.set_focus()
+        self.focus_control(playlist)
         self._keys(keys, playlist)
+
+    def channel_rack(self):
+        def visible():
+            rows=[w for w in self.main.descendants() if w.class_name()=='TStepSeqForm' and w.is_visible()]
+            return rows[0] if len(rows)==1 else None
+        if visible() is None:self._keys('{F6}')
+        return wait_for(visible,description='unique visible Channel Rack')
 
     def _own(self, path):
         atomic_json(state_dir()/'host-file-session.json', dict(path=str(path), sha256=digest(path),
@@ -111,11 +151,16 @@ class HostFiles(FLDesktop):
         self._playlist_keys('^o',preservation['title'])
         self.file_dialog(destination)
         wait_for(lambda: self.main.is_enabled() and destination.name.lower() in self.main.window_text().lower(), timeout=30, description='opened independent FLP copy')
+        from .connection import get_bridge,FLBridgeError
+        def bridge_ready():
+            try:return bool(get_bridge().call('ping').get('protocol_version'))
+            except FLBridgeError:return False
+        wait_for(bridge_ready,timeout=45,description='FL bridge ready after project/plugin initialization')
         self._own(destination)
         return dict(ok=True, verified=True, execution_kind='keyboard_UIA_fallback', path=str(destination),
             title=self.main.window_text(), preserved=preservation['path'], source_copy=copied,
             limitation='Window/file identity verified; independently reread plugin values to verify persistence',
-            screenshots=0,mouse_operations=0)
+            bridge_ready=True,screenshots=0,mouse_operations=0)
 
     def export_wav_no_image(self,destination,expected_title,minimum_seconds=.05,maximum_seconds=3600):
         path=Path(destination).resolve()

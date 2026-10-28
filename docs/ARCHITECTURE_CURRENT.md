@@ -1,4 +1,14 @@
-# 1.2 UI-first architecture
+# Current direct-first branch and preserved UI-first architecture
+
+Latest accepted scope: [2026-10-29 prerequisites](STAGE3_20261029_ACCEPTANCE.md).
+Codex → stdio MCP → guarded structured host bridge for parameter/Pattern/Mixer state;
+explicit native keyboard/UIA fallback for missing load, basic-score import and file operations.
+Read-only FLP inspection and decoded audio independently verify actual outcomes. New accepted
+paths do not use canvas coordinates; diagnostic screenshots are optional development evidence.
+Same-Pattern importer interference is refused. Playlist placement and automation remain gaps.
+No default configuration or installed controller migration was performed.
+
+## Preserved UI-first architecture
 
 Codex → stdio MCP → cooperating OS mutation lock/request log → observed Windows UI → real FL Studio.
 

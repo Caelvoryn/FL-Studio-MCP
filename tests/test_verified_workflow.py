@@ -214,7 +214,7 @@ def test_mcp_schema_new_tools_and_checkpoint_roundtrip(tmp_path, monkeypatch):
     async def run():
         async with Client(build_server()) as client:
             tools = await client.list_tools()
-            assert len(tools) == 93  # experimental score/picker prototypes are hidden without their own flag
+            assert len(tools) == 96  # three bounded fallbacks promoted after independent 2026-10-29 host acceptance
             assert {"fl_ui_observe", "fl_ui_act"} <= {t.name for t in tools}
             source, dest = tmp_path / "source.flp", tmp_path / "dest.flp"
             source.write_bytes(b"FLhd-test")

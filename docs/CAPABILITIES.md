@@ -1,5 +1,13 @@
 # 1.2 UI-first capability matrix
 
+**Current direct-first delta, 2026-10-29:** see [actual acceptance](STAGE3_20261029_ACCEPTANCE.md).
+Pianoteq9/Sylenth1 native picker loading, separate-Pattern basic-note import, free Mixer assignment
+and selected-track EQ2/Compressor/Reeverb2 insertion now have real coordinate-free host evidence.
+Parameters use direct host reads/writes; loading and file operations are keyboard/UIA fallbacks.
+Same-Pattern imported-note interference is refused, not normalized away. Direct-first Playlist
+placement and automation remain unaccepted. The following table describes the retained UI-first
+version, not a claim that all branch mutations use GUI or that all plugins are supported.
+
 Latest stage3 status: [blocked full-arrangement acceptance](STAGE3_ACCEPTANCE.md).
 Experimental score/picker source is not a verified capability and is hidden by default.
 

@@ -130,6 +130,7 @@ def test_project_save_rejects_mixer_preset_dialog_before_filename_write():
 
 
 def test_plugin_stale_parameter_rejects_write_through_mcp(tmp_path, monkeypatch):
+    monkeypatch.setenv("FLSTUDIO_MCP_ENABLE_LEGACY_WRITES", "1")
     from fl_studio_mcp.tools import plugin
     from fl_studio_mcp.server import build_server
     monkeypatch.setenv("FLSTUDIO_MCP_STATE_DIR", str(tmp_path / "state"))

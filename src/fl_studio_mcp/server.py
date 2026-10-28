@@ -37,6 +37,7 @@ from .tools import mixing as mixing_tools
 from .tools import phase1 as phase1_tools
 from .tools import pianoroll as pianoroll_tools
 from .tools import plugin as plugin_tools
+from .tools import vst as vst_tools
 from .tools import presets as presets_tools
 from .tools import resources as resource_defs
 from .tools import routing as routing_tools
@@ -118,7 +119,8 @@ def build_server() -> FastMCP:
             # intact, but require explicit opt-in to expose background writers.
             gui_write = fn.__name__.startswith(("fl_ui_", "fl_gui_", "fl_playlist_"))
             backup = fn.__name__ == "fl_project_checkpoint"
-            if not readonly and not gui_write and not backup and os.environ.get("FLSTUDIO_MCP_ENABLE_LEGACY_WRITES") != "1":
+            direct_vst = fn.__name__ == "fl_vst_batch_parameters" and os.environ.get("FLSTUDIO_MCP_ENABLE_DIRECT_VST_WRITES") == "1"
+            if not readonly and not gui_write and not backup and not direct_vst and os.environ.get("FLSTUDIO_MCP_ENABLE_LEGACY_WRITES") != "1":
                 return fn
             if readonly or fn.__name__ == "fl_project_checkpoint":
                 return decorator(fn)  # checkpoint journal already locks its transaction
@@ -145,6 +147,7 @@ def build_server() -> FastMCP:
     phase1_tools.register(mcp)      # project/mixer/channel read+write + safety
     pianoroll_tools.register(mcp)   # Phase 2: write notes into the piano roll
     plugin_tools.register(mcp)      # Phase 1B: plugin param read/write (name or index)
+    vst_tools.register(mcp)         # Bounded host reads + independently verified opt-in batch writes
     mixing_tools.register(mcp)      # Slice B: high-level EQ mixing intents
     routing_tools.register(mcp)     # Routing/cleanup Slice 1: read-only
     bulk_tools.register(mcp)        # Bulk mute/solo: server-side group orchestration

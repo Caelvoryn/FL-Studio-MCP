@@ -208,12 +208,13 @@ def test_safe_write_requires_independent_read_and_keeps_recovery(failure):
     assert safety.get_changelog().recent()[0]["restore"]["params"]["value"] == .8
 
 
-def test_mcp_schema_new_tools_and_checkpoint_roundtrip(tmp_path):
+def test_mcp_schema_new_tools_and_checkpoint_roundtrip(tmp_path, monkeypatch):
+    monkeypatch.setenv("FLSTUDIO_MCP_ENABLE_LEGACY_WRITES", "1")
     from fl_studio_mcp.server import build_server
     async def run():
         async with Client(build_server()) as client:
             tools = await client.list_tools()
-            assert len(tools) == 83
+            assert len(tools) == 87  # original83 + four direct VST tools
             assert {"fl_ui_observe", "fl_ui_act"} <= {t.name for t in tools}
             source, dest = tmp_path / "source.flp", tmp_path / "dest.flp"
             source.write_bytes(b"FLhd-test")

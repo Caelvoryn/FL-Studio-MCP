@@ -4,7 +4,8 @@ import pytest
 from fl_studio_mcp.connection import FLBridgeError
 
 
-def test_loading_placeholder_and_read_timeout_do_not_reload(monkeypatch):
+@pytest.mark.parametrize('placeholder',['Fruity Wrapper','发生器'])
+def test_loading_placeholder_and_read_timeout_do_not_reload(monkeypatch,placeholder):
     from fl_studio_mcp.tools import vst
     import fl_studio_mcp.host_io as files
     import fl_studio_mcp.desktop as desktop
@@ -21,7 +22,7 @@ def test_loading_placeholder_and_read_timeout_do_not_reload(monkeypatch):
                 self.reads+=1
                 channels=[dict(i=0,name='Sampler')]
                 if self.reads==3:raise FLBridgeError('transient loading timeout')
-                if self.reads>=2:channels.append(dict(i=1,name='Fruity Wrapper' if self.reads==2 else 'Pianoteq 9'))
+                if self.reads>=2:channels.append(dict(i=1,name=placeholder if self.reads==2 else 'Pianoteq 9'))
                 return dict(channels=channels,total=len(channels),next_start=None)
             if cmd=='plugin_get_params':return dict(plugin='Pianoteq 9',total=4240)
             raise AssertionError(cmd)

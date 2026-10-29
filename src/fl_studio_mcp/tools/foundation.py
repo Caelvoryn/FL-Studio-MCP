@@ -101,6 +101,12 @@ def batch_edit(bridge,edits):
             bridge.call('set_tempo' if kind=='tempo' else kind.split('_')[0]+'_set_'+kind.split('_')[1],params)
             check=dict(e,expected_name=e['value']) if kind=='mixer_name' else e
             after,key=read(check);record['after']=after
+            record['readback_attempts']=1
+            settle_until=min(began+30,time.monotonic()+1.5)
+            while not equal(after.get(key),e['value']) and time.monotonic()<settle_until:
+                time.sleep(.05)
+                after,key=read(check);record['after']=after
+                record['readback_attempts']+=1
             if not equal(after.get(key),e['value']):_error('READBACK_MISMATCH','Independent host read differs',actual=after)
             record['verified']=True
         return dict(ok=True,verified=True,atomic=False,execution_kind='direct_host_API',changes=records,persistence_verified=False)
@@ -155,18 +161,35 @@ def register(mcp):
 
     @mcp.tool(annotations=dict(readOnlyHint=False,destructiveHint=False,idempotentHint=False))
     def fl_foundation_pattern(action:str,name:str,expected_count:int,expected_title:str,source:int|None=None)->dict:
-        """Direct host new/clone Pattern with count/name readback. Does not arrange Playlist or write notes.
+        """Direct host new/clone, or coordinate-free native numpad select, with count/name readback.
+        Select requires exact existing source/name and count; it never creates a missing Pattern.
+        Does not arrange Playlist or write notes.
         Clone source must exist. Non-idempotent: never replay on timeout; read state first.
         Save As and inspect native notes separately to establish actual clone contents."""
         try:
-            if action not in ('new','clone') or not isinstance(name,str) or not 1<=len(name)<=24 or type(expected_count)is not int or expected_count<0:
-                _error('INVALID_ARGUMENT','new/clone, name1..24 and exact expected count required')
+            if action not in ('new','clone','select') or not isinstance(name,str) or not 1<=len(name)<=24 or type(expected_count)is not int or expected_count<0:
+                _error('INVALID_ARGUMENT','new/clone/select, name1..24 and exact expected count required')
             from ..host_io import HostFiles
             HostFiles()._require_owned(expected_title)
             b=get_bridge()
-            if b.call('get_play_state').get('playing') is not False:_error('TRANSPORT_ACTIVE','Stop transport')
+            play_state=b.call('get_play_state')
+            if play_state.get('playing') is not False or play_state.get('recording',False):_error('TRANSPORT_ACTIVE','Stop transport and recording')
             before=fetch_all_pages(b,'pattern_list','patterns')
             if before['total']!=expected_count:_error('STALE_VALUE','Pattern count differs',actual=before)
+            if action=='select':
+                matches=[p for p in before['patterns'] if p['pattern']==source and p['name']==name]
+                if type(source)is not int or len(matches)!=1:_error('INVALID_SOURCE','Exact existing Pattern number/name required')
+                initial=b.call('get_project_state')['pattern_number']
+                if abs(source-initial)>64:_error('INVALID_SOURCE','At most64 keyboard Pattern steps')
+                if source!=initial:
+                    host=HostFiles()
+                    key='VK_ADD' if source>initial else 'VK_SUBTRACT'
+                    host._playlist_keys(''.join('{'+key+'}' for _ in range(abs(source-initial))),expected_title)
+                selected=b.call('get_project_state')['pattern_number']
+                after=fetch_all_pages(b,'pattern_list','patterns')
+                verified=selected==source and before==after
+                return dict(ok=verified,verified=verified,execution_kind='native_numpad_shortcut_fallback',
+                    selected_pattern=selected,before=before,after=after,notes_verified=False)
             if action=='clone' and (type(source)is not int or source not in [p['pattern'] for p in before['patterns']]):
                 _error('INVALID_SOURCE','Clone source does not exist')
             ack=b.call('arrange_new_pattern',{'name':name}) if action=='new' else b.call('arrange_clone_pattern',{'src':source,'new_name':name})

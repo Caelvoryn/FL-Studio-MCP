@@ -19,6 +19,32 @@ class Host:
         raise AssertionError(cmd)
 
 
+@pytest.mark.parametrize('ignore',[False,True])
+def test_pattern_selection_checks_actual_number_and_never_retries(monkeypatch,ignore):
+    from types import SimpleNamespace
+    from fl_studio_mcp.tools import foundation
+    import fl_studio_mcp.host_io as files
+    registered={};sent=[];selected=[3]
+    class Registry:
+        def tool(self,**kwargs):
+            def capture(fn):registered[fn.__name__]=fn;return fn
+            return capture
+    def call(cmd,args=None):
+        if cmd=='get_play_state':return dict(playing=False,recording=False)
+        if cmd=='get_project_state':return dict(pattern_number=selected[0])
+        if cmd=='pattern_list':return dict(total=3,next_start=None,patterns=[dict(pattern=i,name=f'P{i}') for i in range(1,4)])
+        pytest.fail('Pattern selection must not create/clone or edit notes')
+    def keys(value,title):
+        sent.append(value)
+        if not ignore:selected[0]=1
+    monkeypatch.setattr(foundation,'get_bridge',lambda:SimpleNamespace(call=call))
+    monkeypatch.setattr(files,'HostFiles',lambda:SimpleNamespace(_require_owned=lambda t:None,_playlist_keys=keys))
+    foundation.register(Registry())
+    r=registered['fl_foundation_pattern']('select','P1',3,'Owned',1)
+    assert r['verified']==(not ignore) and r['ok']==(not ignore)
+    assert sent==['{VK_SUBTRACT}{VK_SUBTRACT}']
+
+
 def edit():return [dict(kind='channel_volume',index=1,expected_name='Piano',expected_value=.5,value=.6)]
 
 
@@ -26,6 +52,22 @@ def test_independent_read_after_write():
     h=Host();r=batch_edit(h,edit())
     assert r['verified'] and r['changes'][0]['after']['vol_norm']==.6
     assert h.calls[-3:]==['channel_set_volume','get_project_state','channel_get']
+
+
+def test_delayed_control_value_read_does_not_repeat_write():
+    class Delayed(Host):
+        pending=None
+        reads=0
+        def call(self,cmd,args=None):
+            if cmd=='channel_set_volume':
+                self.calls.append(cmd);self.pending=args['value'];return dict(vol_norm=self.pending)
+            if cmd=='channel_get' and self.pending is not None:
+                self.reads+=1
+                if self.reads>=2:self.value=self.pending
+            return super().call(cmd,args)
+    h=Delayed();r=batch_edit(h,edit())
+    assert r['verified'] and r['changes'][0]['readback_attempts']==2
+    assert h.calls.count('channel_set_volume')==1
 
 
 def test_false_ack_not_success():

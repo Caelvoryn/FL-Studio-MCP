@@ -95,6 +95,13 @@ def batch_parameters(bridge, track, slot, expected_plugin, changes, expected_cha
             records.append(entry)  # retain uncertain write if response times out
             bridge.call('plugin_set_param', dict(track=track, slot=slot, param=change['param'], value=change['value']))
             after = read(change)  # independent command, not the write acknowledgement
+            entry['readback_attempts']=1
+            settle_until=min(began+timeout,time.monotonic()+1.5)
+            while abs(after['v']-change['value'])>change['tolerance'] and time.monotonic()<settle_until:
+                time.sleep(.05)
+                _identity(bridge,track,slot,expected_plugin,expected_channel)
+                after=read(change)
+                entry['readback_attempts']+=1
             entry['after'] = after
             _identity(bridge, track, slot, expected_plugin, expected_channel)
             if abs(after['v'] - change['value']) > change['tolerance']:
@@ -246,7 +253,8 @@ def register(mcp):
                     _fail('CHANNEL_TOPOLOGY_CHANGED','Unexpected channel topology after picker load',actual=after)
                 new=after[-1]
                 pending['channel']=new
-                if new['name']=='Fruity Wrapper':return None  # observed loading placeholder, NOT success
+                if new['name']!=expected_channel and new['name'] in {'Fruity Wrapper','发生器','Generator'}:
+                    return None  # observed localized loading placeholders, NOT success
                 if new['name']!=expected_channel:_fail('WRONG_PLUGIN_LOADED','Added channel name differs',actual=new)
                 try:
                     page=bridge.call('plugin_get_params',dict(track=new['i'],slot=-1,start=0))

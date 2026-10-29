@@ -6,13 +6,15 @@ from ..connection import get_bridge, FLBridgeError
 
 def register(mcp):
     @mcp.tool(annotations=dict(readOnlyHint=False,destructiveHint=False,idempotentHint=False))
-    def fl_host_project_file(action: Literal['save_as','reopen_copy','export_wav'],destination: str,
+    def fl_host_project_file(action: Literal['save_as','reopen_copy','export_wav','prepare_wav'],destination: str,
                              expected_title: str,source: str|None=None,preserve_current_to: str|None=None,
                              minimum_seconds: float=.05,maximum_seconds: float=3600) -> dict:
         """OPT-IN keyboard/UIA FALLBACK, not internal FL file API. No screenshots/mouse.
         Save As exclusively to a new independent FLP; reopen_copy first preserves current session
         then opens a fresh byte-for-byte copy; export_wav requires an owned saved session and
         verifies actual audio. Existing render settings inherited, not programmatically configured.
+        prepare_wav only opens the actual render dialog and returns verified=false; no WAV is
+        claimed. Configure/start explicitly through GUI and independently verify the output.
         Requires visible Playlist, stopped transport, supported native dialogs and exact FL title.
         Never overwrites. A timeout is uncertain: inspect state and choose fresh paths before retry.
         Reopen result alone does not prove plugin parameter persistence: reread through host."""
@@ -27,7 +29,7 @@ def register(mcp):
             host=HostFiles()
             if action=='save_as':return host.save_as_no_image(destination,expected_title)
             if action=='reopen_copy':return host.reopen_copy(source,destination,preserve_current_to,expected_title)
-            return host.export_wav_no_image(destination,expected_title,minimum_seconds,maximum_seconds)
+            return host.export_wav_no_image(destination,expected_title,minimum_seconds,maximum_seconds,prepare_only=action=='prepare_wav')
         except (WorkflowError,FLBridgeError,OSError) as exc:
             return exc.result() if isinstance(exc,WorkflowError) else WorkflowError('HOST_FILE_FAILED',str(exc)).result()
         except Exception as exc:

@@ -1,6 +1,8 @@
 # FL Studio MCP 1.2.0.dev2 — UI-first development candidate
 
-**Latest checkpoint: [coordinate-free prerequisite acceptance, 2026-10-29](docs/STAGE3_20261029_ACCEPTANCE.md).**
+**2026-10-29 music-practice checkpoint:** [Aurora Lift: real 32-bar acceptance](docs/AURORA_LIFT_PRACTICE_ACCEPTANCE.md). Real FL generated editable notes, a 4-instrument arrangement, an automation fade and three WAV renders; native semantic state survived reopen. 203 offline regression tests pass. Playlist/automation/render configuration used explicitly labeled calibrated GUI assistance, not a fully coordinate-free path. PCM repeats differ, including same-session repeats; subjective listening remains pending. Earlier incomplete-stage reports below are retained as history.
+
+**Previous checkpoint: [coordinate-free prerequisite acceptance, 2026-10-29](docs/STAGE3_20261029_ACCEPTANCE.md).**
 After unlock, real stdio MCP loaded Pianoteq9/Sylenth1, imported basic notes into separate
 Patterns, assigned free Mixer tracks, inserted EQ/Compressor/Reeverb and verified saved/reopened
 state and actual WAVs.194 offline tests pass. Full16-bar arrangement remains **incomplete**:
@@ -25,7 +27,7 @@ Windows / Python 3.12 / FL Studio 26.1.5 build 5618. Based on rosasynthesiz/flst
 
 The preserved UI-first workflow uses GUI input and calibrated canvas targets. The opt-in direct
 branch instead prefers structured official host operations; missing loading/file/score operations
-use explicitly labeled keyboard/UIA fallbacks. New accepted operations use no coordinates.
+use explicitly labeled keyboard/UIA fallbacks. The earlier prerequisite operations used no coordinates; the music-practice Playlist, automation and render configuration required explicitly labeled calibrated GUI assistance.
 Three diagnostic screenshots identified IME interference during development; they are not needed
 by the accepted picker path. Neither architecture is universal control of all FL features.
 

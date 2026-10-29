@@ -180,7 +180,14 @@ def act(token, operation_id, handle, action, point=None, target=None, keys=None,
         if root.handle == desktop.main.handle or not root.is_enabled():
             raise WorkflowError("GUI_BLOCKED", "Target is behind an FL modal dialog")
         from .pyscript_trigger import force_focus
-        if not force_focus(root.handle):
+        import ctypes
+        from ctypes import wintypes
+        ctypes.windll.user32.GetForegroundWindow.restype=wintypes.HWND
+        foreground_pid=wintypes.DWORD()
+        ctypes.windll.user32.GetWindowThreadProcessId(ctypes.windll.user32.GetForegroundWindow(),ctypes.byref(foreground_pid))
+        # An owned custom popup need not be the foreground HWND. Tapping Alt
+        # merely to activate it can dismiss it before localization/input.
+        if foreground_pid.value!=desktop.pid and not force_focus(root.handle):
             raise WorkflowError("FOCUS_LOST", "Observed FL modal could not receive focus")
     current_image, current_sha = window_image(window)
     navigation=action=='activate' or (action=='keys' and keys in (['f5'],['f6'],['f7'],['f9']))
@@ -323,7 +330,10 @@ def act(token, operation_id, handle, action, point=None, target=None, keys=None,
             parent=window.parent()
             if parent and parent.class_name()=='TWPControl':api.BringWindowToTop(parent.handle)
             api.BringWindowToTop(window.handle)
-        window.set_focus()
+        # Pointer endpoints already passed native hit-testing and pixel guards.
+        # Refocusing their parent can dismiss a self-drawn context menu before
+        # the click, causing a click-through to the underlying control.
+        if action in {'activate','keys'}:window.set_focus()
         if action == "click": p.click(*xy)
         elif action == "double_click": p.doubleClick(*xy, interval=.12)
         elif action == "right_click": p.click(*xy, button="right")

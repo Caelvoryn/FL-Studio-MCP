@@ -44,6 +44,23 @@ def test_independent_read_after_write():
     assert commands[commands.index('plugin_set_param')+1]=='plugin_get_param'
 
 
+def test_delayed_numeric_readback_settles_without_resending_write():
+    class Delayed(Host):
+        pending=None
+        reads=0
+        def call(self,command,args=None):
+            if command=='plugin_set_param':
+                self.calls.append((command,args));self.pending=args['value'];return dict(v=self.pending)
+            if command=='plugin_get_param' and self.pending is not None:
+                self.reads+=1
+                if self.reads>=2:self.value=self.pending
+            return super().call(command,args)
+    h=Delayed();r=run(h)
+    assert r['verified'] and r['changes'][0]['after']['v']==.6
+    assert r['changes'][0]['readback_attempts']==2
+    assert sum(c=='plugin_set_param' for c,a in h.calls)==1
+
+
 def test_lying_acknowledgement_not_success():
     host=Host();host.ignore=True;result=run(host)
     assert not result['ok'] and result['error']['code']=='READBACK_MISMATCH'

@@ -102,7 +102,16 @@ class HostFiles(FLDesktop):
         self.focus(expected_title)
         if self.dialogs():
             raise WorkflowError('GUI_BLOCKED', 'Existing modal dialog; no automatic dismissal')
-        playlist = self.playlist()  # require an already visible, identified editor
+        try:playlist=self.playlist()
+        except WorkflowError as exc:
+            if exc.code!='GUI_LAYOUT':raise
+            self._keys('{F5}')
+            def visible():
+                try:return self.playlist()
+                except WorkflowError as exc:
+                    if exc.code=='GUI_LAYOUT':return None
+                    raise
+            playlist=wait_for(visible,description='Playlist visible for file shortcut')
         self.focus_control(playlist)
         self._keys(keys, playlist)
 
@@ -114,8 +123,10 @@ class HostFiles(FLDesktop):
         return wait_for(visible,description='unique visible Channel Rack')
 
     def _own(self, path):
-        atomic_json(state_dir()/'host-file-session.json', dict(path=str(path), sha256=digest(path),
-            title=self.main.window_text(), process_id=self.pid))
+        session=dict(path=str(path), sha256=digest(path),title=self.main.window_text(),process_id=self.pid)
+        atomic_json(state_dir()/'host-file-session.json',session)
+        # Both adapters own the same actual native save, not separate projects.
+        atomic_json(state_dir()/'desktop-session.json',session)
 
     def _require_owned(self, expected_title):
         import json
@@ -162,7 +173,7 @@ class HostFiles(FLDesktop):
             limitation='Window/file identity verified; independently reread plugin values to verify persistence',
             bridge_ready=True,screenshots=0,mouse_operations=0)
 
-    def export_wav_no_image(self,destination,expected_title,minimum_seconds=.05,maximum_seconds=3600):
+    def export_wav_no_image(self,destination,expected_title,minimum_seconds=.05,maximum_seconds=3600,prepare_only=False):
         path=Path(destination).resolve()
         if path.suffix.lower()!='.wav' or path.exists():
             raise WorkflowError('OVERWRITE_REFUSED','A fresh WAV destination is required')
@@ -174,6 +185,10 @@ class HostFiles(FLDesktop):
             forms=[w for w in self.win32.windows(process=self.pid,class_name='TWAVRenderForm') if w.is_visible()]
             if len(forms)==1 and path.name.lower() in forms[0].window_text().lower():return forms[0]
         form=wait_for(render_form,description='correct FL WAV render form')
+        if prepare_only:
+            return dict(ok=True,verified=False,phase='render_dialog_open_only',destination=str(path),
+                handle=str(form.handle),execution_kind='keyboard_UIA_fallback',
+                limitation='No rendering started. Inspect actual settings, start through GUI and verify actual WAV separately.')
         self._keys('{ENTER}',form)  # verified native default Start action; no blind repeated Enter
         wait_for(lambda: path.is_file() and not form.is_visible() and self.main.is_enabled(),timeout=120,description='FL render completion')
         result=audio_integrity(path,minimum_seconds,maximum_seconds)

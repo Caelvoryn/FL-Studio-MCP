@@ -1,3 +1,5 @@
+**2026-10-29 music-practice checkpoint:** [Aurora Lift: real 32-bar acceptance](AURORA_LIFT_PRACTICE_ACCEPTANCE.md). Real FL generated editable notes, a 4-instrument arrangement, an automation fade and three WAV renders; native semantic state survived reopen. 203 offline regression tests pass. Playlist/automation/render configuration used explicitly labeled calibrated GUI assistance, not a fully coordinate-free path. PCM repeats differ, including same-session repeats; subjective listening remains pending. Earlier incomplete-stage reports below are retained as history.
+
 # Observe → act → verify → recover
 
 Latest: [coordinate-free prerequisite workflow](STAGE3_20261029_ACCEPTANCE.md).

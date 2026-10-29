@@ -39,8 +39,10 @@ def test_nonbasic_existing_style_refused(offset,value):
     with pytest.raises(WorkflowError):basic_score({'patterns':{1:{'notes':[n]}}},1,1)
 
 
-def test_basic_existing_style_read_and_other_records_preserved():
-    raw='0000000000400100600000003c0000007800008040508080'
+@pytest.mark.parametrize('marker',[0,128])
+def test_basic_existing_style_read_and_other_records_preserved(marker):
+    data=bytearray.fromhex('0000000000400100600000003c0000007800008040508080');data[19]=marker
+    raw=data.hex()
     n=dict(note(),channel=1,raw_record_hex=raw)
     other=dict(note(72),channel=0,raw_record_hex=raw)
     state={'patterns':{1:{'notes':[n,other]}}}

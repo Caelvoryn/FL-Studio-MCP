@@ -31,7 +31,8 @@ def basic_score(state,pattern,channel):
         raw=bytes.fromhex(n['raw_record_hex'])
         # The observed simple MIDI-import style only. Refuse slide/group/pan/
         # release/microtuning/custom controls instead of silently flattening them.
-        if len(raw)!=24 or raw[4:6]!=b'\x00\x40' or raw[14:21]!=b'\x00\x00\x78\x00\x00\x80\x40' or raw[22:24]!=b'\x80\x80':
+        if (len(raw)!=24 or raw[4:6]!=b'\x00\x40' or raw[14:19]!=b'\x00\x00\x78\x00\x00'
+                or raw[19] not in (0,128) or raw[20]!=64 or raw[22:24]!=b'\x80\x80'):
             raise WorkflowError('UNSUPPORTED_NOTE_STYLE','Existing score has non-basic properties; no MIDI replacement permitted')
         result.append({k:n[k] for k in ('pitch','time_ticks','length_ticks','velocity_raw')})
     return canonical(result)

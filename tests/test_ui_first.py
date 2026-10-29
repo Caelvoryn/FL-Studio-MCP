@@ -116,3 +116,26 @@ def test_existing_fl_foreground_does_not_inject_alt(monkeypatch):
     desktop.pid=42
     desktop.main=SimpleNamespace(is_enabled=lambda:True,window_text=lambda:'owned',handle=123)
     desktop.focus('owned')
+
+
+def test_click_on_embedded_menu_does_not_refocus_parent(tmp_path,monkeypatch):
+    import ctypes
+    import pyautogui
+    rect=SimpleNamespace(left=10,top=20,right=410,bottom=320,width=lambda:400,height=lambda:300)
+    def bad_focus():pytest.fail('Refocus would dismiss the embedded menu before clicking')
+    window=SimpleNamespace(handle=1,rectangle=lambda:rect,class_name=lambda:'TFXForm',set_focus=bad_focus)
+    desktop=SimpleNamespace(pid=7,main=SimpleNamespace(is_enabled=lambda:True,window_text=lambda:'Owned'),
+                            session=lambda **kw:None,focus=lambda title:None)
+    obs=dict(time=time.time(),process_id=7,title='Owned',windows=[dict(handle='1',rect=[10,20,410,320],image_sha256='same')])
+    atomic_json(tmp_path/'observations'/'fresh'/'observation.json',obs)
+    monkeypatch.setattr(ui,'state_dir',lambda:tmp_path)
+    monkeypatch.setattr(ui,'FLDesktop',lambda:desktop)
+    monkeypatch.setattr(ui,'visible_windows',lambda d:{'1':window})
+    monkeypatch.setattr(ui,'window_image',lambda w:(None,'same'))
+    monkeypatch.setattr(ui,'observe',lambda d:obs)
+    def hit(point):return 1
+    def child(parent,hwnd):return False
+    monkeypatch.setattr(ctypes,'windll',SimpleNamespace(user32=SimpleNamespace(WindowFromPoint=hit,IsChild=child)))
+    clicks=[];monkeypatch.setattr(pyautogui,'click',lambda *args,**kwargs:clicks.append(args))
+    result=ui.act('fresh','once','1','click',point=[.5,.5])
+    assert result['phase']=='input_sent' and clicks==[(210,170)]

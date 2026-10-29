@@ -1,0 +1,117 @@
+{
+  "title": "Aurora Lift",
+  "bars": 32,
+  "bpm": 128,
+  "key": "A minor",
+  "arranged_note_count": 884,
+  "stored_note_count": 1329,
+  "pattern_count": 8,
+  "playlist_count": 5,
+  "same_instrument_pattern_overlaps": 0,
+  "native_semantic_equal": true,
+  "strict_fields_equal": {
+    "patterns": true,
+    "channels": true,
+    "automation": true,
+    "plugin_state_hashes": true,
+    "mixer_event_hashes": true
+  },
+  "metrics": [
+    {
+      "file": "Aurora Lift - Final.wav",
+      "seconds": 61.962879818594104,
+      "body_rms_dbfs": -23.133498698729284,
+      "sections": [
+        {
+          "name": "Intro",
+          "rms_dbfs": -26.81243876869847,
+          "peak_dbfs": -9.714831448896458
+        },
+        {
+          "name": "Build",
+          "rms_dbfs": -22.683234491170875,
+          "peak_dbfs": -8.084420734511246
+        },
+        {
+          "name": "Drop",
+          "rms_dbfs": -21.74446153095381,
+          "peak_dbfs": -6.029617050900371
+        },
+        {
+          "name": "Outro",
+          "rms_dbfs": -24.138047792803295,
+          "peak_dbfs": -7.663804908573467
+        }
+      ],
+      "longest_body_quiet_span_seconds": 0.0,
+      "last100ms_peak_dbfs": -90.30899869919436,
+      "body_stereo_correlation": 0.8292733699971919
+    },
+    {
+      "file": "Aurora Lift - Same Session.wav",
+      "seconds": 62.12891156462585,
+      "body_rms_dbfs": -23.616387475022158,
+      "sections": [
+        {
+          "name": "Intro",
+          "rms_dbfs": -27.633787732439362,
+          "peak_dbfs": -9.0588631950207
+        },
+        {
+          "name": "Build",
+          "rms_dbfs": -23.544662431859887,
+          "peak_dbfs": -9.391590850207152
+        },
+        {
+          "name": "Drop",
+          "rms_dbfs": -21.9622666627179,
+          "peak_dbfs": -6.522561878784426
+        },
+        {
+          "name": "Outro",
+          "rms_dbfs": -24.678942793895665,
+          "peak_dbfs": -7.411290333451513
+        }
+      ],
+      "longest_body_quiet_span_seconds": 0.0,
+      "last100ms_peak_dbfs": -84.28839878591474,
+      "body_stereo_correlation": 0.8321103549997733
+    },
+    {
+      "file": "Aurora Lift - Reopened.wav",
+      "seconds": 62.12401360544218,
+      "body_rms_dbfs": -23.750853210306595,
+      "sections": [
+        {
+          "name": "Intro",
+          "rms_dbfs": -27.594737011461625,
+          "peak_dbfs": -9.616429566687952
+        },
+        {
+          "name": "Build",
+          "rms_dbfs": -23.811476964808893,
+          "peak_dbfs": -8.959398220564706
+        },
+        {
+          "name": "Drop",
+          "rms_dbfs": -22.25716601255187,
+          "peak_dbfs": -6.344657254311663
+        },
+        {
+          "name": "Outro",
+          "rms_dbfs": -23.87906200713223,
+          "peak_dbfs": -7.688822443381559
+        }
+      ],
+      "longest_body_quiet_span_seconds": 0.0,
+      "last100ms_peak_dbfs": -90.30899869919436,
+      "body_stereo_correlation": 0.8315661203329173
+    }
+  ],
+  "evidence_scope": "Real FL Studio output, native saved state and numerical audio analysis; not subjective listening. Detailed local operation journals are not published.",
+  "regression": {
+    "passed": 203,
+    "warnings": 5,
+    "seconds": 19.35
+  }
+}

@@ -88,3 +88,27 @@ def test_active_picker_does_not_receive_activation_alt(monkeypatch,unicode_text)
     popup=SimpleNamespace(handle=2,is_visible=lambda:True,process_id=lambda:7,class_name=lambda:'TPlugListForm')
     obj._keys('Pianoteq',popup,unicode_text=unicode_text)
     assert len(sent)==1 and sent[0][1]['with_spaces'] and sent[0][1]['vk_packet']==unicode_text
+
+
+def test_actual_save_ownership_shared_between_adapters(tmp_path,monkeypatch):
+    import fl_studio_mcp.host_io as module
+    monkeypatch.setattr(module,'state_dir',lambda:tmp_path)
+    project=tmp_path/'saved.flp';project.write_bytes(b'actual bytes')
+    obj=host();obj._own(project)
+    first=json.loads((tmp_path/'host-file-session.json').read_text())
+    second=json.loads((tmp_path/'desktop-session.json').read_text())
+    assert first==second and first['sha256']==digest(project) and first['process_id']==7
+
+
+def test_prepare_render_cannot_claim_actual_wav_or_start(tmp_path):
+    obj=host();commands=[]
+    obj._require_owned=lambda t:None
+    obj._playlist_keys=lambda *args:commands.append(args)
+    obj.file_dialog=lambda path:None
+    obj._keys=lambda *args:pytest.fail('Preparation must never start rendering')
+    form=SimpleNamespace(handle=123,is_visible=lambda:True,window_text=lambda:'Render new.wav')
+    obj.win32=SimpleNamespace(windows=lambda **kw:[form])
+    output=tmp_path/'new.wav'
+    result=obj.export_wav_no_image(output,'Owned',prepare_only=True)
+    assert result['verified'] is False and result['phase']=='render_dialog_open_only'
+    assert not output.exists() and commands==[('^r','Owned')]
